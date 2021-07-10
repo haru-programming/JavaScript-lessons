@@ -10,6 +10,4 @@ anchor.href = "1.html";
 img.src = "bookmark.png";
 img.alt = "ブックマーク";
 
-ul.appendChild(li);
-li.appendChild(anchor);
-anchor.insertAdjacentElement('afterbegin',img);
+ul.appendChild(li).appendChild(anchor).insertAdjacentElement('afterbegin',img);
