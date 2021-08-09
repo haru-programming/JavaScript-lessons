@@ -1,6 +1,3 @@
-'use strict';
-
-document.addEventListener('DOMContentLoaded', function() {
     const attributes = [
         {to: "bookmark.html", img: "1.png", alt:"画像1", text: "ブックマーク"},
         {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}
@@ -20,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const img = document.createElement('img');
 
         anchor.textContent = attribute.text;
-        anchor.href = '/' + attribute.to;
+        anchor.href = `/${attribute.to}`;
         img.src = attribute.img;
         img.alt = attribute.alt;
         
@@ -31,4 +28,3 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     ul.appendChild(fragment);
-});
