@@ -9,7 +9,9 @@ const fragment = document.createDocumentFragment();
 
 const promise = new Promise(resolve => {
     setTimeout(() => resolve(attributes), 3000);
-}).then(attributes => {
+});
+
+promise.then(attributes => {
     attributes.forEach(attribute => {
         const li = document.createElement("li");
         const anchor = document.createElement("a");
