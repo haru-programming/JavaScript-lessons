@@ -11,16 +11,16 @@ const promise = new Promise(resolve => {
     setTimeout(() => resolve(attributes), 3000);
 });
 
-promise.then(attributes => {
-    attributes.forEach(attribute => {
+promise.then(values => {
+    values.forEach(value => {
         const li = document.createElement("li");
         const anchor = document.createElement("a");
         const img = document.createElement("img");
     
-        anchor.textContent = attribute.text;
-        anchor.href = `/${attribute.to}`;
-        img.src = attribute.img;
-        img.alt = attribute.alt;
+        anchor.textContent = value.text;
+        anchor.href = `/${value.to}`;
+        img.src = value.img;
+        img.alt = value.alt;
     
         li.appendChild(anchor).insertAdjacentElement("afterbegin", img);
         fragment.appendChild(li);
