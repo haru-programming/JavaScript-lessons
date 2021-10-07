@@ -12,24 +12,15 @@ function addLoading() {
     li.style.listStyle = "none";
     img.src = "loading-circle.gif";
 
-    return ul.appendChild(li).appendChild(img);
+    ul.appendChild(li).appendChild(img);
 };
 
 function removeLoading() {
     const li = document.getElementById("js-loading");
-    return ul.removeChild(li);
+    ul.removeChild(li);
 }
 
-function displayLoading() {
-    return promise = new Promise(resolve => {
-        addLoading();
-        setTimeout(() => resolve(receiveData()), 3000);
-    });
-}
-
-displayLoading().then(values => {
-    removeLoading();
-
+function addList(values) {
     const fragment = document.createDocumentFragment();
 
     values.forEach(value => {
@@ -46,5 +37,16 @@ displayLoading().then(values => {
         fragment.appendChild(li);
     });
     ul.appendChild(fragment);
-});
+};
 
+function fetchListData() {
+    addLoading();
+    return promise = new Promise(resolve => {
+        setTimeout(() => resolve(attributes), 3000);
+    });
+}
+
+fetchListData().then(values => {
+    removeLoading();
+    addList(values)
+});
