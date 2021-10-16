@@ -9,7 +9,6 @@ function addLoading() {
     const li = document.createElement("li");
     const img = document.createElement("img");
     li.id = "js-loading";
-    li.style.listStyle = "none";
     img.src = "loading-circle.gif";
 
     ul.appendChild(li).appendChild(img);
