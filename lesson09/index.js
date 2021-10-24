@@ -21,7 +21,7 @@ function removeLoading() {
 
 function fetchListData() {
     addLoading();
-    return promise = new Promise(resolve => {
+    return new Promise(resolve => {
         setTimeout(() => resolve(attributes), 3000);
     });
 }
