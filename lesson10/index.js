@@ -26,24 +26,19 @@ function fetchListData() {
     });
 };
 
-function handlingException() {
+async function handlingException() {
     try {
-        fetchListData();
-    } catch {
-        const error = 'エラー：データが取得できません';
-        console.error(error);
+        return await fetchListData();
+    } catch(e) {
+        console.error(e.message);
     } finally {
         removeLoading();
     }
 };
 
-handlingException();
-
 async function addList() {
     const fragment = document.createDocumentFragment();
-
-    const values = await fetchListData();
-    removeLoading();
+    const values = await handlingException();
 
     values.forEach(value => {
         const li = document.createElement("li");
