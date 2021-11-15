@@ -19,16 +19,16 @@ function removeLoading() {
     ul.removeChild(li);
 };
 
-function fetchListData() {
-    addLoading();
+function fetchData() {
     return new Promise(resolve => {
         setTimeout(() => resolve(attributes), 3000);
     });
 };
 
-async function handlingException() {
+async function fetchListData() {
+    addLoading();
     try {
-        return await fetchListData();
+        return await fetchData();
     } catch(e) {
         console.error(e.message);
     } finally {
@@ -38,7 +38,7 @@ async function handlingException() {
 
 async function addList() {
     const fragment = document.createDocumentFragment();
-    const values = await handlingException();
+    const values = await fetchListData();
 
     values.forEach(value => {
         const li = document.createElement("li");
