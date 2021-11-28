@@ -1,5 +1,4 @@
 const ul = document.getElementById("js-lists");
-const div = document.getElementById("js-contents");
 
 function addLoading() {
     const li = document.createElement("li");
@@ -17,8 +16,7 @@ function removeLoading() {
 
 async function fetchData() {
     try{
-        // const responseApi = await fetch("https://myjson.dit.upm.es/api/bins/7ctn");
-        const responseApi = await fetch("https://myjson.dit.upm.es/api/bins/bu5z");//空の配列
+        const responseApi = await fetch("https://myjson.dit.upm.es/api/bins/7ctn");
         const json = await responseApi.json();
         return json.data;
     } catch(e) {
@@ -29,20 +27,21 @@ async function fetchData() {
 async function fetchListData() {
     addLoading();
     const data = await fetchData();
+    const li = document.createElement("li");
 
     try {
         if (data.length === 0) {
-            div.textContent = "エラー：データが存在しません";
+            li.textContent = "エラー：データが存在しません";
+            ul.appendChild(li);
             throw new Error("データが空です");
         }
         return data;
     } catch (e) {
         console.error(e.message);
         if (data.length === !0) {
-            div.textContent = "エラー：データを取得できませんでした";
+            li.textContent = "エラー：データを取得できませんでした";
         }
     } finally {
-        console.log(document.getElementById("js-loading"));
         removeLoading();
     }
 };
