@@ -15,35 +15,35 @@ function removeLoading() {
 };
 
 async function fetchData() {
-    try{
+    try {
         const responseApi = await fetch("https://myjson.dit.upm.es/api/bins/7ctn");
         const json = await responseApi.json();
         return json.data;
-    } catch(e) {
-        throw new Error('データを取得できませんでした');
+    } catch (e) {
+        throw new Error(e);
     }
-};
+}
 
 async function fetchListData() {
     addLoading();
-    const data = await fetchData();
-    const li = document.createElement("li");
-
     try {
+        const data = await fetchData();
         if (data.length === 0) {
-            li.textContent = "エラー：データが存在しません";
-            ul.appendChild(li);
             throw new Error("データが空です");
         }
         return data;
     } catch (e) {
-        console.error(e.message);
-        if (data.length === !0) {
-            li.textContent = "エラー：データを取得できませんでした";
-        }
+        createErrorMessage(e);
     } finally {
         removeLoading();
     }
+};
+
+function createErrorMessage(e) {
+    const li = document.createElement("li");
+    li.textContent = `エラー内容:${e.message}`;
+    ul.appendChild(li);
+    console.error(e.message);
 };
 
 async function addList() {
@@ -51,16 +51,16 @@ async function addList() {
     const values = await fetchListData();
 
     if (values) {
-        values.forEach(value => {
+        values.forEach((value) => {
             const li = document.createElement("li");
             const anchor = document.createElement("a");
             const img = document.createElement("img");
-        
+
             anchor.textContent = value.text;
             anchor.href = `/${value.to}`;
             img.src = value.img;
             img.alt = value.alt;
-        
+
             li.appendChild(anchor).insertAdjacentElement("afterbegin", img);
             fragment.appendChild(li);
         });
