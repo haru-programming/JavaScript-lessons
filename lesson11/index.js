@@ -1,17 +1,16 @@
+const div = document.getElementById("js-contents");
 const ul = document.getElementById("js-lists");
 
 function addLoading() {
-    const li = document.createElement("li");
     const img = document.createElement("img");
-    li.id = "js-loading";
     img.src = "loading-circle.gif";
-
-    ul.appendChild(li).appendChild(img);
+    img.id = "js-loading"
+    div.appendChild(img);
 };
 
 function removeLoading() {
-    const li = document.getElementById("js-loading");
-    ul.removeChild(li);
+    const img = document.getElementById("js-loading");
+    div.removeChild(img);
 };
 
 async function fetchData() {
