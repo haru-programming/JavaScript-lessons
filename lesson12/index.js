@@ -16,8 +16,7 @@ function removeLoading() {
 
 async function fetchData() {
     try {
-        const responseApi = await fetch("https://myjson.dit.upm.es/api/bins/7ctn");
-        const json = await responseApi.json();
+        const json = await (await fetch("https://myjson.dit.upm.es/api/bins/7ctn")).json();
         return json.data;
     } catch (e) {
         throw new Error(e);
