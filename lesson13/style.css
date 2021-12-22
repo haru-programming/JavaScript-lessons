@@ -22,18 +22,7 @@
     width: 400px;
     height: 300px;
     border-radius: 10px;
-    text-align: center;
     margin: auto;
     background-color: #fff;
     transform: translateY(-50%);
-}
-
-.modal__closeButton {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.8rem;
-    font-size: 2rem;
-    border: 0;
-    cursor: pointer;
-    background-color: transparent;
 }

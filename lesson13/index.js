@@ -1,8 +1,7 @@
 const button = document.getElementById("js-button");
 const modalOpenButton = document.getElementById("js-modalOpen");
-const modalCloseButton = document.getElementById("js-modalClose");
-const modal = document.getElementById("js-modal");
 const div = document.getElementById("js-contents");
+const modal = document.getElementById("js-modal");
 const ul = document.getElementById("js-lists");
 
 function addLoading() {
@@ -70,21 +69,12 @@ async function addList() {
     }
 }
 
-function init() {
-    ul.textContent = '';
-    div.appendChild(button);
-}
-
 modalOpenButton.addEventListener('click', () => {
     modal.classList.add('is-active');
-})
-
-modalCloseButton.addEventListener('click', () => {
-    modal.classList.remove('is-active');
-    init();
+    modalOpenButton.remove();
 })
 
 button.addEventListener('click', () => {
+    modal.classList.remove('is-active');
     addList();
-    button.remove();
 })
