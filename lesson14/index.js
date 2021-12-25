@@ -72,12 +72,14 @@ async function addList() {
 function fetchNumber() {
     const numberField = document.getElementById("number");
     const number = numberField.value;
-    
-    if(number) {
-        console.log(number);
-    } else {
-        console.log('null');
+
+    if(number === "" && !alert('入力してください')) {
+        modal.classList.add('is-active');
+        return;
     }
+
+    console.log(number);
+    addList();
 }
 
 modalOpenButton.addEventListener('click', () => {
@@ -88,5 +90,4 @@ modalOpenButton.addEventListener('click', () => {
 button.addEventListener('click', () => {
     modal.classList.remove('is-active');
     fetchNumber();
-    addList();
 })
