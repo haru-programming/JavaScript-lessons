@@ -1,7 +1,6 @@
 const button = document.getElementById("js-button");
 const modalOpenButton = document.getElementById("js-modalOpen");
 const div = document.getElementById("js-contents");
-const modal = document.getElementById("js-modal");
 const ul = document.getElementById("js-lists");
 
 function addLoading() {
@@ -69,25 +68,34 @@ async function addList() {
     }
 }
 
+function openModal() {
+    const modal = document.getElementById("js-modal");
+    modal.classList.add("is-active");
+}
+
+function closeModal() {
+    const modal = document.getElementById("js-modal");
+    modal.classList.remove("is-active");
+}
+
 function fetchNumber() {
     const numberField = document.getElementById("number");
     const number = numberField.value;
 
-    if(number === "" && !alert('入力してください')) {
-        modal.classList.add('is-active');
+    if(number === "") {
+        alert("入力してください");
         return;
     }
-
     console.log(number);
+    closeModal();
     addList();
 }
 
 modalOpenButton.addEventListener('click', () => {
-    modal.classList.add('is-active');
+    openModal();
     modalOpenButton.remove();
 })
 
 button.addEventListener('click', () => {
-    modal.classList.remove('is-active');
     fetchNumber();
 })
