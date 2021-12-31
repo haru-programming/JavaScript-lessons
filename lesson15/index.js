@@ -79,23 +79,6 @@ function closeModal() {
     modal.classList.remove("is-active");
 }
 
-// function init() {
-
-// }
-
-// function fetchNumber() {
-//     const numberField = document.getElementById("number");
-//     const number = numberField.value;
-
-//     if(number === "") {
-//         alert("入力してください");
-//         return;
-//     }
-//     console.log(number);
-//     closeModal();
-//     addList();
-// }
-
 function fetchInputValue() {
     const numberField = document.getElementById("number");
     const textField = document.getElementById("text");
@@ -106,7 +89,7 @@ function fetchInputValue() {
         alert("入力してください");
         return
     }
-    console.log(`number:${number}`);
+    console.log(`age:${number}`);
     console.log(`text:${text}`);
     closeModal();
     addList();
