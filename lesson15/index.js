@@ -1,6 +1,3 @@
-const submitButton = document.getElementById("js-submitButton");
-const modalOpenButton = document.getElementById("js-modalOpen");
-const modalCloseButton = document.getElementById("js-modalCloseButton");
 const div = document.getElementById("js-contents");
 const ul = document.getElementById("js-lists");
 
@@ -95,16 +92,22 @@ function fetchInputValue() {
     addList();
 }
 
-modalOpenButton.addEventListener('click', () => {
-    openModal();
-    modalOpenButton.remove();
-})
+(function () {
+    const submitButton = document.getElementById("js-submitButton");
+    const modalOpenButton = document.getElementById("js-modalOpen");
+    const modalCloseButton = document.getElementById("js-modalCloseButton");
 
-modalCloseButton.addEventListener('click', () => {
-    closeModal();
-    div.appendChild(modalOpenButton);
-})
+    modalOpenButton.addEventListener("click", () => {
+        openModal();
+        modalOpenButton.remove();
+    });
 
-submitButton.addEventListener('click', () => {
-    fetchInputValue();
-});
+    modalCloseButton.addEventListener("click", () => {
+        closeModal();
+        div.appendChild(modalOpenButton);
+    });
+
+    submitButton.addEventListener("click", () => {
+        fetchInputValue();
+    });
+})();
