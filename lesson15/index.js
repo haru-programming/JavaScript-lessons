@@ -9,8 +9,7 @@ function addLoading() {
 }
 
 function removeLoading() {
-    const img = document.getElementById("js-loading");
-    div.removeChild(img);
+    document.getElementById("js-loading").remove();
 }
 
 async function fetchData() {
