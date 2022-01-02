@@ -81,7 +81,7 @@ function fetchInputValue() {
     const number = numberField.value;
     const text = textField.value;
 
-    if(number === "" || text === "") {
+    if(number === "" || text.trim() === "") {
         alert("入力してください");
         return
     }
