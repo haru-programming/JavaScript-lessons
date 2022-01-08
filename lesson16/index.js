@@ -22,9 +22,9 @@ async function createTabNav() {
         const button = document.createElement("button");
 
         li.classList.add("tab__nav-item");
-        li.id = "js-tabNavItem"+`${i+1}`;
+        li.id = `js-tabNavItem${i+1}`;
         button.classList.add("tab__nav-button");
-        button.id = "js-tabNavButton"+`${i+1}`;
+        button.id = `js-tabNavButton${i+1}`;
         button.textContent = values[i].category;
 
         li.appendChild(button);
@@ -74,7 +74,7 @@ async function createArticleTitle() {
         const ul = document.createElement("ul");
         const articleTitle = values[i].map(value => value.title);
 
-        ul.id = "js-tabContentsList"+`${i+1}`;
+        ul.id = `js-tabContentsList${i+1}`;
         ul.classList.add("tab__contents-list");
 
         const fragment = document.createDocumentFragment();
