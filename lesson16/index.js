@@ -1,7 +1,7 @@
 const tabNav = document.getElementById("js-tabNav");
 
 async function fetchData() {
-    const api = "http://myjson.dit.upm.es/api/bins/49et";
+    const api = "https://myjson.dit.upm.es/api/bins/49et";
     const response = await fetch(api);
     const json = await response.json();
     return json.data;
