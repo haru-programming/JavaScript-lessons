@@ -116,10 +116,10 @@ tabNav.addEventListener("click", (e) => {
     const tabNavItem = document.getElementsByClassName("tab__nav-button");
     const tabContents = document.getElementsByClassName("tab__contents-list");
     const arrayTabs = Array.prototype.slice.call(tabNavItem);
-    const index = arrayTabs.indexOf(e.target);
+    const ClickedTabIndex = arrayTabs.indexOf(e.target);
 
     activeTabItem.classList.remove("is-active");
     e.target.classList.add("is-active");
     activeTabContent.classList.remove("is-show");
-    tabContents[index].classList.add("is-show");
+    tabContents[ClickedTabIndex].classList.add("is-show");
 })
