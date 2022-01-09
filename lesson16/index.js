@@ -32,7 +32,7 @@ async function createTabNav() {
     }
     tabNav.appendChild(fragment);
 
-    //今回のPRで「どのカテゴリタブを初期表示時に選んでいるかはデータとして持っている」を実装していないため、以下を記述
+    // TODO 今回のPRで「どのカテゴリタブを初期表示時に選んでいるかはデータとして持っている」を実装していないため仮に作ってある。後で実装する
     const tabNavItem = document.getElementById("js-tabNavButton1");
     tabNavItem.classList.add("is-active");
 }
@@ -95,7 +95,7 @@ async function createArticleTitle() {
         tabContents.appendChild(tabContentsInner).appendChild(ul).appendChild(fragment);
     }
 
-    //今回のPRで「どのカテゴリタブを初期表示時に選んでいるかはデータとして持っている」を実装していないため、以下を記述
+    // TODO 今回のPRで「どのカテゴリタブを初期表示時に選んでいるかはデータとして持っている」を実装していないため仮に作ってある。後で実装する
     const tabContentsItem = document.getElementById("js-tabContentsList1");
     tabContentsItem.classList.add("is-show");
 }
