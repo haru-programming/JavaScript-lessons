@@ -8,9 +8,9 @@ async function fetchData() {
 }
 
 async function fetchArticleData() {
-    const jsonData = await fetchData();
-    const articleData = jsonData.map(value => value.article);
-    return articleData;
+    const data = await fetchData();
+    const articles = data.map(value => value.article);
+    return articles;
 }
 
 async function createTabNav() {
