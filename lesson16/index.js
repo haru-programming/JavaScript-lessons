@@ -23,7 +23,7 @@ async function createTabNav() {
 
         li.classList.add("tab__nav-item");
         li.id = `js-tabNavItem${i+1}`;
-        button.classList.add("tab__nav-button");
+        button.classList.add("tab__nav-button","js-tabNavButton");
         button.id = `js-tabNavButton${i+1}`;
         button.textContent = values[i].category;
 
@@ -75,7 +75,7 @@ async function createArticleTitle() {
         const articleTitles = values[i].map(value => value.title);
 
         ul.id = `js-tabContentsList${i+1}`;
-        ul.classList.add("tab__contents-list");
+        ul.classList.add("tab__contents-list","js-tabContentsList");
 
         const fragment = document.createDocumentFragment();
 
@@ -113,8 +113,8 @@ addTabContents();
 tabNav.addEventListener("click", (e) => {
     const activeTabItem = document.getElementsByClassName("is-active")[0];
     const activeTabContent = document.getElementsByClassName("is-show")[0];
-    const tabNavItem = document.getElementsByClassName("tab__nav-button");
-    const tabContents = document.getElementsByClassName("tab__contents-list");
+    const tabNavItem = document.getElementsByClassName("js-tabNavButton");
+    const tabContents = document.getElementsByClassName("js-tabContentsList");
     const arrayTabs = Array.prototype.slice.call(tabNavItem);
     const ClickedTabIndex = arrayTabs.indexOf(e.target);
 
