@@ -73,6 +73,7 @@ async function createArticleTitle() {
     for(let i = 0; i < values.length; i++){
         const ul = document.createElement("ul");
         const articleTitles = values[i].map(value => value.title);
+        const numberOfArticles = Object.keys(values[i]);
 
         ul.id = `js-tabContentsList${i+1}`;
         ul.classList.add("tab__contents-list","js-tabContentsList");
@@ -80,7 +81,7 @@ async function createArticleTitle() {
         const fragment = document.createDocumentFragment();
 
         //記事タイトルの数だけliとaを作成
-        for(let i = 0; i < articleTitles.length; i++) {
+        for(let i = 0; i < numberOfArticles.length; i++) {
             const li = document.createElement("li");
             const a = document.createElement("a");
 
