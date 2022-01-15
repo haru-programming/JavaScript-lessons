@@ -25,6 +25,7 @@ async function createTabNav() {
         li.id = `js-tabNavItem${i+1}`;
         button.classList.add("tab__nav-button","js-tabNavButton");
         button.id = `js-tabNavButton${i+1}`;
+        button.dataset.index = `${i}`;
         button.textContent = values[i].category;
 
         li.appendChild(button);
@@ -114,10 +115,8 @@ addTabContents();
 tabNav.addEventListener("click", (e) => {
     const activeTabItem = document.getElementsByClassName("is-active")[0];
     const activeTabContent = document.getElementsByClassName("is-show")[0];
-    const tabNavItem = document.getElementsByClassName("js-tabNavButton");
     const tabContents = document.getElementsByClassName("js-tabContentsList");
-    const arrayTabs = Array.prototype.slice.call(tabNavItem);
-    const ClickedTabIndex = arrayTabs.indexOf(e.target);
+    const ClickedTabIndex = e.target.dataset.index;
 
     activeTabItem.classList.remove("is-active");
     e.target.classList.add("is-active");
