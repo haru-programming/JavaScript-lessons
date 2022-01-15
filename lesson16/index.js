@@ -7,15 +7,8 @@ async function fetchData() {
     return json.data;
 }
 
-async function fetchArticleData() {
-    const data = await fetchData();
-    const articles = data.map(value => value.articles);
-    return articles;
-}
-
-async function createTabNav() {
+async function createTabNav(values) {
     const fragment = document.createDocumentFragment();
-    const values = await fetchData();
 
     for (let i = 0; i < values.length; i++) {
         const li = document.createElement("li");
@@ -65,35 +58,43 @@ function createTabContents() {
     tabContents.insertAdjacentElement("beforeend", imgWrapper);
 }
 
-async function createArticleTitle() {
-    const values = await fetchArticleData();
+function appendFragment(values) {
+    const fragment = document.createDocumentFragment();
+
+    //記事タイトルの数だけliとaを作成
+    let articleTitles = [];
+    values.forEach((e) => {
+        articleTitles.push(e.title);
+    });
+
+    for (let i = 0; i < articleTitles.length; i++) {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+
+        li.classList.add("tab__contents-item");
+        a.classList.add("tab__contents-link");
+        a.href = "#";
+        a.insertAdjacentHTML("beforeend", articleTitles[i]);
+
+        li.appendChild(a);
+        fragment.appendChild(li);
+    }
+    return fragment;
+}
+
+async function createArticleTitle(data) {
+    const values = data.map((value) => value.articles);
     const tabContents = document.getElementById("js-tabContents");
     const tabContentsInner = document.getElementById("js-tabContentsInner");
-    
+
     //記事データの数だけulを作成
-    for(let i = 0; i < values.length; i++){
+    for (let i = 0; i < values.length; i++) {
         const ul = document.createElement("ul");
-        const articleTitles = values[i].map(value => value.title);
-        const numberOfArticles = Object.keys(values[i]);
-
         ul.id = `js-tabContentsList${i+1}`;
-        ul.classList.add("tab__contents-list","js-tabContentsList");
+        ul.classList.add("tab__contents-list", "js-tabContentsList");
 
-        const fragment = document.createDocumentFragment();
+        const fragment = appendFragment(values[i]);
 
-        //記事タイトルの数だけliとaを作成
-        for(let i = 0; i < numberOfArticles.length; i++) {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-
-            li.classList.add("tab__contents-item");
-            a.classList.add("tab__contents-link");
-            a.href = "#";
-            a.insertAdjacentHTML("beforeend", articleTitles[i]);
-
-            li.appendChild(a);
-            fragment.appendChild(li);
-        }
         tabContents.appendChild(tabContentsInner).appendChild(ul).appendChild(fragment);
     }
 
@@ -102,11 +103,13 @@ async function createArticleTitle() {
     tabContentsItem.classList.add("is-show");
 }
 
-function addTabContents() {
-    createTabNav();
+async function addTabContents() {
+    const data = await fetchData();
+
+    createTabNav(data);
     createTabContainer();
     createTabContents();
-    createArticleTitle();
+    createArticleTitle(data);
 }
 
 addTabContents();
