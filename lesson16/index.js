@@ -1,7 +1,7 @@
 const tabNav = document.getElementById("js-tabNav");
 
 async function fetchData() {
-    const api = "http://myjson.dit.upm.es/api/bins/7ex7";
+    const api = "https://myjson.dit.upm.es/api/bins/7ex7";
     const response = await fetch(api);
     const json = await response.json();
     return json.data;
@@ -21,8 +21,7 @@ async function createTabNav(values) {
         button.dataset.index = `${i}`;
         button.textContent = values[i].category;
 
-        li.appendChild(button);
-        fragment.appendChild(li);
+        fragment.appendChild(li).appendChild(button);
     }
     tabNav.appendChild(fragment);
 
