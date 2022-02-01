@@ -84,12 +84,27 @@ function appendFragment(values) {
 
         //コメントがあれば件数とアイコンを表示
         if (numberOfComments > 0) {
-            commentLength.insertAdjacentHTML("beforeend", `${articleComments[i].length}件`);
-            commentIconWrapper.appendChild(commentIcon);
-            li.insertAdjacentElement("beforeend", commentIconWrapper);
-            li.insertAdjacentElement("beforeend", commentLength);
+            const commentInfo = createCommentInfo(articleComments[i]);
+            li.appendChild(commentInfo);
         }
     }
+    return fragment;
+}
+
+function createCommentInfo(values) {
+    const fragment = document.createDocumentFragment();
+    const commentIconWrapper = document.createElement("div");
+    const commentIcon = document.createElement("img");
+    const commentLength = document.createElement("div");
+
+    commentIcon.src = "./img/icon-comment.svg";
+    commentIconWrapper.classList.add("tab__contents-icon");
+    commentLength.classList.add("tab__contents-info");
+
+    commentLength.textContent = `${values.length}件`;
+    commentIconWrapper.appendChild(commentIcon);
+
+    fragment.appendChild(commentIconWrapper).insertAdjacentElement("afterend", commentLength)
     return fragment;
 }
 
