@@ -75,7 +75,7 @@ function appendFragment(values) {
         li.classList.add("tab__contents-item","js-tabContentsItem");
         a.classList.add("tab__contents-link");
         a.href = "#";
-        a.insertAdjacentHTML("beforeend", articleTitles[i]);
+        a.textContent = articleTitles[i];
         commentIcon.src = "./img/icon-comment.svg";
         commentIconWrapper.classList.add("tab__contents-icon");
         commentLength.classList.add("tab__contents-info");
