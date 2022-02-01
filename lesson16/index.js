@@ -60,16 +60,8 @@ function createTabContents() {
 
 function appendFragment(values) {
     const fragment = document.createDocumentFragment();
-
-    let articleTitles = [];
-    values.forEach((e) => {
-        articleTitles.push(e.title);
-    });
-
-    let articleComments = [];
-    values.forEach((e) => {
-        articleComments.push(e.comments);
-    });
+    const articleTitles = values.map(value => value.title);
+    const articleComments = values.map(value => value.comments);
 
     //記事タイトルの数だけliを追加
     for (let i = 0; i < articleTitles.length; i++) {
