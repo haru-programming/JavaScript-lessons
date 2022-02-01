@@ -80,8 +80,7 @@ function appendFragment(values) {
         commentIconWrapper.classList.add("tab__contents-icon");
         commentLength.classList.add("tab__contents-info");
 
-        li.appendChild(a);
-        fragment.appendChild(li);
+        fragment.appendChild(li).appendChild(a);
 
         //コメントがあれば件数とアイコンを表示
         if (numberOfComments > 0) {
