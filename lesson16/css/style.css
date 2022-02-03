@@ -57,6 +57,20 @@
     display: block;
 }
 
+.tab__contents-item {
+    display: flex;
+}
+
+.tab__contents-icon {
+    width: 16px;
+    margin: 2px 0 0 10px;
+}
+
+.tab__contents-info {
+    font-size: 15px;
+    margin-left: 3px;
+}
+
 .tab__img-wrapper {
     order: 2;
 }

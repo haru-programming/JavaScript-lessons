@@ -1,7 +1,7 @@
 const tabNav = document.getElementById("js-tabNav");
 
 async function fetchData() {
-    const api = "https://myjson.dit.upm.es/api/bins/6u5z";
+    const api = "https://myjson.dit.upm.es/api/bins/7ex7";
     const response = await fetch(api);
     const json = await response.json();
     return json.data;
@@ -21,8 +21,7 @@ async function createTabNav(values) {
         button.dataset.index = `${i}`;
         button.textContent = values[i].category;
 
-        li.appendChild(button);
-        fragment.appendChild(li);
+        fragment.appendChild(li).appendChild(button);
     }
     tabNav.appendChild(fragment);
 
@@ -58,27 +57,47 @@ function createTabContents() {
     tabContents.insertAdjacentElement("beforeend", imgWrapper);
 }
 
-function appendFragment(values) {
+function appendArticlesTitleFragment(values) {
     const fragment = document.createDocumentFragment();
+    const articleTitles = values.map(value => value.title);
+    const articleComments = values.map(value => value.comments);
 
-    //記事タイトルの数だけliとaを作成
-    let articleTitles = [];
-    values.forEach((e) => {
-        articleTitles.push(e.title);
-    });
-
+    //記事タイトルの数だけliを追加
     for (let i = 0; i < articleTitles.length; i++) {
         const li = document.createElement("li");
         const a = document.createElement("a");
+        const numberOfComments = articleComments[i].length;
 
-        li.classList.add("tab__contents-item");
+        li.classList.add("tab__contents-item","js-tabContentsItem");
         a.classList.add("tab__contents-link");
         a.href = "#";
-        a.insertAdjacentHTML("beforeend", articleTitles[i]);
+        a.textContent = articleTitles[i];
 
-        li.appendChild(a);
-        fragment.appendChild(li);
+        fragment.appendChild(li).appendChild(a);
+
+        //コメントがあれば件数とアイコンを表示
+        if (numberOfComments > 0) {
+            const commentInfo = createCommentInfo(articleComments[i]);
+            li.appendChild(commentInfo);
+        }
     }
+    return fragment;
+}
+
+function createCommentInfo(values) {
+    const fragment = document.createDocumentFragment();
+    const commentIconWrapper = document.createElement("div");
+    const commentIcon = document.createElement("img");
+    const commentLength = document.createElement("div");
+
+    commentIcon.src = "./img/icon-comment.svg";
+    commentIconWrapper.classList.add("tab__contents-icon");
+    commentLength.classList.add("tab__contents-info");
+
+    commentLength.textContent = `${values.length}件`;
+    commentIconWrapper.appendChild(commentIcon);
+
+    fragment.appendChild(commentIconWrapper).insertAdjacentElement("afterend", commentLength)
     return fragment;
 }
 
@@ -93,9 +112,9 @@ async function createArticleTitle(data) {
         ul.id = `js-tabContentsList${i+1}`;
         ul.classList.add("tab__contents-list", "js-tabContentsList");
 
-        const fragment = appendFragment(values[i]);
+        const articleTitlesFragment = appendArticlesTitleFragment(values[i]);
 
-        tabContents.appendChild(tabContentsInner).appendChild(ul).appendChild(fragment);
+        tabContents.appendChild(tabContentsInner).appendChild(ul).appendChild(articleTitlesFragment);
     }
 
     // TODO 今回のPRで「どのカテゴリタブを初期表示時に選んでいるかはデータとして持っている」を実装していないため仮に作ってある。後で実装する
