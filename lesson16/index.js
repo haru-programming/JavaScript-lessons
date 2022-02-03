@@ -66,18 +66,12 @@ function appendFragment(values) {
     for (let i = 0; i < articleTitles.length; i++) {
         const li = document.createElement("li");
         const a = document.createElement("a");
-        const commentIconWrapper = document.createElement("div");
-        const commentIcon = document.createElement("img");
-        const commentLength = document.createElement("div");
         const numberOfComments = articleComments[i].length;
 
         li.classList.add("tab__contents-item","js-tabContentsItem");
         a.classList.add("tab__contents-link");
         a.href = "#";
         a.textContent = articleTitles[i];
-        commentIcon.src = "./img/icon-comment.svg";
-        commentIconWrapper.classList.add("tab__contents-icon");
-        commentLength.classList.add("tab__contents-info");
 
         fragment.appendChild(li).appendChild(a);
 
