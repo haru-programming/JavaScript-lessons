@@ -57,7 +57,7 @@ function createTabContents() {
     tabContents.insertAdjacentElement("beforeend", imgWrapper);
 }
 
-function appendFragment(values) {
+function appendArticleTitleFragment(values) {
     const fragment = document.createDocumentFragment();
     const articleTitles = values.map(value => value.title);
     const articleComments = values.map(value => value.comments);
@@ -112,7 +112,7 @@ async function createArticleTitle(data) {
         ul.id = `js-tabContentsList${i+1}`;
         ul.classList.add("tab__contents-list", "js-tabContentsList");
 
-        const fragment = appendFragment(values[i]);
+        const fragment = appendArticleTitleFragment(values[i]);
 
         tabContents.appendChild(tabContentsInner).appendChild(ul).appendChild(fragment);
     }
