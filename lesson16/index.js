@@ -57,7 +57,7 @@ function createTabContents() {
     tabContents.insertAdjacentElement("beforeend", imgWrapper);
 }
 
-function appendArticleTitleFragment(values) {
+function appendArticlesTitleFragment(values) {
     const fragment = document.createDocumentFragment();
     const articleTitles = values.map(value => value.title);
     const articleComments = values.map(value => value.comments);
@@ -112,9 +112,9 @@ async function createArticleTitle(data) {
         ul.id = `js-tabContentsList${i+1}`;
         ul.classList.add("tab__contents-list", "js-tabContentsList");
 
-        const fragment = appendArticleTitleFragment(values[i]);
+        const articleTitlesFragment = appendArticlesTitleFragment(values[i]);
 
-        tabContents.appendChild(tabContentsInner).appendChild(ul).appendChild(fragment);
+        tabContents.appendChild(tabContentsInner).appendChild(ul).appendChild(articleTitlesFragment);
     }
 
     // TODO 今回のPRで「どのカテゴリタブを初期表示時に選んでいるかはデータとして持っている」を実装していないため仮に作ってある。後で実装する
