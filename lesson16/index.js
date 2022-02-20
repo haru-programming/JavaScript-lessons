@@ -1,10 +1,32 @@
 const tabNav = document.getElementById("js-tabNav");
 
 async function fetchData() {
-    const api = "https://myjson.dit.upm.es/api/bins/7ex7";
-    const response = await fetch(api);
-    const json = await response.json();
-    return json.data;
+    try{
+        const api = "https://myjson.dit.upm.es/api/bins/amqx";
+        // const api = "http://myjson.dit.upm.es/api/bins/ack9";//エラー確認用の空配列
+        const response = await fetch(api);
+        const json = await response.json();
+        return json.data;
+    } catch(e) {
+        throw new Error("サーバーエラーです");
+    }
+}
+
+async function fetchArrayData() {
+    try {
+        const data = await fetchData();
+        if (data.length === 0) throw new Error("No data");
+        return data;
+    } catch(e) {
+        createErrorMessage(e);
+    }
+}
+
+function createErrorMessage(e) {
+    const p = document.createElement("p");
+    p.textContent = `エラー内容:${e.message}`;
+    tabNav.appendChild(p);
+    console.error(e.message);
 }
 
 async function createTabNav(values) {
@@ -17,17 +39,13 @@ async function createTabNav(values) {
         li.classList.add("tab__nav-item");
         li.id = `js-tabNavItem${i+1}`;
         button.classList.add("tab__nav-button","js-tabNavButton");
-        button.id = `js-tabNavButton${i+1}`;
+        button.id = `${values[i].category}`;
         button.dataset.index = `${i}`;
         button.textContent = values[i].category;
 
         fragment.appendChild(li).appendChild(button);
     }
     tabNav.appendChild(fragment);
-
-    // TODO 今回のPRで「どのカテゴリタブを初期表示時に選んでいるかはデータとして持っている」を実装していないため仮に作ってある。後で実装する
-    const tabNavItem = document.getElementById("js-tabNavButton1");
-    tabNavItem.classList.add("is-active");
 }
 
 function createTabContainer() {
@@ -41,20 +59,14 @@ function createTabContents() {
     const tabContainer = document.getElementById("js-tab");
     const tabContents = document.createElement("div");
     const tabContentsInner = document.createElement("div");
-    const imgWrapper = document.createElement("div");
-    const img = document.createElement("img");
 
     tabContents.classList.add("tab__contents");
     tabContents.id = "js-tabContents";
     tabContentsInner.classList.add("tab__contents-inner");
     tabContentsInner.id = "js-tabContentsInner";
 
-    imgWrapper.classList.add("tab__img-wrapper");
-    img.classList.add("tab__img");
-
     tabContainer.insertAdjacentElement("beforeend", tabContents);
     tabContents.appendChild(tabContentsInner);
-    tabContents.insertAdjacentElement("beforeend", imgWrapper);
 }
 
 function appendArticlesTitleFragment(values) {
@@ -101,7 +113,7 @@ function createCommentInfo(values) {
     return fragment;
 }
 
-async function createArticleTitle(data) {
+async function createArticleContents(data) {
     const values = data.map((value) => value.articles);
     const tabContents = document.getElementById("js-tabContents");
     const tabContentsInner = document.getElementById("js-tabContentsInner");
@@ -109,39 +121,78 @@ async function createArticleTitle(data) {
     //記事データの数だけulを作成
     for (let i = 0; i < values.length; i++) {
         const ul = document.createElement("ul");
-        ul.id = `js-tabContentsList${i+1}`;
+        ul.id = `js-${data[i].category}-contents`;
         ul.classList.add("tab__contents-list", "js-tabContentsList");
 
         const articleTitlesFragment = appendArticlesTitleFragment(values[i]);
+        const contentsImgFragment = createImgFragments(data[i]);
 
         tabContents.appendChild(tabContentsInner).appendChild(ul).appendChild(articleTitlesFragment);
+        tabContentsInner.appendChild(contentsImgFragment);
     }
+}
 
-    // TODO 今回のPRで「どのカテゴリタブを初期表示時に選んでいるかはデータとして持っている」を実装していないため仮に作ってある。後で実装する
-    const tabContentsItem = document.getElementById("js-tabContentsList1");
-    tabContentsItem.classList.add("is-show");
+function createImgFragments(data) {
+    const fragment = document.createDocumentFragment();
+    const imgWrapper = document.createElement("div");
+    const img = document.createElement("img");
+
+    imgWrapper.classList.add("tab__img-wrapper", "js-contentsImgWrapper");
+    imgWrapper.id = `js-${data.category}-imgWrapper`
+    img.classList.add("tab__img");
+    img.src = `${data.img}`;
+
+    fragment.appendChild(imgWrapper).appendChild(img);
+
+    return fragment;
+}
+
+async function fetchInitDisplayData(values) {
+    const initDisplayData = values.find(value => value.display === true);
+    const initDisplayCategory = initDisplayData.category;
+    const navButton = document.getElementById(initDisplayCategory);
+    const tabContentsItem = document.getElementById(`js-${initDisplayCategory}-contents`);
+    const tabContentsImg = document.getElementById(`js-${initDisplayCategory}-imgWrapper`);
+
+    navButton.classList.add("is-active");
+    tabContentsItem.classList.add("is-active");
+    tabContentsImg.classList.add("is-active");
 }
 
 async function addTabContents() {
-    const data = await fetchData();
+    const data = await fetchArrayData();
 
     createTabNav(data);
     createTabContainer();
     createTabContents();
-    createArticleTitle(data);
+    createArticleContents(data);
+    fetchInitDisplayData(data);
 }
 
 addTabContents();
 
 //タブの内容を切り替える
 tabNav.addEventListener("click", (e) => {
-    const activeTabItem = document.getElementsByClassName("is-active")[0];
-    const activeTabContent = document.getElementsByClassName("is-show")[0];
+    const tabNavItem = document.getElementsByClassName("js-tabNavButton");
     const tabContents = document.getElementsByClassName("js-tabContentsList");
+    const tabImg = document.getElementsByClassName("js-contentsImgWrapper");
     const clickedTabIndex = e.target.dataset.index;
 
-    activeTabItem.classList.remove("is-active");
+    //全てのis-activeを削除
+    for(let i = 0; i < tabNavItem.length; i++) {
+        tabNavItem[i].classList.remove("is-active");
+    }
+
+    for(let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("is-active");
+    }
+
+    for(let i = 0; i < tabImg.length; i++) {
+        tabImg[i].classList.remove("is-active");
+    }
+
+    //選択したタブにis-activeを追加
     e.target.classList.add("is-active");
-    activeTabContent.classList.remove("is-show");
-    tabContents[clickedTabIndex].classList.add("is-show");
+    tabContents[clickedTabIndex].classList.add("is-active");
+    tabImg[clickedTabIndex].classList.add("is-active");
 })
