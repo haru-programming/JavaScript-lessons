@@ -165,11 +165,13 @@ async function fetchInitDisplayData(values) {
 async function addTabContents() {
     const data = await fetchArrayData();
 
-    createTabNav(data);
-    createTabContainer();
-    createTabContents();
-    createArticleContents(data);
-    fetchInitDisplayData(data);
+    if(data){
+        createTabNav(data);
+        createTabContainer();
+        createTabContents();
+        createArticleContents(data);
+        fetchInitDisplayData(data);
+    }
 }
 
 addTabContents();
