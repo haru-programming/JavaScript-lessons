@@ -2,8 +2,8 @@ const tabNav = document.getElementById("js-tabNav");
 
 async function fetchData() {
     try{
-        const api = "https://myjson.dit.upm.es/api/bins/amqx";
-        // const api = "http://myjson.dit.upm.es/api/bins/ack9";//エラー確認用の空配列
+        // const api = "https://myjson.dit.upm.es/api/bins/amqx";
+        const api = "http://myjson.dit.upm.es/api/bins/ack9";//エラー確認用の空配列
         const response = await fetch(api);
         const json = await response.json();
         return json.data;
@@ -15,7 +15,10 @@ async function fetchData() {
 async function fetchArrayData() {
     try {
         const data = await fetchData();
-        if (data.length === 0) throw new Error("No data");
+        if (data.length === 0) {
+            tabNav.textContent = "データが空です";
+            console.log("データが空です");
+        }
         return data;
     } catch(e) {
         createErrorMessage(e);
