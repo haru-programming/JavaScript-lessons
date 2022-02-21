@@ -2,8 +2,8 @@ const tabNav = document.getElementById("js-tabNav");
 
 async function fetchData() {
     try{
-        // const api = "https://myjson.dit.upm.es/api/bins/amqx";
-        const api = "http://myjson.dit.upm.es/api/bins/ack9";//エラー確認用の空配列
+        const api = "https://myjson.dit.upm.es/api/bins/amqx";
+        // const api = "http://myjson.dit.upm.es/api/bins/ack9";//エラー確認用の空配列
         const response = await fetch(api);
         const json = await response.json();
         return json.data;
@@ -151,7 +151,7 @@ function createImgFragments(data) {
 }
 
 async function fetchInitDisplayData(values) {
-    const initDisplayData = values.find(value => value.display === true);
+    const initDisplayData = values.find(value => value.display);
     const initDisplayCategory = initDisplayData.category;
     const navButton = document.getElementById(initDisplayCategory);
     const tabContentsItem = document.getElementById(`js-${initDisplayCategory}-contents`);
