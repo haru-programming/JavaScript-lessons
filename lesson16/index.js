@@ -166,18 +166,14 @@ addTabContents();
 tabNav.addEventListener("click", (e) => {
     const tabNavItem = document.getElementsByClassName("js-tabNavButton");
     const tabContents = document.getElementsByClassName("js-tabContents");
-    const clickedTabIndex = e.target.dataset.index;
 
     //全てのis-activeを削除
-    for(let i = 0; i < tabNavItem.length; i++) {
-        tabNavItem[i].classList.remove("is-active");
-    }
-
-    for(let i = 0; i < tabContents.length; i++) {
-        tabContents[i].classList.remove("is-active");
-    }
+    const activeNav = [...tabNavItem].find(el => el.classList.contains("is-active"));
+    activeNav.classList.remove("is-active");
+    tabContents[activeNav.dataset.index].classList.remove("is-active");
 
     //選択したタブにis-activeを追加
+    const clickedTabIndex = e.target.dataset.index;
     e.target.classList.add("is-active");
     tabContents[clickedTabIndex].classList.add("is-active");
 })
