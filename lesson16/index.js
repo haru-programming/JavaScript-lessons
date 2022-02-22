@@ -58,20 +58,6 @@ function createTabContainer() {
     div.appendChild(tabNav.parentNode.replaceChild(div, tabNav));
 }
 
-function createTabContents() {
-    const tabContainer = document.getElementById("js-tab");
-    const tabContents = document.createElement("div");
-    const tabContentsInner = document.createElement("div");
-
-    tabContents.classList.add("tab__contents");
-    tabContents.id = "js-tabContents";
-    tabContentsInner.classList.add("tab__contents-inner");
-    tabContentsInner.id = "js-tabContentsInner";
-
-    tabContainer.insertAdjacentElement("beforeend", tabContents);
-    tabContents.appendChild(tabContentsInner);
-}
-
 function appendArticlesTitleFragment(values) {
     const fragment = document.createDocumentFragment();
     const articleTitles = values.map(value => value.title);
@@ -83,7 +69,7 @@ function appendArticlesTitleFragment(values) {
         const a = document.createElement("a");
         const numberOfComments = articleComments[i].length;
 
-        li.classList.add("tab__contents-item","js-tabContentsItem");
+        li.classList.add("tab__contents-item");
         a.classList.add("tab__contents-link");
         a.href = "#";
         a.textContent = articleTitles[i];
@@ -118,19 +104,23 @@ function createCommentInfo(values) {
 
 async function createArticleContents(data) {
     const values = data.map((value) => value.articles);
-    const tabContents = document.getElementById("js-tabContents");
-    const tabContentsInner = document.getElementById("js-tabContentsInner");
+    const tabContainer = document.getElementById("js-tab");
 
     //記事データの数だけulを作成
     for (let i = 0; i < values.length; i++) {
+        const tabContents = document.createElement("div");
+        const tabContentsInner = document.createElement("div");
         const ul = document.createElement("ul");
-        ul.id = `js-${data[i].category}-contents`;
-        ul.classList.add("tab__contents-list", "js-tabContentsList");
+
+        tabContents.classList.add("tab__contents","js-tabContents");
+        tabContents.id = `js-${data[i].category}-contents`;
+        tabContentsInner.classList.add("tab__contents-inner");
+        ul.classList.add("tab__contents-list");
 
         const articleTitlesFragment = appendArticlesTitleFragment(values[i]);
         const contentsImgFragment = createImgFragments(data[i]);
 
-        tabContents.appendChild(tabContentsInner).appendChild(ul).appendChild(articleTitlesFragment);
+        tabContainer.appendChild(tabContents).appendChild(tabContentsInner).appendChild(ul).appendChild(articleTitlesFragment);
         tabContentsInner.appendChild(contentsImgFragment);
     }
 }
@@ -140,8 +130,7 @@ function createImgFragments(data) {
     const imgWrapper = document.createElement("div");
     const img = document.createElement("img");
 
-    imgWrapper.classList.add("tab__img-wrapper", "js-contentsImgWrapper");
-    imgWrapper.id = `js-${data.category}-imgWrapper`
+    imgWrapper.classList.add("tab__img-wrapper");
     img.classList.add("tab__img");
     img.src = `${data.img}`;
 
@@ -154,12 +143,10 @@ async function fetchInitDisplayData(values) {
     const initDisplayData = values.find(value => value.display);
     const initDisplayCategory = initDisplayData.category;
     const navButton = document.getElementById(initDisplayCategory);
-    const tabContentsItem = document.getElementById(`js-${initDisplayCategory}-contents`);
-    const tabContentsImg = document.getElementById(`js-${initDisplayCategory}-imgWrapper`);
+    const tabContents = document.getElementById(`js-${initDisplayCategory}-contents`);
 
     navButton.classList.add("is-active");
-    tabContentsItem.classList.add("is-active");
-    tabContentsImg.classList.add("is-active");
+    tabContents.classList.add("is-active");
 }
 
 async function addTabContents() {
@@ -168,7 +155,6 @@ async function addTabContents() {
     if(data){
         createTabNav(data);
         createTabContainer();
-        createTabContents();
         createArticleContents(data);
         fetchInitDisplayData(data);
     }
@@ -179,8 +165,7 @@ addTabContents();
 //タブの内容を切り替える
 tabNav.addEventListener("click", (e) => {
     const tabNavItem = document.getElementsByClassName("js-tabNavButton");
-    const tabContents = document.getElementsByClassName("js-tabContentsList");
-    const tabImg = document.getElementsByClassName("js-contentsImgWrapper");
+    const tabContents = document.getElementsByClassName("js-tabContents");
     const clickedTabIndex = e.target.dataset.index;
 
     //全てのis-activeを削除
@@ -192,12 +177,7 @@ tabNav.addEventListener("click", (e) => {
         tabContents[i].classList.remove("is-active");
     }
 
-    for(let i = 0; i < tabImg.length; i++) {
-        tabImg[i].classList.remove("is-active");
-    }
-
     //選択したタブにis-activeを追加
     e.target.classList.add("is-active");
     tabContents[clickedTabIndex].classList.add("is-active");
-    tabImg[clickedTabIndex].classList.add("is-active");
 })

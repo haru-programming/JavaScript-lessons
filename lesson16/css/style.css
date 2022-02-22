@@ -47,19 +47,19 @@
     border-bottom: 1px solid #fff;
 }
 
+.tab__contents {
+    display: none;
+}
+
+.tab__contents.is-active {
+    display: block;
+}
+
 .tab__contents-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 50px;
-}
-
-.tab__contents-list {
-    display: none;
-}
-
-.tab__contents-list.is-active {
-    display: block;
 }
 
 .tab__contents-item {
@@ -74,14 +74,6 @@
 .tab__contents-info {
     font-size: 15px;
     margin-left: 3px;
-}
-
-.tab__img-wrapper {
-    display: none;
-}
-
-.tab__img-wrapper.is-active {
-    display: block;
 }
 
 .tab__img{
