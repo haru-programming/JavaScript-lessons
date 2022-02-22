@@ -164,11 +164,10 @@ addTabContents();
 
 //タブの内容を切り替える
 tabNav.addEventListener("click", (e) => {
-    const tabNavItem = document.getElementsByClassName("js-tabNavButton");
     const tabContents = document.getElementsByClassName("js-tabContents");
 
     //全てのis-activeを削除
-    const activeNav = [...tabNavItem].find(el => el.classList.contains("is-active"));
+    const activeNav = tabNav.querySelector(".is-active");
     activeNav.classList.remove("is-active");
     tabContents[activeNav.dataset.index].classList.remove("is-active");
 
