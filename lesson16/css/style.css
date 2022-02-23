@@ -2,7 +2,7 @@
 // tab
 // ---------------------------------------------------------------*/
 .tab {
-    width: 580px;
+    width: 579px;
     min-height: 260px;
     border: 1px solid #ccc;
     border-top: none;
@@ -23,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 143px;
+    width: 144px;
     height: 40px;
     padding: 5px 7px;
     cursor: pointer;
@@ -32,10 +32,6 @@
     border: 1px solid #ccc;
     border-radius: 10px 10px 0 0;
     transition: background-color 0.2s ease;
-}
-
-.tab__nav-button:first-child{
-    border-left: none;
 }
 
 .tab__nav-button:focus,.tab__nav-button:hover {

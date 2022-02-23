@@ -46,6 +46,9 @@ async function createTabNav(values) {
         button.dataset.index = `${i}`;
         button.textContent = values[i].category;
 
+        //JSONデータでdisplayがtrueのカテゴリの場合はis-activeを付与
+        values[i].display && button.classList.add("is-active");
+
         fragment.appendChild(li).appendChild(button);
     }
     tabNav.appendChild(fragment);
@@ -117,6 +120,9 @@ async function createArticleContents(data) {
         tabContentsInner.classList.add("tab__contents-inner");
         ul.classList.add("tab__contents-list");
 
+        //JSONデータでdisplayがtrueのカテゴリの場合はis-activeを付与
+        data[i].display && tabContents.classList.add("is-active");
+
         const articleTitlesFragment = appendArticlesTitleFragment(values[i]);
         const contentsImgFragment = createImgFragments(data[i]);
 
@@ -139,16 +145,6 @@ function createImgFragments(data) {
     return fragment;
 }
 
-async function fetchInitDisplayData(values) {
-    const initDisplayData = values.find(value => value.display);
-    const initDisplayCategory = initDisplayData.category;
-    const navButton = document.getElementById(initDisplayCategory);
-    const tabContents = document.getElementById(`js-${initDisplayCategory}-contents`);
-
-    navButton.classList.add("is-active");
-    tabContents.classList.add("is-active");
-}
-
 async function addTabContents() {
     const data = await fetchArrayData();
 
@@ -156,7 +152,6 @@ async function addTabContents() {
         createTabNav(data);
         createTabContainer();
         createArticleContents(data);
-        fetchInitDisplayData(data);
     }
 }
 
