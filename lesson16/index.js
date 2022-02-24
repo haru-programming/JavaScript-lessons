@@ -50,8 +50,25 @@ async function createTabNav(values) {
         values[i].display && button.classList.add("is-active");
 
         fragment.appendChild(li).appendChild(button);
+
+        //タブの切り替え
+        button.addEventListener("click", toggleTabs);
     }
     tabNav.appendChild(fragment);
+}
+
+const toggleTabs = (e) => {
+    const tabContents = document.getElementsByClassName("js-tabContents");
+    const activeNav = tabNav.querySelector(".is-active");
+    const clickedTabIndex = e.target.dataset.index;
+
+    //全てのis-activeを削除
+    activeNav.classList.remove("is-active");
+    tabContents[activeNav.dataset.index].classList.remove("is-active");
+
+    //選択したタブにis-activeを追加
+    e.target.classList.add("is-active");
+    tabContents[clickedTabIndex].classList.add("is-active");
 }
 
 function createTabContainer() {
@@ -156,22 +173,3 @@ async function addTabContents() {
 }
 
 addTabContents();
-
-//タブの内容を切り替える
-tabNav.addEventListener("click", (e) => {
-    const tabContents = document.getElementsByClassName("js-tabContents");
-    const tabNavItem = document.getElementsByClassName("tab__nav-item");
-    const activeNav = tabNav.querySelector(".is-active");
-    const clickedTabIndex = e.target.dataset.index;
-    
-    if (activeNav && tabNavItem[clickedTabIndex]) {
-
-        //全てのis-activeを削除
-        activeNav.classList.remove("is-active");
-        tabContents[activeNav.dataset.index].classList.remove("is-active");
-
-        //選択したタブにis-activeを追加
-        e.target.classList.add("is-active");
-        tabContents[clickedTabIndex].classList.add("is-active");
-    }
-})
