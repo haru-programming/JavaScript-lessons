@@ -167,9 +167,9 @@ async function addTabContents() {
 
     if(data){
         createTabNav(data);
-        createTabContainer();
         createArticleContents(data);
     }
 }
 
+createTabContainer();
 addTabContents();
