@@ -32,7 +32,7 @@ function createErrorMessage(e) {
     console.error(e.message);
 }
 
-async function createTabNav(values) {
+function createTabNav(values) {
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < values.length; i++) {
@@ -122,7 +122,7 @@ function createCommentInfo(values) {
     return fragment;
 }
 
-async function createArticleContents(data) {
+function createArticleContents(data) {
     const values = data.map((value) => value.articles);
     const tabContainer = document.getElementById("js-tab");
 
