@@ -48,11 +48,15 @@ function createTabNav(values) {
         values[i].display && button.classList.add("is-active");
 
         fragment.appendChild(li).appendChild(button);
-
-        //タブの切り替え
-        button.addEventListener("click", toggleTabs);
     }
+
     tabNav.appendChild(fragment);
+
+    //タブの切り替え
+    for (let i = 0; i < values.length; i++) {
+        const button = document.getElementsByClassName("js-tabNavButton");
+        button[i].addEventListener("click", toggleTabs);
+    }
 }
 
 const toggleTabs = (e) => {
