@@ -40,7 +40,6 @@ function createTabNav(values) {
         li.classList.add("tab__nav-item");
         li.id = `js-tabNavItem${i+1}`;
         button.classList.add("tab__nav-button","js-tabNavButton");
-        button.id = `${values[i].category}`;
         button.dataset.index = `${i}`;
         button.textContent = values[i].category;
 
@@ -135,7 +134,6 @@ function createArticleContents(data) {
         const ul = document.createElement("ul");
 
         tabContents.classList.add("tab__contents","js-tabContents");
-        tabContents.id = `js-${data[i].category}-contents`;
         tabContentsInner.classList.add("tab__contents-inner");
         ul.classList.add("tab__contents-list");
 
