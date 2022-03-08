@@ -60,10 +60,11 @@
 
 .tab__contents-item {
     display: flex;
+    font-size: 18px;
 }
 
 .tab__contents-icon {
-    width: 16px;
+    width: 19px;
     margin: 2px 0 0 10px;
 }
 
@@ -78,4 +79,9 @@
 
 .tab__img:nth-child(3){
     width: 100px;
+}
+
+.tab__contents-new {
+    width: 35px;
+    margin: 2px 0 0 11px;
 }
