@@ -248,7 +248,8 @@ function isNewArrival(date) {
     const today = format(new Date(), "yyyy,MM,dd");
     const articleDate = format(new Date(date), "yyyy,MM,dd");
     const periodFromSubmission = differenceInCalendarDays(new Date(today), new Date(articleDate));
-    const newArrival = periodFromSubmission <= 3;
+    const specificPeriod = 3;
+    const newArrival = periodFromSubmission <= specificPeriod;
     return newArrival;
 }
 
