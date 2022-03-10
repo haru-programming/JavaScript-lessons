@@ -244,7 +244,7 @@ function createErrorMessage(e) {
     console.error(e.message);
 }
 
-function checkDayNewArrival(date) {
+function isNewArrival(date) {
     const today = format(new Date(), "yyyy,MM,dd");
     const articleDate = format(new Date(date), "yyyy,MM,dd");
     const periodFromSubmission = differenceInCalendarDays(new Date(today), new Date(articleDate));
@@ -327,7 +327,7 @@ function appendArticlesTitleFragment(values) {
         }
 
         //3日以内の投稿であればnewアイコンを表示
-        checkDayNewArrival(articleDate[i]) && li.insertAdjacentElement("beforeend", createNewIcon());
+        isNewArrival(articleDate[i]) && li.insertAdjacentElement("beforeend", createNewIcon());
     }
     return fragment;
 }
