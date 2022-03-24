@@ -1,4 +1,3 @@
-const div = document.getElementById("js-pict");
 const ul = document.getElementById("js-pict-list");
 const previousButton = document.getElementById("js-button-previous");
 const nextButton = document.getElementById("js-button-next");
@@ -54,7 +53,7 @@ function createErrorMessage(error) {
 function createImg(data) {
     const fragment = document.createDocumentFragment();
 
-    for (i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         const li = document.createElement("li");
         const img = document.createElement("img");
 
@@ -72,7 +71,7 @@ function init(data) {
     const li = document.getElementsByClassName("js-slideshow-item");
     
     //JSONデータでdisplay:trueの場合はis-activeを付与
-    for (i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
         data[i].display && li[i].classList.add("is-active");
     }
 
@@ -84,17 +83,17 @@ function toggleButtonDisabled(data) {
     const activeElement = document.querySelector(".is-active");
     const activeIndex = activeElement.dataset.index;
     const firstIndex = "0";
-    const lastIndex = data.length -1;
+    const lastIndex = `${data.length -1}`;
 
     //最初の画像の時は、disabledを付与。それ以外の時は外す。
-    if (activeIndex == firstIndex) {
+    if (activeIndex === firstIndex) {
         previousButton.setAttribute("disabled",true);
     } else {
         previousButton.removeAttribute("disabled",true);
     }
 
     //最後の画像の時は、disabledを付与。それ以外の時は外す。
-    if (activeIndex == lastIndex) {
+    if (activeIndex === lastIndex) {
         nextButton.setAttribute("disabled",true);
     } else {
         nextButton.removeAttribute("disabled",true);
