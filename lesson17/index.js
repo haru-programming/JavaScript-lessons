@@ -96,34 +96,33 @@ function toggleButtonDisabled(data) {
     }
 }
 
+function getCurrentIndex() {
+    const activeImg = document.querySelector(".is-active");
+    return Number(activeImg.dataset.index);
+}
+
 function countOfImg(data) {
     const currentOfCount = document.getElementById("js-counter-current");
     const allofCount = document.getElementById("js-counter-all");
-    const activeImg = document.querySelector(".is-active");
-    const currentIndex = Number(activeImg.dataset.index) + 1;
     const allIndex = data.length;
-
-    currentOfCount.textContent = currentIndex;
+    
+    currentOfCount.textContent = getCurrentIndex() + 1;
     allofCount.textContent = allIndex;
 }
 
 function changeImgToNext() {
     const li = document.getElementsByClassName("js-slideshow-item");
-    const activeElement = document.querySelector(".is-active");
-    const activeIndex = Number(activeElement.dataset.index);
-    const nextIndex = activeIndex + 1;
+    const nextIndex = getCurrentIndex() + 1;
 
-    activeElement.classList.remove("is-active");
+    li[getCurrentIndex()].classList.remove("is-active");
     li[nextIndex].classList.add("is-active");
 }
 
 function changeImgToPrevious() {
     const li = document.getElementsByClassName("js-slideshow-item");
-    const activeElement = document.querySelector(".is-active");
-    const activeIndex = Number(activeElement.dataset.index);
-    const previousIndex = activeIndex - 1;
+    const previousIndex = getCurrentIndex() - 1;
 
-    activeElement.classList.remove("is-active");
+    li[getCurrentIndex()].classList.remove("is-active");
     li[previousIndex].classList.add("is-active");
 }
 
