@@ -111,7 +111,7 @@ function changeImgToNext() {
     const li = document.getElementsByClassName("js-slideshow-item");
     const activeElement = document.querySelector(".is-active");
     const activeIndex = Number(activeElement.dataset.index);
-    let nextIndex = activeIndex + 1;
+    const nextIndex = activeIndex + 1;
 
     activeElement.classList.remove("is-active");
     li[nextIndex].classList.add("is-active");
@@ -121,7 +121,7 @@ function changeImgToPrevious() {
     const li = document.getElementsByClassName("js-slideshow-item");
     const activeElement = document.querySelector(".is-active");
     const activeIndex = Number(activeElement.dataset.index);
-    let previousIndex = activeIndex - 1;
+    const previousIndex = activeIndex - 1;
 
     activeElement.classList.remove("is-active");
     li[previousIndex].classList.add("is-active");
