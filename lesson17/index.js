@@ -50,7 +50,7 @@ function createErrorMessage(error) {
     ul.appendChild(p);
 }
 
-function createImg(data) {
+function renderListsOfImg(data) {
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < data.length; i++) {
@@ -61,6 +61,9 @@ function createImg(data) {
         li.dataset.index = `${i}`;
         img.src = data[i].img;
         img.alt = data[i].alt;
+    
+        //JSONデータでdisplay:trueの場合はis-activeを付与
+        data[i].display && li.classList.add("is-active");
 
         fragment.appendChild(li).appendChild(img);
     }
@@ -68,13 +71,6 @@ function createImg(data) {
 }
 
 function init(data) {
-    const li = document.getElementsByClassName("js-slideshow-item");
-    
-    //JSONデータでdisplay:trueの場合はis-activeを付与
-    for (let i = 0; i < data.length; i++) {
-        data[i].display && li[i].classList.add("is-active");
-    }
-
     toggleButtonDisabled(data);
     countOfImg(data);
 }
@@ -151,7 +147,7 @@ async function addSlide() {
     const data = await getImgData();
 
     if(data){
-        createImg(data);
+        renderListsOfImg(data);
         init(data);
         clickedEventInNextButton(data);
         clickedEventInPreviousButton(data);
