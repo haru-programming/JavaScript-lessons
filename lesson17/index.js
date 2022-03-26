@@ -20,7 +20,7 @@ async function fetchData(api) {
     const json = await response.json();
 
     if(!response.ok){
-        throw new Error(`${response.status}:${response.statusText}`);
+        console.error(`${response.status}:${response.statusText}`);
     }
     return json.data;
 }
