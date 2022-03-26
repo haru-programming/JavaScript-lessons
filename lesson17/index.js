@@ -110,25 +110,15 @@ function getCurrentCountOfImg() {
     currentCountElement.textContent = getCurrentIndex() + 1;
 }
 
-function changeImgToNext() {
-    const li = document.getElementsByClassName("js-slideshow-item");
-    const nextIndex = getCurrentIndex() + 1;
-
-    li[getCurrentIndex()].classList.remove("is-active");
-    li[nextIndex].classList.add("is-active");
-}
-
-function changeImgToPrevious() {
-    const li = document.getElementsByClassName("js-slideshow-item");
-    const previousIndex = getCurrentIndex() - 1;
-
-    li[getCurrentIndex()].classList.remove("is-active");
-    li[previousIndex].classList.add("is-active");
+function switchImg(direct) {
+    const activeImg = document.querySelector(".is-active");
+    activeImg.classList.remove("is-active");
+    activeImg[direct].classList.add("is-active");
 }
 
 const clickedEventInNextButton = (data) => {
     nextButton.addEventListener ("click", () => {
-        changeImgToNext();
+        switchImg("nextElementSibling");
         getCurrentCountOfImg();
         toggleButtonDisabled(data);
     })
@@ -136,7 +126,7 @@ const clickedEventInNextButton = (data) => {
 
 const clickedEventInPreviousButton = (data) => {
     previousButton.addEventListener ("click", () => {
-        changeImgToPrevious();
+        switchImg("previousElementSibling");
         getCurrentCountOfImg();
         toggleButtonDisabled(data);
     })
