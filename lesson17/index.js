@@ -80,9 +80,9 @@ function init(data) {
 }
 
 function toggleButtonDisabled(data) {
-    const currentIndex = `${getCurrentIndex()}`;
-    const firstIndex = "0";
-    const lastIndex = `${data.length -1}`;
+    const currentIndex = getCurrentIndex();
+    const firstIndex = 0;
+    const lastIndex = data.length -1;
 
     //最初の画像の時は、disabledを付与。それ以外の時は外す。
     if (currentIndex === firstIndex) {
