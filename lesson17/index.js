@@ -80,20 +80,19 @@ function init(data) {
 }
 
 function toggleButtonDisabled(data) {
-    const activeElement = document.querySelector(".is-active");
-    const activeIndex = activeElement.dataset.index;
+    const currentIndex = `${getCurrentIndex()}`;
     const firstIndex = "0";
     const lastIndex = `${data.length -1}`;
 
     //最初の画像の時は、disabledを付与。それ以外の時は外す。
-    if (activeIndex === firstIndex) {
+    if (currentIndex === firstIndex) {
         previousButton.setAttribute("disabled",true);
     } else {
         previousButton.removeAttribute("disabled",true);
     }
 
     //最後の画像の時は、disabledを付与。それ以外の時は外す。
-    if (activeIndex === lastIndex) {
+    if (currentIndex === lastIndex) {
         nextButton.setAttribute("disabled",true);
     } else {
         nextButton.removeAttribute("disabled",true);
