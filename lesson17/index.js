@@ -72,9 +72,8 @@ function renderListsOfImg(data) {
 
 function init(data) {
     const allofCountElement = document.getElementById("js-counter-all");
-    const allIndex = data.length;
     
-    allofCountElement.textContent = allIndex;
+    allofCountElement.textContent = data.length;
     getCurrentCountOfImg();
     toggleButtonDisabled(data.length);
 }
