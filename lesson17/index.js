@@ -76,13 +76,13 @@ function init(data) {
     
     allofCountElement.textContent = allIndex;
     getCurrentCountOfImg();
-    toggleButtonDisabled(data);
+    toggleButtonDisabled(data.length);
 }
 
-function toggleButtonDisabled(data) {
+function toggleButtonDisabled(value) {
     const currentIndex = getCurrentIndex();
     const firstIndex = 0;
-    const lastIndex = data.length -1;
+    const lastIndex = value - 1;
 
     previousButton.disabled = currentIndex === firstIndex;
     nextButton.disabled = currentIndex === lastIndex;
@@ -104,19 +104,19 @@ function switchImg(direct) {
     activeImg[direct].classList.add("is-active");
 }
 
-const clickedEventInNextButton = (data) => {
+const addEventListenerForNextButton = (value) => {
     nextButton.addEventListener ("click", () => {
         switchImg("nextElementSibling");
         getCurrentCountOfImg();
-        toggleButtonDisabled(data);
+        toggleButtonDisabled(value);
     })
 }
 
-const clickedEventInPreviousButton = (data) => {
+const addEventListenerForPreviousButton = (value) => {
     previousButton.addEventListener ("click", () => {
         switchImg("previousElementSibling");
         getCurrentCountOfImg();
-        toggleButtonDisabled(data);
+        toggleButtonDisabled(value);
     })
 }
 
@@ -126,8 +126,8 @@ async function addSlide() {
     if(data){
         renderListsOfImg(data);
         init(data);
-        clickedEventInNextButton(data);
-        clickedEventInPreviousButton(data);
+        addEventListenerForNextButton(data.length);
+        addEventListenerForPreviousButton(data.length);
     }
 }
 
