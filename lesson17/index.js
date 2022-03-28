@@ -84,19 +84,8 @@ function toggleButtonDisabled(data) {
     const firstIndex = 0;
     const lastIndex = data.length -1;
 
-    //最初の画像の時は、disabledを付与。それ以外の時は外す。
-    if (currentIndex === firstIndex) {
-        previousButton.setAttribute("disabled",true);
-    } else {
-        previousButton.removeAttribute("disabled",true);
-    }
-
-    //最後の画像の時は、disabledを付与。それ以外の時は外す。
-    if (currentIndex === lastIndex) {
-        nextButton.setAttribute("disabled",true);
-    } else {
-        nextButton.removeAttribute("disabled",true);
-    }
+    previousButton.disabled = currentIndex === firstIndex;
+    nextButton.disabled = currentIndex === lastIndex;
 }
 
 function getCurrentIndex() {

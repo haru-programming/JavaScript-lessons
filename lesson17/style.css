@@ -42,11 +42,11 @@
     cursor: pointer;
 }
 
-.slideshow__arrow[disabled="true"]{
+.slideshow__arrow[disabled]{
     cursor: auto;
 }
 
-.slideshow__arrow[disabled="true"] img{
+.slideshow__arrow[disabled] img{
     opacity: 0.6;
 }
 
