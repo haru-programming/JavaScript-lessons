@@ -78,10 +78,10 @@ function init(data) {
     toggleButtonDisabled(data.length);
 }
 
-function toggleButtonDisabled(value) {
+function toggleButtonDisabled(length) {
     const currentIndex = getCurrentIndex();
     const firstIndex = 0;
-    const lastIndex = value - 1;
+    const lastIndex = length - 1;
 
     previousButton.disabled = currentIndex === firstIndex;
     nextButton.disabled = currentIndex === lastIndex;
@@ -103,19 +103,19 @@ function switchImg(direct) {
     activeImg[direct].classList.add("is-active");
 }
 
-const addEventListenerForNextButton = (value) => {
+const addEventListenerForNextButton = (length) => {
     nextButton.addEventListener ("click", () => {
         switchImg("nextElementSibling");
         setCurrentCountOfImg();
-        toggleButtonDisabled(value);
+        toggleButtonDisabled(length);
     })
 }
 
-const addEventListenerForPreviousButton = (value) => {
+const addEventListenerForPreviousButton = (length) => {
     previousButton.addEventListener ("click", () => {
         switchImg("previousElementSibling");
         setCurrentCountOfImg();
-        toggleButtonDisabled(value);
+        toggleButtonDisabled(length);
     })
 }
 
