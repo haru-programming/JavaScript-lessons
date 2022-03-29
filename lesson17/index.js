@@ -74,7 +74,7 @@ function init(data) {
     const allofCountElement = document.getElementById("js-counter-all");
     
     allofCountElement.textContent = data.length;
-    setCurrentCountOfImg();
+    incrementCurrentIndex();
     toggleButtonDisabled(data.length);
 }
 
@@ -92,7 +92,7 @@ function getCurrentIndex() {
     return Number(activeImg.dataset.index);
 }
 
-function setCurrentCountOfImg() {
+function incrementCurrentIndex() {
     const currentCountElement = document.getElementById("js-counter-current");
     currentCountElement.textContent = getCurrentIndex() + 1;
 }
@@ -106,7 +106,7 @@ function switchImg(direct) {
 const addEventListenerForNextButton = (length) => {
     nextButton.addEventListener ("click", () => {
         switchImg("nextElementSibling");
-        setCurrentCountOfImg();
+        incrementCurrentIndex();
         toggleButtonDisabled(length);
     })
 }
@@ -114,7 +114,7 @@ const addEventListenerForNextButton = (length) => {
 const addEventListenerForPreviousButton = (length) => {
     previousButton.addEventListener ("click", () => {
         switchImg("previousElementSibling");
-        setCurrentCountOfImg();
+        incrementCurrentIndex();
         toggleButtonDisabled(length);
     })
 }
