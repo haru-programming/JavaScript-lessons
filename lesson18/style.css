@@ -64,17 +64,17 @@
     margin-left: 3px;
 }
 
-.dot-pagination{
+.pagination__list{
     display: flex;justify-content: space-between;
     width: 150px;
     margin: 0 auto;
 }
 
-.dot-pagination{
+.pagination__item{
     margin-top: 20px;
 }
 
-.dot-pagination__btn{
+.pagination__btn{
     width: 10px;
     height: 12px;
     border-radius: 50%;
@@ -83,6 +83,6 @@
     cursor: pointer;
 }
 
-.dot-pagination__item.is-active .dot-pagination__btn{
+.pagination__item.is-active .pagination__btn{
     opacity: 1;
 }

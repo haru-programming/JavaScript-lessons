@@ -71,23 +71,23 @@ function renderListOfImg(data) {
     ul.appendChild(fragment);
 }
 
-function renderListOfDotPagination(data) {
+function renderListOfPagination(data) {
     const paginationList = document.getElementById("js-pagination-list");
     const fragment = document.createDocumentFragment();
 
     for (let i = 0; i < data.length; i++) {
         const li = document.createElement("li");
-        const dotButton = document.createElement("button");
+        const Button = document.createElement("button");
 
-        li.classList.add("dot-pagination__item","js-pagination-item");
+        li.classList.add("pagination__item","js-pagination-item");
         li.dataset.index = `${i}`;
-        dotButton.classList.add("dot-pagination__btn","js-pagination-btn");
-        dotButton.dataset.index = `${i}`;
+        Button.classList.add("pagination__btn","js-pagination-btn");
+        Button.dataset.index = `${i}`;
 
         //JSONデータでdisplay:trueの場合はis-activeを付与
         data[i].display && li.classList.add("is-active");
 
-        fragment.appendChild(li).appendChild(dotButton);
+        fragment.appendChild(li).appendChild(Button);
     }
     pagination.insertAdjacentElement("afterbegin",paginationList).appendChild(fragment);
 }
@@ -125,17 +125,17 @@ function switchImg(direct) {
     activeImg[direct].classList.add("is-active");
 }
 
-function switchDotPagination(direct) {
+function switchPagination(direct) {
     const ul = document.getElementById("js-pagination-list");
-    const activeDot = ul.querySelector(".is-active");
-    activeDot.classList.remove("is-active");
-    activeDot[direct].classList.add("is-active");
+    const activeItem = ul.querySelector(".is-active");
+    activeItem.classList.remove("is-active");
+    activeItem[direct].classList.add("is-active");
 }
 
 const addEventListenerForNextButton = (length) => {
     nextButton.addEventListener ("click", () => {
         switchImg("nextElementSibling");
-        switchDotPagination("nextElementSibling");
+        switchPagination("nextElementSibling");
         incrementCurrentIndex();
         toggleButtonDisabled(length);
     })
@@ -144,36 +144,36 @@ const addEventListenerForNextButton = (length) => {
 const addEventListenerForPreviousButton = (length) => {
     previousButton.addEventListener ("click", () => {
         switchImg("previousElementSibling");
-        switchDotPagination("previousElementSibling");
+        switchPagination("previousElementSibling");
         incrementCurrentIndex();
         toggleButtonDisabled(length);
     })
 }
 
-const addEventListenerForDotPagination = (length) => {
-    const dotPaginationList = document.getElementById("js-pagination-list");
+const addEventListenerForPagination = (length) => {
+    const PaginationList = document.getElementById("js-pagination-list");
 
-    dotPaginationList.addEventListener ("click", (e) => {
+    PaginationList.addEventListener ("click", (e) => {
 
         //buttonとbuttonの間はクリック対象外にする
-        if (dotPaginationList && e.currentTarget !== e.target) {
-            const clickedDotIndex = e.target.dataset.index;
+        if (PaginationList && e.currentTarget !== e.target) {
+            const clickedItemIndex = e.target.dataset.index;
 
             //dotを切り替える
-            const activeDot = dotPaginationList.querySelector(".is-active");
+            const activeItem = PaginationList.querySelector(".is-active");
             const paginationItems = Array.from(document.getElementsByClassName("js-pagination-item"));
-            activeDot.classList.remove("is-active");
-            paginationItems[clickedDotIndex].classList.add("is-active");
+            activeItem.classList.remove("is-active");
+            paginationItems[clickedItemIndex].classList.add("is-active");
 
             //数字のページネーションを切り替える
             const currentCountElement = document.getElementById("js-counter-current");
-            currentCountElement.textContent = Number(clickedDotIndex) + 1;
+            currentCountElement.textContent = Number(clickedItemIndex) + 1;
 
             //画像を切り替える
             const activeImg = ul.querySelector(".is-active");
             const imgItems = Array.from(document.getElementsByClassName("js-slideshow-item"));
             activeImg.classList.remove("is-active");
-            imgItems[clickedDotIndex].classList.add("is-active");
+            imgItems[clickedItemIndex].classList.add("is-active");
 
             toggleButtonDisabled(length);
         }
@@ -186,11 +186,11 @@ async function addSlide() {
 
     if(data){
         renderListOfImg(data);
-        renderListOfDotPagination(data);
+        renderListOfPagination(data);
         init(data);
         addEventListenerForNextButton(data.length);
         addEventListenerForPreviousButton(data.length);
-        addEventListenerForDotPagination(data.length);
+        addEventListenerForPagination(data.length);
     }
 }
 
