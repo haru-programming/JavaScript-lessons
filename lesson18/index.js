@@ -161,7 +161,7 @@ const addEventListenerForPagination = (length) => {
 
             //dotを切り替える
             const activeItem = PaginationList.querySelector(".is-active");
-            const paginationItems = Array.from(document.getElementsByClassName("js-pagination-item"));
+            const paginationItems = [...document.getElementsByClassName("js-pagination-item")];
             activeItem.classList.remove("is-active");
             paginationItems[clickedItemIndex].classList.add("is-active");
 
@@ -171,7 +171,7 @@ const addEventListenerForPagination = (length) => {
 
             //画像を切り替える
             const activeImg = ul.querySelector(".is-active");
-            const imgItems = Array.from(document.getElementsByClassName("js-slideshow-item"));
+            const imgItems = [...document.getElementsByClassName("js-slideshow-item")];
             activeImg.classList.remove("is-active");
             imgItems[clickedItemIndex].classList.add("is-active");
 
