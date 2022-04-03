@@ -96,7 +96,7 @@ function init(data) {
     const allofCountElement = document.getElementById("js-counter-all");
     
     allofCountElement.textContent = data.length;
-    incrementCurrentIndex();
+    incrementCurrentIndex(getCurrentIndex());
     toggleButtonDisabled(data.length);
 }
 
@@ -114,38 +114,40 @@ function getCurrentIndex() {
     return Number(activeImg.dataset.index);
 }
 
-function incrementCurrentIndex() {
+function incrementCurrentIndex(number) {
     const currentCountElement = document.getElementById("js-counter-current");
-    currentCountElement.textContent = getCurrentIndex() + 1;
+    currentCountElement.textContent = number + 1;
 }
 
-function switchImg(direct) {
+function switchImg(number) {
     const activeImg = ul.querySelector(".is-active");
+    const imgItems = [...document.getElementsByClassName("js-slideshow-item")];
     activeImg.classList.remove("is-active");
-    activeImg[direct].classList.add("is-active");
+    imgItems[number].classList.add("is-active");
 }
 
-function switchPagination(direct) {
+function switchPagination(number) {
     const ul = document.getElementById("js-pagination-list");
+    const paginationItems = [...document.getElementsByClassName("js-pagination-item")];
     const activeItem = ul.querySelector(".is-active");
     activeItem.classList.remove("is-active");
-    activeItem[direct].classList.add("is-active");
+    paginationItems[number].classList.add("is-active");
 }
 
 const addEventListenerForNextButton = (length) => {
     nextButton.addEventListener ("click", () => {
-        switchImg("nextElementSibling");
-        switchPagination("nextElementSibling");
-        incrementCurrentIndex();
+        switchImg(getCurrentIndex() + 1);
+        switchPagination(getCurrentIndex());
+        incrementCurrentIndex(getCurrentIndex());
         toggleButtonDisabled(length);
     })
 }
 
 const addEventListenerForPreviousButton = (length) => {
     previousButton.addEventListener ("click", () => {
-        switchImg("previousElementSibling");
-        switchPagination("previousElementSibling");
-        incrementCurrentIndex();
+        switchImg(getCurrentIndex() - 1);
+        switchPagination(getCurrentIndex());
+        incrementCurrentIndex(getCurrentIndex());
         toggleButtonDisabled(length);
     })
 }
@@ -157,24 +159,11 @@ const addEventListenerForPagination = (length) => {
 
         //buttonとbuttonの間はクリック対象外にする
         if (PaginationList && e.currentTarget !== e.target) {
-            const clickedItemIndex = e.target.dataset.index;
+            const clickedItemIndex = Number(e.target.dataset.index);
 
-            //dotを切り替える
-            const activeItem = PaginationList.querySelector(".is-active");
-            const paginationItems = [...document.getElementsByClassName("js-pagination-item")];
-            activeItem.classList.remove("is-active");
-            paginationItems[clickedItemIndex].classList.add("is-active");
-
-            //数字のページネーションを切り替える
-            const currentCountElement = document.getElementById("js-counter-current");
-            currentCountElement.textContent = Number(clickedItemIndex) + 1;
-
-            //画像を切り替える
-            const activeImg = ul.querySelector(".is-active");
-            const imgItems = [...document.getElementsByClassName("js-slideshow-item")];
-            activeImg.classList.remove("is-active");
-            imgItems[clickedItemIndex].classList.add("is-active");
-
+            switchPagination(clickedItemIndex);
+            incrementCurrentIndex(clickedItemIndex);
+            switchImg(clickedItemIndex);
             toggleButtonDisabled(length);
         }
     })
