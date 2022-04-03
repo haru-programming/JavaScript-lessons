@@ -153,17 +153,17 @@ const addEventListenerForPreviousButton = (length) => {
 }
 
 const addEventListenerForPagination = (length) => {
-    const PaginationList = document.getElementById("js-pagination-list");
+    const paginationList = document.getElementById("js-pagination-list");
 
-    PaginationList.addEventListener ("click", (e) => {
+    paginationList.addEventListener ("click", (e) => {
 
         //buttonとbuttonの間はクリック対象外にする
-        if (PaginationList && e.currentTarget !== e.target) {
+        if (paginationList && e.currentTarget !== e.target) {
             const clickedItemIndex = Number(e.target.dataset.index);
 
+            switchImg(clickedItemIndex);
             switchPagination(clickedItemIndex);
             incrementCurrentIndex(clickedItemIndex);
-            switchImg(clickedItemIndex);
             toggleButtonDisabled(length);
         }
     })
