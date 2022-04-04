@@ -158,14 +158,16 @@ const addEventListenerForPagination = (length) => {
     paginationList.addEventListener ("click", (e) => {
 
         //buttonとbuttonの間はクリック対象外にする
-        if (paginationList && e.currentTarget !== e.target) {
-            const clickedItemIndex = Number(e.target.dataset.index);
-
-            switchImg(clickedItemIndex);
-            switchPagination(clickedItemIndex);
-            incrementCurrentIndex(clickedItemIndex);
-            toggleButtonDisabled(length);
+        if (e.currentTarget === e.target) {
+            return;
         }
+
+        const clickedItemIndex = Number(e.target.dataset.index);
+
+        switchImg(clickedItemIndex);
+        switchPagination(clickedItemIndex);
+        incrementCurrentIndex(clickedItemIndex);
+        toggleButtonDisabled(length);
     })
 }
 
