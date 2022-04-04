@@ -134,21 +134,19 @@ function switchPagination(number) {
     paginationItems[number].classList.add("is-active");
 }
 
-const addEventListenerForNextButton = (dataLength) => {
-    nextButton.addEventListener ("click", () => {
-        switchImg(getCurrentIndex() + 1);
-        switchPagination(getCurrentIndex());
-        incrementCurrentIndex(getCurrentIndex());
-        toggleButtonDisabled(dataLength);
-    })
-}
+const addEventListenerForButton = (dataLength) => {
+    const buttons = document.querySelectorAll(".js-button-arrow");
 
-const addEventListenerForPreviousButton = (dataLength) => {
-    previousButton.addEventListener ("click", () => {
-        switchImg(getCurrentIndex() - 1);
-        switchPagination(getCurrentIndex());
-        incrementCurrentIndex(getCurrentIndex());
-        toggleButtonDisabled(dataLength);
+    buttons.forEach((button) => {
+        button.addEventListener ("click", (e) => {
+            let currentIndex = getCurrentIndex();
+            e.currentTarget.id === "js-button-next" ? ++currentIndex : --currentIndex;
+
+            switchImg(currentIndex);
+            switchPagination(currentIndex);
+            incrementCurrentIndex(currentIndex);
+            toggleButtonDisabled(dataLength);
+        })
     })
 }
 
@@ -179,8 +177,7 @@ async function addSlide() {
         renderListOfImg(data);
         renderListOfPagination(data);
         init(data);
-        addEventListenerForNextButton(data.length);
-        addEventListenerForPreviousButton(data.length);
+        addEventListenerForButton(data.length);
         addEventListenerForPagination(data.length);
     }
 }
