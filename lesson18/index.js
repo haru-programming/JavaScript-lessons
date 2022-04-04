@@ -100,10 +100,10 @@ function init(data) {
     toggleButtonDisabled(data.length);
 }
 
-function toggleButtonDisabled(length) {
+function toggleButtonDisabled(dataLength) {
     const currentIndex = getCurrentIndex();
     const firstIndex = 0;
-    const lastIndex = length - 1;
+    const lastIndex = dataLength - 1;
 
     previousButton.disabled = currentIndex === firstIndex;
     nextButton.disabled = currentIndex === lastIndex;
@@ -134,25 +134,25 @@ function switchPagination(number) {
     paginationItems[number].classList.add("is-active");
 }
 
-const addEventListenerForNextButton = (length) => {
+const addEventListenerForNextButton = (dataLength) => {
     nextButton.addEventListener ("click", () => {
         switchImg(getCurrentIndex() + 1);
         switchPagination(getCurrentIndex());
         incrementCurrentIndex(getCurrentIndex());
-        toggleButtonDisabled(length);
+        toggleButtonDisabled(dataLength);
     })
 }
 
-const addEventListenerForPreviousButton = (length) => {
+const addEventListenerForPreviousButton = (dataLength) => {
     previousButton.addEventListener ("click", () => {
         switchImg(getCurrentIndex() - 1);
         switchPagination(getCurrentIndex());
         incrementCurrentIndex(getCurrentIndex());
-        toggleButtonDisabled(length);
+        toggleButtonDisabled(dataLength);
     })
 }
 
-const addEventListenerForPagination = (length) => {
+const addEventListenerForPagination = (dataLength) => {
     const paginationList = document.getElementById("js-pagination-list");
 
     paginationList.addEventListener ("click", (e) => {
@@ -167,7 +167,7 @@ const addEventListenerForPagination = (length) => {
         switchImg(clickedItemIndex);
         switchPagination(clickedItemIndex);
         incrementCurrentIndex(clickedItemIndex);
-        toggleButtonDisabled(length);
+        toggleButtonDisabled(dataLength);
     })
 }
 
