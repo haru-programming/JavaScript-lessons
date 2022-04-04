@@ -116,7 +116,7 @@ function getCurrentIndex() {
 
 function incrementCurrentIndex(number) {
     const currentCountElement = document.getElementById("js-counter-current");
-    currentCountElement.textContent = number + 1;
+    currentCountElement.textContent = ++number;
 }
 
 function switchImg(number) {
