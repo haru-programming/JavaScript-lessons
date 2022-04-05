@@ -169,6 +169,22 @@ const addEventListenerForPagination = (dataLength) => {
     })
 }
 
+function autoMoveSlide(dataLength) {
+    setInterval(() => {
+        let currentIndex = getCurrentIndex();
+        currentIndex++;
+    
+        if (currentIndex === dataLength) {
+            currentIndex = 0;
+        }
+    
+        switchImg(currentIndex);
+        switchPagination(currentIndex);
+        incrementCurrentIndex(currentIndex);
+        toggleButtonDisabled(dataLength);
+    
+    }, 3000);
+}
 
 async function addSlide() {
     const data = await getImgData();
@@ -179,6 +195,7 @@ async function addSlide() {
         init(data);
         addEventListenerForButton(data.length);
         addEventListenerForPagination(data.length);
+        autoMoveSlide(data.length);
     }
 }
 
