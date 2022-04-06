@@ -146,6 +146,7 @@ const addEventListenerForButton = (dataLength) => {
             switchPagination(currentIndex);
             incrementCurrentIndex(currentIndex);
             toggleButtonDisabled(dataLength);
+            initAutoMoveSlide(dataLength);
         })
     })
 }
@@ -166,11 +167,16 @@ const addEventListenerForPagination = (dataLength) => {
         switchPagination(clickedItemIndex);
         incrementCurrentIndex(clickedItemIndex);
         toggleButtonDisabled(dataLength);
+        initAutoMoveSlide(dataLength);
     })
 }
 
+//タイマー停止用のID
+let intervalId;
+
 function autoMoveSlide(dataLength) {
-    setInterval(() => {
+
+    intervalId = setInterval(() => {
         let currentIndex = getCurrentIndex();
         currentIndex++;
     
@@ -182,8 +188,12 @@ function autoMoveSlide(dataLength) {
         switchPagination(currentIndex);
         incrementCurrentIndex(currentIndex);
         toggleButtonDisabled(dataLength);
-    
     }, 3000);
+}
+
+function initAutoMoveSlide(dataLength) {
+    clearInterval(intervalId);
+    autoMoveSlide(dataLength);
 }
 
 async function addSlide() {
