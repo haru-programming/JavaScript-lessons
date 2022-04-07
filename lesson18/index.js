@@ -172,11 +172,11 @@ const addEventListenerForPagination = (dataLength) => {
 }
 
 //タイマー停止用のID
-let intervalId;
+const intervalCount = { count: 0 };
 
 function autoMoveSlide(dataLength) {
 
-    intervalId = setInterval(() => {
+    intervalCount.count = setInterval(() => {
         let currentIndex = getCurrentIndex();
         currentIndex++;
     
@@ -192,7 +192,7 @@ function autoMoveSlide(dataLength) {
 }
 
 function initAutoMoveSlide(dataLength) {
-    clearInterval(intervalId);
+    clearInterval(intervalCount.count);
     autoMoveSlide(dataLength);
 }
 
