@@ -39,13 +39,15 @@ const fetchUserData = async() => {
     })
 };
 
-const getUserData = async() => {
+const init = async() => {
     addLoading();
     try {
         const json = await fetchUserData();
         if (!json) return;
 
         const data = json.data;
+        renderTable(data);
+
         if (data.length === 0) {
             body.textContent = "まだデータがありません";
             console.log("まだデータがありません");
@@ -66,9 +68,7 @@ const createErrorMessage = (text) => {
     return errorText;
 };
 
-const renderTable = async() => {
-    const data = await getUserData();
-
+const renderTable = async(data) => {
     const tableTitlesData = {
         "userId": "ID",
         "name": "名前",
@@ -127,4 +127,4 @@ const createTableContents = (data, keys) => {
     return fragment;
 };
 
-renderTable();
+init();
