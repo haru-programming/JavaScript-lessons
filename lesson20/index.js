@@ -1,4 +1,4 @@
-const body = document.querySelector("body");
+const parent = document.querySelector("body");
 
 const createElementWithClassName = (type, className) => {
     const element = document.createElement(type);
@@ -12,7 +12,7 @@ const addLoading = () => {
 
     img.src = "loading-circle.gif";
     imgWrapper.id = "js-loading";
-    body.appendChild(imgWrapper).appendChild(img);
+    parent.appendChild(imgWrapper).appendChild(img);
 };
 
 const removeLoading = () => {
@@ -24,7 +24,7 @@ const fetchData = async(endpoint) => {
 
     if(!response.ok){
         const errorMessage = `${response.status}:${response.statusText}`;
-        body.appendChild(createErrorMessage(errorMessage));
+        parent.appendChild(createErrorMessage(errorMessage));
         console.error(errorMessage);
         return;
     }
@@ -49,14 +49,14 @@ const init = async() => {
         renderTable(data);
 
         if (data.length === 0) {
-            body.textContent = "まだデータがありません";
+            parent.textContent = "まだデータがありません";
             console.log("まだデータがありません");
         }
         return data;
 
     } catch(e) {
         console.error(e);
-        body.appendChild(createErrorMessage(e));
+        parent.appendChild(createErrorMessage(e));
     } finally {
         removeLoading();
     }
@@ -82,7 +82,7 @@ const renderTable = async(data) => {
     const tableHead = createTableHead(titleNames);
     const tableBody = createTableBody(data, titleKeys);
 
-    body.appendChild(table).appendChild(tableHead).after(tableBody);
+    parent.appendChild(table).appendChild(tableHead).after(tableBody);
 };
 
 
