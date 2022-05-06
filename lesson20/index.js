@@ -86,14 +86,14 @@ const renderTable = async(data) => {
 };
 
 
-const createTableHead = (titleNames) => {
+const createTableHead = (titlesData) => {
     const tableHead = document.createElement("thead");
     const tr = createElementWithClassName("tr", "table__row");
     const fragment = document.createDocumentFragment();
     
-    for(let i = 0; i < titleNames.length; i++){
+    for(let i = 0; i < titlesData.length; i++){
         const th = createElementWithClassName("th", "table__title");
-        th.textContent = titleNames[i];
+        th.textContent = titlesData[i];
         fragment.appendChild(th);
     }
     tableHead.appendChild(tr).appendChild(fragment);
