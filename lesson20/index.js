@@ -39,27 +39,31 @@ const fetchUserData = async() => {
     })
 };
 
-const init = async() => {
+const getUserData = async() => {
     addLoading();
     try {
         const json = await fetchUserData();
         if (!json) return;
 
         const data = json.data;
-        renderTable(data);
 
         if (data.length === 0) {
             parent.textContent = "まだデータがありません";
             console.log("まだデータがありません");
         }
         return data;
-
+        
     } catch(e) {
         console.error(e);
         parent.appendChild(createErrorMessage(e));
     } finally {
         removeLoading();
     }
+};
+
+const init = async() => {
+    const data = await getUserData();
+    data && renderTable(data);
 };
 
 const createErrorMessage = (text) => {
