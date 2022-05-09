@@ -48,11 +48,12 @@ const getUserData = async() => {
         const data = json.data;
 
         if (data.length === 0) {
-            parent.textContent = "まだデータがありません";
+            parent.appendChild(createErrorMessage("まだデータがありません"));
             console.log("まだデータがありません");
+            return;
         }
         return data;
-        
+
     } catch(e) {
         console.error(e);
         parent.appendChild(createErrorMessage(e));
