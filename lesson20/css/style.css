@@ -1,0 +1,20 @@
+.table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: solid 1px #778ca3;
+}
+
+.table__row {
+    border-top: dashed 1px #778ca3;
+}
+
+.table__title {
+    padding: 10px;
+    background: #e9faf9;
+}
+
+.table__contents {
+    padding: 10px;
+}
