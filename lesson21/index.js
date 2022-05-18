@@ -211,10 +211,7 @@ const createSortingData = data => {
     const currentColumnName = currentColumn.textContent;
 
     //該当カラム名でデータのソートを行う
-    const currentColumnKey = Object.keys(tableTitlesData).filter(key => { 
-        return tableTitlesData[key] === currentColumnName;
-    });
-    const key = currentColumnKey[0];
+    const key = Object.keys(tableTitlesData).find(key => key = currentColumnName);
 
     const copyDataForAsc = data.slice();
     const copyDataForDesc = data.slice();
