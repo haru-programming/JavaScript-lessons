@@ -212,16 +212,16 @@ const createSortingData = data => {
 
     //該当カラム名でデータのソートを行う
     const key = Object.keys(tableTitlesData).find(key => key = currentColumnName);
-    const ascOrderData = [...data].sort((firstEl, secondEl) => {
-        return firstEl[key] - secondEl[key];
-    });
-    const descOrderData = [...data].sort((firstEl, secondEl) => {
-        return secondEl[key] - firstEl[key];
-    });
 
     if (currentButtonStatus === "asc") {
+        const ascOrderData = [...data].sort((firstEl, secondEl) => {
+            return firstEl[key] - secondEl[key];
+        });
         return ascOrderData;
     } else if (currentButtonStatus === "desc") {
+        const descOrderData = [...data].sort((firstEl, secondEl) => {
+            return secondEl[key] - firstEl[key];
+        });
         return descOrderData;
     } else {
         return data;
