@@ -212,15 +212,10 @@ const createSortingData = data => {
 
     //該当カラム名でデータのソートを行う
     const key = Object.keys(tableTitlesData).find(key => key = currentColumnName);
-
-    const copyDataForAsc = data.slice();
-    const copyDataForDesc = data.slice();
-
-    const ascOrderData = copyDataForAsc.sort((firstEl, secondEl) => {
+    const ascOrderData = [...data].sort((firstEl, secondEl) => {
         return firstEl[key] - secondEl[key];
     });
-
-    const descOrderData = copyDataForDesc.sort((firstEl, secondEl) => {
+    const descOrderData = [...data].sort((firstEl, secondEl) => {
         return secondEl[key] - firstEl[key];
     });
 
