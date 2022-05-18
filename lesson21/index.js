@@ -167,7 +167,7 @@ const renderSortButton = () => {
 };
 
 const setButtonForInitDisplay = () => {
-    document.querySelector(".js-sort-button-item").classList.add("is-active");
+    document.querySelector('[data-current-status="default"]').classList.add("is-active");
 };
 
 const addEventListenerForSortButtons = (data) => {
