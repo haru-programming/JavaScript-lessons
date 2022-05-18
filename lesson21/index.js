@@ -153,7 +153,7 @@ const createSortButtons = () => {
         const img = createElementWithClassName("img", "sort-buttons__img");
 
         li.dataset.index = index;
-        li.dataset.currentStatus = item.dataSet;
+        li.dataset.buttonStatus = item.dataSet;
         img.src = item.src;
         img.alt = item.alt;
         fragment.appendChild(li).appendChild(button).appendChild(img);
@@ -167,7 +167,7 @@ const renderSortButton = () => {
 };
 
 const setButtonForInitDisplay = () => {
-    document.querySelector('[data-current-status="default"]').classList.add("is-active");
+    document.querySelector('[data-button-status="default"]').classList.add("is-active");
 };
 
 const addEventListenerForSortButtons = (data) => {
@@ -204,7 +204,7 @@ const switchSortButtons = () => {
 
 const createSortingData = data => {
     const activeButton = document.querySelector(".is-active");
-    const currentButtonStatus = activeButton.dataset.currentStatus;
+    const currentButtonStatus = activeButton.dataset.buttonStatus;
 
     //クリックされたカラム名を取得
     const currentColumn = activeButton.closest(".js-table-title");
