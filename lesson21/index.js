@@ -163,7 +163,9 @@ const createSortButtons = () => {
 };
 
 const renderSortButton = () => {
-    document.querySelector(".js-table-title").insertAdjacentElement('beforeend', createSortButtons());
+    const thArray = [...document.querySelectorAll(".js-table-title")];
+    thArray[0].id = "js-set-button";
+    document.getElementById("js-set-button").insertAdjacentElement('beforeend', createSortButtons());
 };
 
 const setButtonForInitDisplay = () => {
