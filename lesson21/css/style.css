@@ -16,7 +16,7 @@
     background: #e9faf9;
 }
 
-.table__title:first-of-type {
+#js-set-button.table__title {
     display: flex;
     justify-content: center;
     align-items: center;
