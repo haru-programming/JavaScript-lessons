@@ -84,7 +84,7 @@ const createErrorMessage = text => {
     return errorText;
 };
 
-const renderTable = async(data) => {
+const renderTable = data => {
     const table = createElementWithClassName("table", "table");
     const titleKeys = Object.keys(tableTitlesData);
     const titleNames = Object.values(tableTitlesData);
@@ -93,7 +93,6 @@ const renderTable = async(data) => {
 
     parent.appendChild(table).appendChild(tableHead).after(tableBody);
 };
-
 
 const createTableHead = titlesData => {
     const tableHead = document.createElement("thead");
@@ -211,7 +210,7 @@ const createSortingData = data => {
     const currentColumnName = currentColumn.textContent;
 
     //該当カラム名でデータのソートを行う
-    const key = Object.keys(tableTitlesData).find(key => key = currentColumnName);
+    const key = Object.keys(tableTitlesData).find(key => tableTitlesData[key] === currentColumnName);
 
     if (currentButtonStatus === "asc") {
         const ascOrderData = [...data].sort((firstEl, secondEl) => {
