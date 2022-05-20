@@ -168,9 +168,7 @@ const renderSortButton = () => {
     document.getElementById("js-set-button").insertAdjacentElement('beforeend', createSortButtons());
 };
 
-const setButtonForInitDisplay = () => {
-    document.querySelector('[data-button-status="default"]').classList.add("is-active");
-};
+const setButtonForInitDisplay = () => document.querySelector('[data-button-status="default"]').classList.add("is-active");
 
 const addEventListenerForSortButtons = (data) => {
     const sortButtons = document.getElementById("js-sort-buttons");
