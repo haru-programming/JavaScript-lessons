@@ -162,12 +162,22 @@ const createSortButtons = () => {
 };
 
 const renderSortButton = () => {
-    const thArray = [...document.querySelectorAll(".js-table-title")];
-    thArray[0].id = "js-set-button";
-    document.getElementById("js-set-button").insertAdjacentElement('beforeend', createSortButtons());
+    const sortTarget = [...document.querySelectorAll(".js-table-title")].filter(el => el.textContent === "ID");
+    
+    if(sortTarget) {
+        sortTarget.forEach(el => {
+            el.classList.add("is-target");
+            el.insertAdjacentElement('beforeend', createSortButtons());
+        })
+    }
 };
 
-const setButtonForInitDisplay = () => document.querySelector('[data-button-status="default"]').classList.add("is-active");
+const setButtonForInitDisplay = () => {
+    const defaultButtons = [...document.querySelectorAll('[data-button-status="default"]')];
+    defaultButtons.forEach(button => {
+        button.classList.add("is-active");
+    })
+}
 
 const addEventListenerForSortButtons = (data) => {
     const sortButtons = document.getElementById("js-sort-buttons");

@@ -16,7 +16,7 @@
     background: #e9faf9;
 }
 
-#js-set-button.table__title {
+.table__title.is-target {
     display: flex;
     justify-content: center;
     align-items: center;
