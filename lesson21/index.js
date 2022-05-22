@@ -223,15 +223,9 @@ const createSortingData = data => {
     const key = Object.keys(tableTitlesData).find(key => tableTitlesData[key] === currentColumnName);
 
     if (currentButtonStatus === "asc") {
-        const ascOrderData = [...data].sort((firstEl, secondEl) => {
-            return firstEl[key] - secondEl[key];
-        });
-        return ascOrderData;
+        return [...data].sort((firstEl, secondEl) => firstEl[key] - secondEl[key]);
     } else if (currentButtonStatus === "desc") {
-        const descOrderData = [...data].sort((firstEl, secondEl) => {
-            return secondEl[key] - firstEl[key];
-        });
-        return descOrderData;
+        return [...data].sort((firstEl, secondEl) => secondEl[key] - firstEl[key]);
     } else {
         return data;
     }
