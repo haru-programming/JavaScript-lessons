@@ -223,11 +223,11 @@ const createSortingData = data => {
 
     if (currentButtonStatus === "asc") {
         return [...data].sort((firstEl, secondEl) => firstEl[key] - secondEl[key]);
-    } else if (currentButtonStatus === "desc") {
+    } 
+    if (currentButtonStatus === "desc") {
         return [...data].sort((firstEl, secondEl) => secondEl[key] - firstEl[key]);
-    } else {
-        return data;
-    }
+    } 
+    return data;
 };
 
 const changeTableContents = (items, data) => {
