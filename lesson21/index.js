@@ -181,7 +181,6 @@ const setButtonForInitDisplay = () => {
 
 const addEventListenerForSortButtons = (data) => {
     const sortButtons = document.getElementById("js-sort-buttons");
-    const titleKeys = Object.keys(tableTitlesData);
 
     sortButtons.addEventListener("click", () => {
         switchSortButtons();
@@ -191,7 +190,7 @@ const addEventListenerForSortButtons = (data) => {
 
         trArray.forEach((tr, index) => {
             const tdItems = tr.children;
-            changeTableContents(tdItems, sortData[index], titleKeys);
+            changeTableContents(tdItems, sortData[index]);
         })
     });
 };
@@ -231,9 +230,11 @@ const createSortingData = data => {
     }
 };
 
-const changeTableContents = (items, data, keys) => {
-    for(let i = 0; i < keys.length; i++){
-        items[i].textContent = data[keys[i]];
+const changeTableContents = (items, data) => {
+    const titleKeys = Object.keys(tableTitlesData);
+
+    for(let i = 0; i < titleKeys.length; i++){
+        items[i].textContent = data[titleKeys[i]];
     }
 };
 
