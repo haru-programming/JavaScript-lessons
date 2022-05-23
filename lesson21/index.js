@@ -151,7 +151,6 @@ const createSortButtons = () => {
         const button = createElementWithClassName("button", "sort-buttons__btn");
         const img = createElementWithClassName("img", "sort-buttons__img");
 
-        li.dataset.index = index;
         li.dataset.buttonStatus = item.dataSet;
         img.src = item.src;
         img.alt = item.alt;
@@ -196,17 +195,21 @@ const addEventListenerForSortButtons = (data) => {
 };
 
 const switchSortButtons = () => {
-    const buttonItems = document.getElementsByClassName("js-sort-button-item");
     const activeButton = document.querySelector(".is-active");
-    const nextIndex = Number(activeButton.dataset.index) + 1;
-    const lastIndex = buttonItems.length;
+    const sortStatus = activeButton.dataset.buttonStatus;
 
     activeButton.classList.remove("is-active");
 
-    if (nextIndex === lastIndex){
-        buttonItems[0].classList.add("is-active");
-    } else {
-        buttonItems[nextIndex].classList.add("is-active");
+    switch (sortStatus) {
+        case "default":
+            document.querySelector("[data-button-status='asc']").classList.add("is-active");
+            break;
+        case "asc":
+            document.querySelector("[data-button-status='desc']").classList.add("is-active");
+            break;
+        default:
+            document.querySelector("[data-button-status='default']").classList.add("is-active");
+            break;
     }
 };
 
