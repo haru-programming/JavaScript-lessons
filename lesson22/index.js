@@ -182,6 +182,14 @@ const setButtonForInitDisplay = () => {
     })
 }
 
+const initSortButtonStatus = (target) => {
+    const noTargetColumn = [...document.querySelectorAll(".is-target")].filter(column => column !== target);
+    noTargetColumn.forEach(column => {
+        column.querySelector(".is-active").classList.remove("is-active");
+        column.querySelector("[data-button-status='default']").classList.add("is-active");
+    })
+}
+
 const addEventListenerForSortButtons = data => {
     const sortButtons = [...document.querySelectorAll(".is-target")];
 
@@ -189,6 +197,7 @@ const addEventListenerForSortButtons = data => {
         sortButton.addEventListener("click", (e) => {
             const activeColumn = e.currentTarget;
 
+            initSortButtonStatus(activeColumn);
             switchSortButtons(activeColumn);
             
             const trArray = [...document.querySelectorAll(".js-table-row")];
