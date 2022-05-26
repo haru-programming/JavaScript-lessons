@@ -5,6 +5,11 @@ const tableTitlesData = {
     "gender": "性別",
     "age": "年齢"
 }
+const Sort = {
+    Default: "default",
+    Asc: "asc",
+    Desc: "desc",
+}
 
 const createElementWithClassName = (type, className) => {
     const element = document.createElement(type);
@@ -139,9 +144,9 @@ const createSortButtons = () => {
     ul.id = "js-sort-buttons";
 
     const buttonConfig = [
-        { src: "../img/icon-both.svg", alt: "昇順に並び替える", dataSet: "default"},
-        { src: "../img/icon-asc.svg", alt: "降順に並び替える", dataSet: "asc"},
-        { src: "../img/icon-desc.svg", alt: "順不同に並び替える", dataSet: "desc"}
+        { src: "../img/icon-both.svg", alt: "昇順に並び替える", dataSet: Sort.Default},
+        { src: "../img/icon-asc.svg", alt: "降順に並び替える", dataSet: Sort.Asc},
+        { src: "../img/icon-desc.svg", alt: "順不同に並び替える", dataSet: Sort.Desc}
     ]
 
     const fragment = document.createDocumentFragment();
@@ -230,10 +235,10 @@ const createSortingData = (data, target) => {
 
     const key = Object.keys(tableTitlesData).find(key => tableTitlesData[key] === currentColumnName);
 
-    if (currentButtonStatus === "asc") {
+    if (currentButtonStatus === Sort.Asc) {
         return [...data].sort((firstEl, secondEl) => firstEl[key] - secondEl[key]);
     } 
-    if (currentButtonStatus === "desc") {
+    if (currentButtonStatus === Sort.Desc) {
         return [...data].sort((firstEl, secondEl) => secondEl[key] - firstEl[key]);
     } 
     return data;
