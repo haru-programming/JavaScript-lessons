@@ -202,14 +202,6 @@ const addEventListenerForSortButtons = data => {
     })
 };
 
-const initButtonStatus = () => {
-    // const activeButtons = document.querySelectorAll(".is-active")
-
-    // activeButtons.forEach(button => {
-    //     button.querySelector("[data-button-status='default']").classList.add("is-active");
-    // })
-}
-
 const switchSortButtons = target => {
     const activeButton = target.querySelector(".is-active");
     const sortStatus = activeButton.dataset.buttonStatus;
