@@ -197,6 +197,14 @@ const addEventListenerForSortButtons = data => {
     })
 };
 
+const initButtonStatus = () => {
+    // const activeButtons = document.querySelectorAll(".is-active")
+
+    // activeButtons.forEach(button => {
+    //     button.querySelector("[data-button-status='default']").classList.add("is-active");
+    // })
+}
+
 const switchSortButtons = target => {
     const activeButton = target.querySelector(".is-active");
     const sortStatus = activeButton.dataset.buttonStatus;
@@ -204,14 +212,14 @@ const switchSortButtons = target => {
     activeButton.classList.remove("is-active");
 
     switch (sortStatus) {
-        case "default":
-            target.querySelector("[data-button-status='asc']").classList.add("is-active");
+        case "desc":
+            target.querySelector("[data-button-status='default']").classList.add("is-active");
             break;
         case "asc":
             target.querySelector("[data-button-status='desc']").classList.add("is-active");
             break;
         default:
-            target.querySelector("[data-button-status='default']").classList.add("is-active");
+            target.querySelector("[data-button-status='asc']").classList.add("is-active");
             break;
     }
 };
