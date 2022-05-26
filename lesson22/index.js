@@ -139,9 +139,9 @@ const createSortButtons = () => {
     ul.id = "js-sort-buttons";
 
     const buttonConfig = [
-        { src: "../img/icon-both.svg", alt: "idを昇順に並び替える", dataSet: "default"},
-        { src: "../img/icon-asc.svg", alt: "idを降順に並び替える", dataSet: "asc"},
-        { src: "../img/icon-desc.svg", alt: "idを順不同に並び替える", dataSet: "desc"}
+        { src: "../img/icon-both.svg", alt: "昇順に並び替える", dataSet: "default"},
+        { src: "../img/icon-asc.svg", alt: "降順に並び替える", dataSet: "asc"},
+        { src: "../img/icon-desc.svg", alt: "順不同に並び替える", dataSet: "desc"}
     ]
 
     const fragment = document.createDocumentFragment();
