@@ -165,7 +165,7 @@ const createSortButtons = () => {
 };
 
 const renderSortButton = () => {
-    const sortTarget = ["ID", "年齢"]
+    const sortTarget = [tableTitlesData.userId, tableTitlesData.age];
 
     if(sortTarget) {
         sortTarget.forEach(target => {
