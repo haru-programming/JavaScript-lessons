@@ -219,10 +219,10 @@ const switchSortButtons = target => {
     activeButton.classList.remove("is-active");
 
     switch (sortStatus) {
-        case "desc":
+        case Sort.Desc:
             target.querySelector("[data-button-status='default']").classList.add("is-active");
             break;
-        case "asc":
+        case Sort.Asc:
             target.querySelector("[data-button-status='desc']").classList.add("is-active");
             break;
         default:
