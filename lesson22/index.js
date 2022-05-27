@@ -165,12 +165,13 @@ const createSortButtons = () => {
 };
 
 const renderSortButton = () => {
-    const sortTarget = [...document.querySelectorAll(".js-table-title")].filter(el => el.textContent === "ID" || el.textContent === "年齢");
-    
+    const sortTarget = ["ID", "年齢"]
+
     if(sortTarget) {
-        sortTarget.forEach(el => {
-            el.classList.add("is-target");
-            el.insertAdjacentElement('beforeend', createSortButtons());
+        sortTarget.forEach(target => {
+            const targetEl = [...document.querySelectorAll(".js-table-title")].find(el => el.textContent === target);
+            targetEl.classList.add("is-target");
+            targetEl.insertAdjacentElement('beforeend', createSortButtons());
         })
     }
 };
