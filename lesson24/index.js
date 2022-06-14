@@ -28,13 +28,11 @@ const observerOptions = {
 };
 const checkbox = document.getElementById("js-checkbox");
 
-const setCheckedAttributeToCheckbox = entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            checkbox.checked = true;
-            checkbox.disabled = false;
-        }
-    });
+const setCheckedAttributeToCheckbox = ([entry]) => {
+    if (entry.isIntersecting) {
+        checkbox.checked = true;
+        checkbox.disabled = false;
+    }
 };
 
 const observer = new IntersectionObserver(setCheckedAttributeToCheckbox, observerOptions);
