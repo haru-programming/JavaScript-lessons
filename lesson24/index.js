@@ -38,6 +38,6 @@ const observer = new IntersectionObserver(setCheckedAttributeToCheckbox, observe
 observer.observe(observerTarget);
 
 submitButton.addEventListener("click", (e) => {
-    if (checkbox.checked) window.location.href = "./register-done.html";
     e.preventDefault();
+    if (checkbox.checked) window.location.href = "./register-done.html";
 });
