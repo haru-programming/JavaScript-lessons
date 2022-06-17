@@ -12,18 +12,18 @@
     <body>
         <form class="form box">
             <h1 class="title">Sign Up</h1>
-            <dl class="form__inner">
+            <div class="form__inner">
                 <div class="form__item">
-                    <dt><label for="name">UserName</label></dt>
-                    <dd><input type="text" class="form__item-input" id="name" name="name"></dd>
+                    <label for="name">UserName</label>
+                    <input type="text" class="form__item-input" id="name" name="name">
                 </div>
                 <div class="form__item">
-                    <dt><label for="email">E-mail</label></dt>
-                    <dd><input type="email" class="form__item-input" id="email" name="email"></dd>
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form__item-input" id="email" name="email">
                 </div>
                 <div class="form__item">
-                    <dt><label for="password">Password</label></dt>
-                    <dd><input type="password" class="form__item-input" id="password" name="password"></dd>
+                    <label for="password">Password</label>
+                    <input type="password" class="form__item-input" id="password" name="password">
                 </div>
                 <div class="form__check" id="js-checkbox-aria">
                     <input type="checkbox" name="answer" title="answer" value="利用規約に同意しました" id="js-checkbox" disabled>
@@ -33,7 +33,7 @@
                 <div class="form__button">
                     <input type="button" id="js-submit-button" value="Create My Account">
                 </div>
-            </dl>
+            </div>
         </form>
         <div class="modal js-modal" id="js-modal-area">
             <div class="modal__inner" id="js-modal-inner">
