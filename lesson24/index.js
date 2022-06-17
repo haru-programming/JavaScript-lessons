@@ -3,13 +3,8 @@ const modalCloseButton = document.getElementById("js-modal-close-button");
 const modalInner = document.getElementById("js-modal-inner");
 const submitButton = document.getElementById("js-submit-button");
 
-const openModal = () => {
-    document.getElementById("js-modal-area").classList.add("is-active");
-};
-
-const closeModal = () => {
-    document.getElementById("js-modal-area").classList.remove("is-active");
-};
+const openModal = () => document.getElementById("js-modal-area").classList.add("is-active");
+const closeModal = () => document.getElementById("js-modal-area").classList.remove("is-active");
 
 checkboxLink.addEventListener("click", openModal);
 modalCloseButton.addEventListener("click", closeModal);
