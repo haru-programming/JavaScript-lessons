@@ -23,7 +23,6 @@ document.addEventListener("click", (e) => {
 const observerTarget = document.getElementById("js-last-sentence");
 const observerOptions = {
     root: modalInner,
-    rootMargin: "0px",
     threshold: 1.0
 };
 const checkbox = document.getElementById("js-checkbox");
