@@ -104,17 +104,9 @@ const checkFormValidityToEnableSubmitButton = () => {
     }
 };
 
-nameOfInput.addEventListener("blur", () => {
-    checkFormNameValidation();
-});
-
-emailOfInput.addEventListener("blur", () => {
-    checkFormEmailValidation();
-});
-
-passwordOfInput.addEventListener("blur", () => {
-    checkFormPasswordValidation();
-});
+nameOfInput.addEventListener("blur", checkFormNameValidation);
+emailOfInput.addEventListener("blur", checkFormEmailValidation);
+passwordOfInput.addEventListener("blur", checkFormPasswordValidation);
 
 formElements.forEach(element => {
     element.addEventListener("blur", (e) => {
