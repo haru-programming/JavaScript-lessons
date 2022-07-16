@@ -24,8 +24,10 @@ modalCloseButton.addEventListener("click", () => {
 
 //モーダル以外の部分を押すとモーダルが閉じる
 document.addEventListener("click", (e) => {
-    e.target.classList.contains("js-modal") && closeModal();
-    checkFormValidityToEnableSubmitButton();
+    if(e.target.classList.contains("js-modal")){
+        closeModal();
+        checkFormValidityToEnableSubmitButton();
+    }
 });
 
 //スクロールが一番下に行ったらチェックボックスをcheckedにする

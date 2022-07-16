@@ -93,11 +93,13 @@ body.fixed{
     background-color: #ccc;
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
+    pointer-events: none;
     transition: opacity 0.3s ease-in-out;
 }
 
 .form__button input:not([disabled]) {
     background-color: #83BD75;
+    pointer-events: auto;
 }
 
 .form__button input:focus:not([disabled]),
