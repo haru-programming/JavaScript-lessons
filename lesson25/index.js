@@ -97,13 +97,7 @@ const isValidFormInput = () => {
     return form.checkValidity() && invalidItem.length === 0 && checkbox.checked;
 };
 
-const checkFormValidityToEnableSubmitButton = () => {
-    if (isValidFormInput()) {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
-};
+const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isValidFormInput() ? false : true;
 
 nameOfInput.addEventListener("blur", checkFormNameValidation);
 emailOfInput.addEventListener("blur", checkFormEmailValidation);
