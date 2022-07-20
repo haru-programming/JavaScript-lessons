@@ -58,35 +58,87 @@ const checkFormToNotEmpty = target => {
     if (target.value.trim() === "") target.nextElementSibling.textContent = "入力してください";
 };
 
-const checkFormNameValidation = () => {
-    const upperLimitOfText = 15;
-    const nameErrorText = document.getElementById("js-name-error");
+const upperLimitOfText = 15;
+const passwordPattern = /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,}$/;
 
-    if (nameOfInput.value.length > upperLimitOfText) {
-        nameErrorText.textContent = "ユーザー名は15文字以内で入力してください";
-        nameOfInput.classList.add("invalid");
-    } else {
-        nameErrorText.textContent = "";
-        nameOfInput.classList.remove("invalid");
+const validationOptions = {
+    name: {
+        isValid: () => {
+            return nameOfInput.value.length < upperLimitOfText;
+        },
+        errorMessage: "ユーザー名は15文字以内で入力してください",
+    },
+    email: {
+        isValid: () => {
+            return emailOfInput.validity.valid;
+        },
+        errorMessage: "メールアドレスの形式になっていません",
+    },
+    password: {
+        isValid: () => {
+            return passwordPattern.test(passwordOfInput.value);
+        },
+        errorMessage: "8文字以上の大小の英数字を交ぜたものにしてください",
     }
 };
 
-const checkFormEmailValidation = () => {
-    const emailErrorText = document.getElementById("js-email-error");
-    emailErrorText.textContent = "";
-    if (emailOfInput.validity.typeMismatch) emailErrorText.textContent = "メールアドレスの形式になっていません";
+const showErrorMessage = target => {
+    let message;
+    switch (target.id) {
+        case "name":
+            message = validationOptions.name.errorMessage;
+            break;
+
+        case "email":
+            message = validationOptions.email.errorMessage;
+            break;
+
+        case "password":
+            message = validationOptions.password.errorMessage;
+            break;
+
+        default:
+            break;
+    }
+    target.nextElementSibling.textContent = message;
 };
 
-const checkFormPasswordValidation = () => {
-    const passwordErrorText = document.getElementById("js-password-error");
-    const passwordPattern = /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,}$/;
+const addInvalidClass = (target) => target.classList.add("invalid");
+const removeInvalidClass = (target) => target.classList.remove("invalid");
 
-    if (passwordPattern.test(passwordOfInput.value)) {
-        passwordErrorText.textContent = "";
-        passwordOfInput.classList.remove("invalid");
-    } else {
-        passwordErrorText.textContent = "8文字以上の大小の英数字を交ぜたものにしてください";
-        passwordOfInput.classList.add("invalid");
+const checkFormValidation = target => {
+    target.nextElementSibling.textContent = "";
+
+    switch (target.id) {
+        case "name":
+            if(validationOptions.name.isValid()) {
+                removeInvalidClass(target);
+                return;
+            }
+            showErrorMessage(target);
+            addInvalidClass(target);
+            break;
+
+        case "email":
+            if(validationOptions.email.isValid()) {
+                removeInvalidClass(target);
+                return;
+            }
+            showErrorMessage(target);
+            addInvalidClass(target);
+            break;
+
+        case "password":
+            if(validationOptions.password.isValid()) {
+                removeInvalidClass(target);
+                return;
+            }
+            showErrorMessage(target);
+            addInvalidClass(target);
+            break;
+
+        default :
+            break;
     }
 };
 
@@ -99,12 +151,9 @@ const isValidFormInput = () => {
 
 const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isValidFormInput() ? false : true;
 
-nameOfInput.addEventListener("blur", checkFormNameValidation);
-emailOfInput.addEventListener("blur", checkFormEmailValidation);
-passwordOfInput.addEventListener("blur", checkFormPasswordValidation);
-
 formElements.forEach(element => {
     element.addEventListener("blur", (e) => {
+        checkFormValidation(e.currentTarget);
         checkFormToNotEmpty(e.currentTarget);
         checkFormValidityToEnableSubmitButton();
     })
