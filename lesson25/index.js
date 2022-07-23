@@ -145,10 +145,8 @@ const checkFormValidation = target => {
 };
 
 const isValidFormInput = () => {
-    const form = document.getElementById("js-form");
     const invalidItem = document.getElementsByClassName("invalid");
-
-    return form.checkValidity() && invalidItem.length === 0 && checkbox.checked;
+    return invalidItem.length === 0 && checkbox.checked;
 };
 
 const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isValidFormInput() ? false : true;
