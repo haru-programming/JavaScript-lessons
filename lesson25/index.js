@@ -55,7 +55,10 @@ const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [nameOfInput, emailOfInput, passwordOfInput];
 
 const checkFormToNotEmpty = target => {
-    if (target.value.trim() === "") target.nextElementSibling.textContent = "入力してください";
+    if (target.value.trim() === "") {
+        target.nextElementSibling.textContent = "入力してください";
+        return false;
+    }
 };
 
 const validationTerms = {
@@ -109,39 +112,13 @@ const addInvalidClass = (target) => target.classList.add("invalid");
 const removeInvalidClass = (target) => target.classList.remove("invalid");
 
 const checkFormValidation = target => {
-    target.nextElementSibling.textContent = "";
-
-    switch (target.id) {
-        case "name":
-            if(validationOptions.name.isValid()) {
-                removeInvalidClass(target);
-                return;
-            }
-            showErrorMessage(target);
-            addInvalidClass(target);
-            break;
-
-        case "email":
-            if(validationOptions.email.isValid()) {
-                removeInvalidClass(target);
-                return;
-            }
-            showErrorMessage(target);
-            addInvalidClass(target);
-            break;
-
-        case "password":
-            if(validationOptions.password.isValid()) {
-                removeInvalidClass(target);
-                return;
-            }
-            showErrorMessage(target);
-            addInvalidClass(target);
-            break;
-
-        default :
-            break;
+    if(validationOptions[target.id].isValid()) {
+        target.nextElementSibling.textContent = "";
+        removeInvalidClass(target);
+        return;
     }
+    showErrorMessage(target);
+    addInvalidClass(target);
 };
 
 const isValidFormInput = () => {
