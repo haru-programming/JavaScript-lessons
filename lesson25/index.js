@@ -62,14 +62,18 @@ const checkFormToNotEmpty = target => {
 };
 
 const validationTerms = {
-    upperLimitOfText: 15,
-    passwordPattern: /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,}$/
+    name: {
+        upperLimitOfText: 15
+    },
+    password: {
+        pattern: /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[a-zA-Z\d]{8,}$/
+    }
 }
 
 const validationOptions = {
     name: {
         isValid: () => {
-            return nameOfInput.value.length < validationTerms.upperLimitOfText;
+            return nameOfInput.value.length < validationTerms.name.upperLimitOfText;
         },
         errorMessage: "ユーザー名は15文字以内で入力してください",
     },
@@ -81,7 +85,7 @@ const validationOptions = {
     },
     password: {
         isValid: () => {
-            return validationTerms.passwordPattern.test(passwordOfInput.value);
+            return validationTerms.password.pattern.test(passwordOfInput.value);
         },
         errorMessage: "8文字以上の大小の英数字を交ぜたものにしてください",
     }
