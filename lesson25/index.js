@@ -92,24 +92,7 @@ const validationOptions = {
 };
 
 const showErrorMessage = target => {
-    let message;
-    switch (target.id) {
-        case "name":
-            message = validationOptions.name.errorMessage;
-            break;
-
-        case "email":
-            message = validationOptions.email.errorMessage;
-            break;
-
-        case "password":
-            message = validationOptions.password.errorMessage;
-            break;
-
-        default:
-            break;
-    }
-    target.nextElementSibling.textContent = message;
+    target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
 };
 
 const addInvalidClass = (target) => target.classList.add("invalid");
