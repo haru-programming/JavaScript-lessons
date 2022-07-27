@@ -120,16 +120,8 @@ formElements.forEach(element => {
     element.addEventListener("blur", (e) => {
         const target = e.target;
 
-        if (!checkFormToNotEmpty(target)) {
-            target.nextElementSibling.textContent = "入力してください";
-            return;
-        }
-
-        if (!validationOptions[target.id].isValid()) {
-            target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
-            addInvalidClass(target);
-            return;
-        }
+        if (!checkFormToNotEmpty(target)) return;
+        if (!checkFormValidation(target)) return;
 
         target.nextElementSibling.textContent = "";
         removeInvalidClass(target);
