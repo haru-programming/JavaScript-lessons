@@ -59,6 +59,7 @@ const checkFormToNotEmpty = target => {
         target.nextElementSibling.textContent = "入力してください";
         return false;
     }
+    return true;
 };
 
 const validationTerms = {
@@ -95,8 +96,8 @@ const showErrorMessage = target => {
     target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
 };
 
-const addInvalidClass = (target) => target.classList.add("invalid");
-const removeInvalidClass = (target) => target.classList.remove("invalid");
+const addInvalidClass = target => target.classList.add("invalid");
+const removeInvalidClass = target => target.classList.remove("invalid");
 
 const checkFormValidation = target => {
     if(validationOptions[target.id].isValid()) {
@@ -117,10 +118,23 @@ const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isVa
 
 formElements.forEach(element => {
     element.addEventListener("blur", (e) => {
-        checkFormValidation(e.currentTarget);
-        checkFormToNotEmpty(e.currentTarget);
+        const target = e.target;
+
+        if (!checkFormToNotEmpty(target)) {
+            target.nextElementSibling.textContent = "入力してください";
+            return;
+        }
+
+        if (!validationOptions[target.id].isValid()) {
+            target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
+            addInvalidClass(target);
+            return;
+        }
+
+        target.nextElementSibling.textContent = "";
+        removeInvalidClass(target);
         checkFormValidityToEnableSubmitButton();
-    })
+    });
 });
 
 submitButton.addEventListener("click", (e) => {
