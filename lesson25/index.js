@@ -56,9 +56,11 @@ const formElements = [nameOfInput, emailOfInput, passwordOfInput];
 
 const checkFormToNotEmpty = target => {
     if (target.value.trim() === "") {
+        addInvalidClass(target);
         target.nextElementSibling.textContent = "入力してください";
         return false;
     }
+    removeInvalidClass(target);
     return true;
 };
 
@@ -99,16 +101,6 @@ const showErrorMessage = target => {
 const addInvalidClass = target => target.classList.add("invalid");
 const removeInvalidClass = target => target.classList.remove("invalid");
 
-const checkFormValidation = target => {
-    if(validationOptions[target.id].isValid()) {
-        target.nextElementSibling.textContent = "";
-        removeInvalidClass(target);
-        return;
-    }
-    showErrorMessage(target);
-    addInvalidClass(target);
-};
-
 const isValidFormInput = () => {
     const invalidItem = document.getElementsByClassName("invalid");
     return invalidItem.length === 0 && checkbox.checked;
@@ -121,7 +113,12 @@ formElements.forEach(element => {
         const target = e.target;
 
         if (!checkFormToNotEmpty(target)) return;
-        if (!checkFormValidation(target)) return;
+
+        if (!validationOptions[target.id].isValid()) {
+            showErrorMessage(target);
+            addInvalidClass(target);
+            return;
+        }
 
         target.nextElementSibling.textContent = "";
         removeInvalidClass(target);
