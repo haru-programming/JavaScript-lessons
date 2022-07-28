@@ -101,6 +101,17 @@ const showErrorMessage = target => {
 const addInvalidClass = target => target.classList.add("invalid");
 const removeInvalidClass = target => target.classList.remove("invalid");
 
+const checkFormValidation = target => {
+    if(validationOptions[target.id].isValid()) {
+        target.nextElementSibling.textContent = "";
+        removeInvalidClass(target);
+        return true;
+    }
+    showErrorMessage(target);
+    addInvalidClass(target);
+    return false;
+};
+
 const isValidFormInput = () => {
     const invalidItem = document.getElementsByClassName("invalid");
     return invalidItem.length === 0 && checkbox.checked;
@@ -111,14 +122,10 @@ const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isVa
 formElements.forEach(element => {
     element.addEventListener("blur", (e) => {
         const target = e.target;
+        submitButton.disabled = true;
 
         if (!checkFormToNotEmpty(target)) return;
-
-        if (!validationOptions[target.id].isValid()) {
-            showErrorMessage(target);
-            addInvalidClass(target);
-            return;
-        }
+        if (!checkFormValidation(target)) return;
 
         target.nextElementSibling.textContent = "";
         removeInvalidClass(target);
