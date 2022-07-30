@@ -99,6 +99,8 @@ const isValidInputAndCheckbox = () => {
 const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isValidInputAndCheckbox() ? false : true;
 
 formElements.forEach(element => {
+    element.classList.add("invalid");
+    
     element.addEventListener("blur", (e) => {
         const target = e.target;
         submitButton.disabled = true;
