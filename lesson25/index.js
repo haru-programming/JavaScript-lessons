@@ -54,16 +54,6 @@ const emailOfInput = document.querySelector(".js-form-email");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [nameOfInput, emailOfInput, passwordOfInput];
 
-const checkFormToNotEmpty = target => {
-    if (target.value.trim() === "") {
-        addInvalidClass(target);
-        target.nextElementSibling.textContent = "入力してください";
-        return false;
-    }
-    removeInvalidClass(target);
-    return true;
-};
-
 const validationTerms = {
     name: {
         upperLimitOfText: 15
@@ -94,38 +84,35 @@ const validationOptions = {
     }
 };
 
-const showErrorMessage = target => {
-    target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
-};
-
 const addInvalidClass = target => target.classList.add("invalid");
 const removeInvalidClass = target => target.classList.remove("invalid");
+const showErrorMessage = target => target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
+const isNotEmptyOfInput = target => target.value.trim() === ""? false: true;
+const isValidFormInput = target => validationOptions[target.id].isValid()? true: false;
 
-const checkFormValidation = target => {
-    if(validationOptions[target.id].isValid()) {
-        target.nextElementSibling.textContent = "";
-        removeInvalidClass(target);
-        return true;
-    }
-    showErrorMessage(target);
-    addInvalidClass(target);
-    return false;
-};
-
-const isValidFormInput = () => {
+const isValidInputAndCheckbox = () => {
     const invalidItem = document.getElementsByClassName("invalid");
     return invalidItem.length === 0 && checkbox.checked;
 };
 
-const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isValidFormInput() ? false : true;
+const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isValidInputAndCheckbox() ? false : true;
 
 formElements.forEach(element => {
     element.addEventListener("blur", (e) => {
         const target = e.target;
         submitButton.disabled = true;
 
-        if (!checkFormToNotEmpty(target)) return;
-        if (!checkFormValidation(target)) return;
+        if (!isNotEmptyOfInput(target)) {
+            addInvalidClass(target);
+            target.nextElementSibling.textContent = "入力してください";
+            return;
+        }
+
+        if (!isValidFormInput(target)) {
+            showErrorMessage(target);
+            addInvalidClass(target);
+            return;
+        }
 
         target.nextElementSibling.textContent = "";
         removeInvalidClass(target);
@@ -135,5 +122,5 @@ formElements.forEach(element => {
 
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
-    if (isValidFormInput()) window.location.href = "./register-done.html";
+    if (isValidInputAndCheckbox()) window.location.href = "./register-done.html";
 });
