@@ -7,6 +7,7 @@ const submitButton = document.getElementById("js-submit-button");
 const openModal = () => {
     document.getElementById("js-modal-area").classList.add("is-active");
     bodyElement.classList.add("fixed");
+    document.getElementById("js-modal-contents").scrollTop = 0;
 };
 
 const closeModal = () => {
@@ -119,6 +120,13 @@ formElements.forEach(element => {
         checkFormValidityToEnableSubmitButton();
     });
 });
+
+checkbox.addEventListener("input", () => {
+    if (!checkbox.checked) {
+        submitButton.disabled = true;
+        checkbox.disabled = true;
+    }
+})
 
 submitButton.addEventListener("click", (e) => {
     e.preventDefault();
