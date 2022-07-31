@@ -89,7 +89,7 @@ const addInvalidClass = target => target.classList.add("invalid");
 const removeInvalidClass = target => target.classList.remove("invalid");
 const showErrorMessage = target => target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
 const isNotEmptyOfInput = target => target.value.trim() === ""? false: true;
-const isValidFormInput = target => validationOptions[target.id].isValid()? true: false;
+const isValidFormInput = target => validationOptions[target.id].isValid();
 
 const isValidInputAndCheckbox = () => {
     const invalidItem = document.getElementsByClassName("invalid");
