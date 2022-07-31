@@ -127,6 +127,7 @@ checkbox.addEventListener("input", () => {
     if (!checkbox.checked) {
         submitButton.disabled = true;
     }
+    checkFormValidityToEnableSubmitButton();
 })
 
 submitButton.addEventListener("click", (e) => {
