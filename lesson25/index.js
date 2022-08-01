@@ -124,9 +124,7 @@ formElements.forEach(element => {
 });
 
 checkbox.addEventListener("input", () => {
-    if (!checkbox.checked) {
-        submitButton.disabled = true;
-    }
+    submitButton.disabled = !checkbox.checked;
     checkFormValidityToEnableSubmitButton();
 })
 
