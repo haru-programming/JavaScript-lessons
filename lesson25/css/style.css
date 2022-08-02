@@ -73,6 +73,10 @@ body.fixed{
     border-bottom: transparent;
 }
 
+.form__check input[type=checkbox][disabled]{
+    cursor: not-allowed;
+}
+
 .form__attention{
     display: block;
     font-size: 13px;
