@@ -1,5 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400);
 
+/*---------------------------------
+// my reset
+//--------------------------------*/
+
+button{
+    border: 0;
+    background: transparent;
+}
+
+input{
+    border: none;
+    outline: none;
+}
+
+
+/*---------------------------------
+// main css
+//--------------------------------*/
+
 body{
     font-family: 'Open Sans', sans-serif;
     background-color: #e9efc0;

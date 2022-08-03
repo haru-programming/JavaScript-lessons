@@ -66,18 +66,3 @@ td,
 th {
   padding: 0;
 }
-
-
-/*---------------------------------
-// my reset
-//--------------------------------*/
-
-button{
-    border: 0;
-    background: transparent;
-}
-
-input{
-    border: none;
-    outline: none;
-}
