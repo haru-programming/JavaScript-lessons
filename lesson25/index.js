@@ -98,28 +98,32 @@ const isValidInputAndCheckbox = () => {
 
 const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isValidInputAndCheckbox() ? false : true;
 
+const checkFormValidityInBlur = (target) => {
+    submitButton.disabled = true;
+
+    if (!isNotEmptyOfInput(target)) {
+        addInvalidClass(target);
+        target.nextElementSibling.textContent = "入力してください";
+        return;
+    }
+
+    if (!isValidFormInput(target)) {
+        showErrorMessage(target);
+        addInvalidClass(target);
+        return;
+    }
+
+    target.nextElementSibling.textContent = "";
+    removeInvalidClass(target);
+    checkFormValidityToEnableSubmitButton();
+};
+
 formElements.forEach(element => {
     element.classList.add("invalid");
     
     element.addEventListener("blur", (e) => {
         const target = e.target;
-        submitButton.disabled = true;
-
-        if (!isNotEmptyOfInput(target)) {
-            addInvalidClass(target);
-            target.nextElementSibling.textContent = "入力してください";
-            return;
-        }
-
-        if (!isValidFormInput(target)) {
-            showErrorMessage(target);
-            addInvalidClass(target);
-            return;
-        }
-
-        target.nextElementSibling.textContent = "";
-        removeInvalidClass(target);
-        checkFormValidityToEnableSubmitButton();
+        checkFormValidityInBlur(target);
     });
 });
 
