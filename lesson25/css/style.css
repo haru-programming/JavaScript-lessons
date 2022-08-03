@@ -2,7 +2,7 @@
 
 body{
     font-family: 'Open Sans', sans-serif;
-    background-color: #E9EFC0;
+    background-color: #e9efc0;
     color: #5e5e5e;
 }
 
@@ -102,7 +102,7 @@ body.fixed{
 }
 
 .form__button input:not([disabled]) {
-    background-color: #83BD75;
+    background-color: #83bd75;
     pointer-events: auto;
 }
 
