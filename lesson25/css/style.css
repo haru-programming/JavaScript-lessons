@@ -103,7 +103,8 @@ body.fixed{
 }
 
 .form__button{
-    margin-top: 10px;
+    margin-top: 25px;
+    cursor: not-allowed;
 }
 
 .form__button input{
@@ -111,7 +112,6 @@ body.fixed{
     height: 50px;
     text-align: center;
     letter-spacing: 0.05em;
-    margin-top: 15px;
     color: #fff;
     background-color: #ccc;
     font-family: 'Open Sans', sans-serif;
