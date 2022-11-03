@@ -1,4 +1,3 @@
-const form = document.getElementById("js-form");
 const userIdOfInput = document.querySelector(".js-form-userid");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [userIdOfInput,passwordOfInput];
