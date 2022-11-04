@@ -54,11 +54,12 @@ const tryToLogin = async(inputsValues) => {
 const checkToRegistered = (inputData) => {
     return new Promise((resolve, reject) => {
         const registeredData = {
-            userId : "abcdefg@gmail.com",
+            name: "takeda",
+            email : "abcdefg@gmail.com",
             password : "N302aoe3"
         }
 
-        if (inputData.userId === registeredData.userId && inputData.password === registeredData.password) {
+        if (inputData.userId === registeredData.name || inputData.userId === registeredData.email && inputData.password === registeredData.password) {
             resolve({ token: "fafae92rfjafa03", ok: true, code: 200 });
         } else {
             reject({ ok: false, code: 401 });
