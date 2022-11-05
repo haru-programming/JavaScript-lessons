@@ -58,8 +58,8 @@ const tryToLogin = async() => {
 const checkToRegistered = () => {
     return new Promise((resolve, reject) => {
         const inputsValues = {
-            userId: document.querySelector(".js-form-userid").value,
-            password: document.querySelector(".js-form-password").value
+            userId: userIdOfInput.value,
+            password: passwordOfInput.value
         }
         const registeredData = {
             name: "takeda",
