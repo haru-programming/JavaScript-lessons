@@ -12,8 +12,8 @@ const isEmptyOfInput = target => target.value.trim() === "";
 const isValidFormInput = target => validationOptions[target.id].isValid(target);
 
 const checkFormValidityToEnableSubmitButton = () => {
-    const invalidItem = document.getElementsByClassName("invalid");
-    submitButton.disabled = invalidItem.length > 0;
+    const invalidItems = document.getElementsByClassName("invalid");
+    submitButton.disabled = invalidItems.length > 0;
 }
 
 formElements.forEach(element => {
