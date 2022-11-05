@@ -13,7 +13,7 @@ const isValidFormInput = target => validationOptions[target.id].isValid();
 
 const checkFormValidityToEnableSubmitButton = () => {
     const invalidItem = document.getElementsByClassName("invalid");
-    submitButton.disabled = invalidItem.length === 0 ? false : true;
+    submitButton.disabled = invalidItem.length > 0;
 }
 
 formElements.forEach(element => {
