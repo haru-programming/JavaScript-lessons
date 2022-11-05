@@ -8,7 +8,7 @@ const submitButton = document.getElementById("js-submit-button");
 const addInvalidClass = target => target.classList.add("invalid");
 const removeInvalidClass = target => target.classList.remove("invalid");
 const showErrorMessage = target => target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
-const isNotEmptyOfInput = target => target.value.trim() !== "";
+const isEmptyOfInput = target => target.value.trim() == "";
 const isValidFormInput = target => validationOptions[target.id].isValid();
 
 const checkFormValidityToEnableSubmitButton = () => {
@@ -27,7 +27,7 @@ formElements.forEach(element => {
 const checkFormValidityInBlur = (target) => {
     submitButton.disabled = true;
 
-    if (!isNotEmptyOfInput(target)) {
+    if (isEmptyOfInput(target)) {
         addInvalidClass(target);
         target.nextElementSibling.textContent = "入力してください";
         return;
