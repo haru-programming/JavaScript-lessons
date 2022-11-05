@@ -1,6 +1,3 @@
-const nameOfInput = document.querySelector(".js-form-name");
-const emailOfInput = document.querySelector(".js-form-email");
-const passwordOfInput = document.querySelector(".js-form-password");
 const validationTerms = {
     name: {
         upperLimitOfText: 15
@@ -12,20 +9,20 @@ const validationTerms = {
 
 export const validationOptions = {
     name: {
-        isValid: () => {
-            return nameOfInput.value.length < validationTerms.name.upperLimitOfText;
+        isValid: (target) => {
+            return target.value.length < validationTerms.name.upperLimitOfText;
         },
         errorMessage: "ユーザー名は15文字以内で入力してください",
     },
     email: {
-        isValid: () => {
-            return emailOfInput.validity.valid;
+        isValid: (target) => {
+            return target.validity.valid;
         },
         errorMessage: "メールアドレスの形式になっていません",
     },
     password: {
-        isValid: () => {
-            return validationTerms.password.pattern.test(passwordOfInput.value);
+        isValid: (target) => {
+            return validationTerms.password.pattern.test(target.value);
         },
         errorMessage: "8文字以上の大小の英数字を交ぜたものにしてください",
     }

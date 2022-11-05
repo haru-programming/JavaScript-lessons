@@ -1,4 +1,4 @@
-import { validationOptions } from "./validation";
+import { validationOptions } from "./validation-options";
 
 const userIdOfInput = document.querySelector(".js-form-userid");
 const passwordOfInput = document.querySelector(".js-form-password");
@@ -9,7 +9,7 @@ const addInvalidClass = target => target.classList.add("invalid");
 const removeInvalidClass = target => target.classList.remove("invalid");
 const showErrorMessage = target => target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
 const isEmptyOfInput = target => target.value.trim() === "";
-const isValidFormInput = target => validationOptions[target.id].isValid();
+const isValidFormInput = target => validationOptions[target.id].isValid(target);
 
 const checkFormValidityToEnableSubmitButton = () => {
     const invalidItem = document.getElementsByClassName("invalid");
