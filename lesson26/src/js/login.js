@@ -59,7 +59,7 @@ const tryToLogin = async(inputsValues) => {
     } catch(rejectObj) {
         result = rejectObj;
     } finally {
-        result.token? window.location.href = "./loginuserpage.html" : window.location.href = "./notautherize.html";
+        window.location.href = result.token ? "./loginuserpage.html" : "./notautherize.html";
     }
 }
 
