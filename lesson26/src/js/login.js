@@ -44,18 +44,10 @@ const checkFormValidityInBlur = (target) => {
     checkFormValidityToEnableSubmitButton();
 };
 
-const getInputValueAndTryLogin = () => {
-    const inputsValues = {
-        userId: document.querySelector(".js-form-userid").value,
-        password: document.querySelector(".js-form-password").value
-    }
-    tryToLogin(inputsValues);
-}
-
-const tryToLogin = async(inputsValues) => {
+const tryToLogin = async() => {
     let result;
     try {
-        result = await checkToRegistered(inputsValues);
+        result = await checkToRegistered();
     } catch(rejectObj) {
         result = rejectObj;
     } finally {
@@ -63,15 +55,19 @@ const tryToLogin = async(inputsValues) => {
     }
 }
 
-const checkToRegistered = (inputData) => {
+const checkToRegistered = () => {
     return new Promise((resolve, reject) => {
+        const inputsValues = {
+            userId: document.querySelector(".js-form-userid").value,
+            password: document.querySelector(".js-form-password").value
+        }
         const registeredData = {
             name: "takeda",
             email : "abcdefg@gmail.com",
             password : "N302aoe3"
         }
 
-        if ((inputData.userId === registeredData.name || inputData.userId === registeredData.email) && (inputData.password === registeredData.password)) {
+        if ((inputsValues.userId === registeredData.name || inputsValues.userId === registeredData.email) && (inputsValues.password === registeredData.password)) {
             resolve({ token: "fafae92rfjafa03", ok: true, code: 200 });
         } else {
             reject({ ok: false, code: 401 });
@@ -79,4 +75,4 @@ const checkToRegistered = (inputData) => {
     })
 }
 
-submitButton.addEventListener("click", getInputValueAndTryLogin);
+submitButton.addEventListener("click", tryToLogin);
