@@ -59,12 +59,12 @@ const formElements = [nameOfInput, emailOfInput, passwordOfInput];
 const addInvalidClass = target => target.classList.add("invalid");
 const removeInvalidClass = target => target.classList.remove("invalid");
 const showErrorMessage = target => target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
-const isNotEmptyOfInput = target => target.value.trim() !== "";
-const isValidFormInput = target => validationOptions[target.id].isValid();
+const isEmptyOfInput = target => target.value.trim() === "";
+const isValidFormInput = target => validationOptions[target.id].isValid(target);
 
 const isValidInputAndCheckbox = () => {
-    const invalidItem = document.getElementsByClassName("invalid");
-    return invalidItem.length === 0 && checkbox.checked;
+    const invalidItems = document.getElementsByClassName("invalid");
+    return invalidItems.length === 0 && checkbox.checked;
 };
 
 const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isValidInputAndCheckbox() ? false : true;
@@ -72,12 +72,11 @@ const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isVa
 const checkFormValidityInBlur = (target) => {
     submitButton.disabled = true;
 
-    if (!isNotEmptyOfInput(target)) {
+    if (isEmptyOfInput(target)) {
         addInvalidClass(target);
         target.nextElementSibling.textContent = "入力してください";
         return;
     }
-
     if (!isValidFormInput(target)) {
         showErrorMessage(target);
         addInvalidClass(target);
