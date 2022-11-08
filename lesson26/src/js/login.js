@@ -2,8 +2,6 @@ import { validationOptions } from "./modules/validation-options";
 import { Chance } from "chance";
 const chance = new Chance();
 
-if (localStorage.getItem("token")) window.location.href = "./loginuserpage.html";
-
 const userIdOfInput = document.querySelector(".js-form-userid");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [userIdOfInput,passwordOfInput];

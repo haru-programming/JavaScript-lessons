@@ -9,6 +9,9 @@
         <title>Login</title>
     </head>
     <body>
+        <script>
+            if (localStorage.getItem("token")) window.location.href = "./loginuserpage.html";
+        </script>
         <form class="form box" id="js-form">
             <div class="form__title" id="is-form-title">
                 <h1 class="title form__title-text">Login</h1>

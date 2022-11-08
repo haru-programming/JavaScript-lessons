@@ -6,12 +6,16 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="./css/reset.css" type="text/css">
         <link rel="stylesheet" href="./css/style.css" type="text/css">
-        <script type="module" src="./js/contents/main.js"></script>
+        <script src="./js/contents/main.js" defer></script>
         <script type="module" src="./js/contents/slideshow.js"></script>
         <script type="module" src="./js/contents/tab.js"></script>
         <title>Haru news</title>
     </head>
     <body>
+        <script>
+            if (!localStorage.getItem("token")) window.location.href = "./index.html";
+        </script>
+        
         <header class="header">
             <div class="header__inner">
                 <h1 class="title title--top">haru news</h1>
@@ -35,5 +39,6 @@
         
         <h2 class="title title--sub">＼ Today's News ／</h2>
         <ul class="tab__nav-list" id="js-tabNav"></ul>
+        <script src=""></script>
     </body>
 </html>
