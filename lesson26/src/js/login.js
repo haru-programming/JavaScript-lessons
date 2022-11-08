@@ -1,4 +1,8 @@
-import { validationOptions } from "./validation-options";
+import { validationOptions } from "./modules/validation-options";
+import { Chance } from "chance";
+const chance = new Chance();
+
+if (localStorage.getItem("token")) window.location.href = "./loginuserpage.html";
 
 const userIdOfInput = document.querySelector(".js-form-userid");
 const passwordOfInput = document.querySelector(".js-form-password");
@@ -48,6 +52,7 @@ const tryToLogin = async() => {
     let result;
     try {
         result = await checkToRegistered();
+        localStorage.setItem("token", result.token);
     } catch(rejectObj) {
         result = rejectObj;
     } finally {
@@ -68,7 +73,7 @@ const checkToRegistered = () => {
         }
 
         if ((inputsValues.userId === registeredData.name || inputsValues.userId === registeredData.email) && (inputsValues.password === registeredData.password)) {
-            resolve({ token: "fafae92rfjafa03", ok: true, code: 200 });
+            resolve({ token: chance.apple_token(), ok: true, code: 200 });
         } else {
             reject({ ok: false, code: 401 });
         }
