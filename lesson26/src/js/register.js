@@ -1,4 +1,4 @@
-import { validationOptions } from "./validation-options";
+import { validationOptions } from "./modules/validation-options";
 
 const bodyElement = document.querySelector("body");
 const checkboxLink = document.getElementById("js-checkbox-link");
