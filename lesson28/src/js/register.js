@@ -27,7 +27,7 @@ modalCloseButton.addEventListener("click", () => {
 
 //モーダル以外の部分を押すとモーダルが閉じる
 document.addEventListener("click", (e) => {
-    if(e.target.classList.contains("js-modal")){
+    if (e.target.classList.contains("js-modal")) {
         closeModal();
         checkFormValidityToEnableSubmitButton();
     }
@@ -110,14 +110,17 @@ submitButton.addEventListener("click", (e) => {
         name: nameOfInput.value,
         email: emailOfInput.value,
         password: passwordOfInput.value
-    }
+    };
     const registeredData = JSON.parse(localStorage.getItem("registeredData"));
 
-    if (isValidInputAndCheckbox() && inputsData.email !== registeredData.email ) {
-        localStorage.setItem("registeredData", JSON.stringify(inputsData));
-        window.location.href = "./register-done.html";
+    if (registeredData && inputsData.email === registeredData.email) {
+        submitButton.disabled = true;
+        showErrorMessage(e.target);
         return;
     }
-    submitButton.disabled = true;
-    showErrorMessage(e.target);
+
+    if (isValidInputAndCheckbox()) {
+        localStorage.setItem("registeredData", JSON.stringify(inputsData));
+        window.location.href = "./register-done.html";
+    }
 });
