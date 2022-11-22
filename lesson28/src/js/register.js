@@ -119,8 +119,6 @@ submitButton.addEventListener("click", (e) => {
         return;
     }
 
-    if (isValidInputAndCheckbox()) {
-        localStorage.setItem("registeredData", JSON.stringify(inputsData));
-        window.location.href = "./register-done.html";
-    }
+    localStorage.setItem("registeredData", JSON.stringify(inputsData));
+    window.location.href = "./register-done.html";
 });
