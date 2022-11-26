@@ -1,4 +1,4 @@
-import { validationOptions } from "./modules/validation-options";
+import { showErrorMessage,checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
 
 const bodyElement = document.querySelector("body");
 const checkboxLink = document.getElementById("js-checkbox-link");
@@ -29,7 +29,7 @@ modalCloseButton.addEventListener("click", () => {
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("js-modal")) {
         closeModal();
-        checkFormValidityToEnableSubmitButton();
+        checkFormValidityToEnableSubmitButton(submitButton);
     }
 });
 
@@ -45,6 +45,7 @@ const setCheckedAttributeToCheckbox = ([entry]) => {
     if (entry.isIntersecting) {
         checkbox.checked = true;
         checkbox.disabled = false;
+        checkbox.classList.remove("invalid");
     }
 };
 
@@ -56,51 +57,18 @@ const emailOfInput = document.querySelector(".js-form-email");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [nameOfInput, emailOfInput, passwordOfInput];
 
-const addInvalidClass = target => target.classList.add("invalid");
-const removeInvalidClass = target => target.classList.remove("invalid");
-const showErrorMessage = target => target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
-const removeErrorMessage = target => target.nextElementSibling.textContent = "";
-const isEmptyOfInput = target => target.value.trim() === "";
-const isValidFormInput = target => validationOptions[target.id].isValid(target);
-
-const isValidInputAndCheckbox = () => {
-    const invalidItems = document.getElementsByClassName("invalid");
-    return invalidItems.length === 0 && checkbox.checked;
-};
-
-const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = isValidInputAndCheckbox() ? false : true;
-
-const checkFormValidityInBlur = (target) => {
-    submitButton.disabled = true;
-    removeErrorMessage(submitButton);
-
-    if (isEmptyOfInput(target)) {
-        addInvalidClass(target);
-        target.nextElementSibling.textContent = "入力してください";
-        return;
-    }
-    if (!isValidFormInput(target)) {
-        showErrorMessage(target);
-        addInvalidClass(target);
-        return;
-    }
-
-    removeErrorMessage(target);
-    removeInvalidClass(target);
-    checkFormValidityToEnableSubmitButton();
-};
-
 formElements.forEach(element => {
     element.classList.add("invalid");
     
     element.addEventListener("blur", (e) => {
-        checkFormValidityInBlur(e.target);
+        checkFormValidityInBlur(submitButton, e.target);
     });
 });
 
 checkbox.addEventListener("input", () => {
     submitButton.disabled = !checkbox.checked;
-    checkFormValidityToEnableSubmitButton();
+    checkbox.checked? checkbox.classList.remove("invalid") : checkbox.classList.add("invalid");
+    checkFormValidityToEnableSubmitButton(submitButton);
 })
 
 submitButton.addEventListener("click", (e) => {
