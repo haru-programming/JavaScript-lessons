@@ -22,7 +22,7 @@ checkboxLink.addEventListener("keypress", openModal);
 
 modalCloseButton.addEventListener("click", () => {
     closeModal();
-    checkFormValidityToEnableSubmitButton();
+    checkFormValidityToEnableSubmitButton(submitButton);
 });
 
 //モーダル以外の部分を押すとモーダルが閉じる
