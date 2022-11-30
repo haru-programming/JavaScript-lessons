@@ -68,9 +68,10 @@ formElements.forEach(element => {
 });
 
 checkbox.addEventListener("input", () => {
+    const invalidItems = document.getElementsByClassName("invalid");
     submitButton.disabled = !checkbox.checked;
     checkbox.checked? checkbox.classList.remove("invalid") : checkbox.classList.add("invalid");
-    checkFormValidityToEnableSubmitButton(submitButton);
+    checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
 })
 
 submitButton.addEventListener("click", (e) => {
