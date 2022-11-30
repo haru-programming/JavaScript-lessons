@@ -17,15 +17,12 @@ const tryToSubmit = async() => {
         localStorage.setItem("token", result.token);
     } catch(rejectObj) {
         result = rejectObj;
-        submitButton.nextElementSibling.textContent = "見つかりませんでした。Sign upへ自動遷移します。";
+        submitButton.nextElementSibling.textContent = "メールアドレスが見つかりませんでした。";
+        submitButton.disabled = true;
     } finally {
-        if(!result.token) {
-            setTimeout(() => {
-                window.location.href = "./register.html";
-            },2000);
-            return;
+        if(result.token) {
+            window.location.href = "./register/password.html";
         }
-        window.location.href = "./register/password.html";
     }
 }
 
