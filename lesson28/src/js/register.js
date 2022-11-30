@@ -21,15 +21,17 @@ checkboxLink.addEventListener("click", openModal);
 checkboxLink.addEventListener("keypress", openModal);
 
 modalCloseButton.addEventListener("click", () => {
+    const invalidItems = document.getElementsByClassName("invalid");
     closeModal();
-    checkFormValidityToEnableSubmitButton(submitButton);
+    checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
 });
 
 //モーダル以外の部分を押すとモーダルが閉じる
 document.addEventListener("click", (e) => {
     if (e.target.classList.contains("js-modal")) {
+        const invalidItems = document.getElementsByClassName("invalid");
         closeModal();
-        checkFormValidityToEnableSubmitButton(submitButton);
+        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
     }
 });
 

@@ -43,14 +43,11 @@ const removeErrorMessage = target => target.nextElementSibling.textContent = "";
 const isEmptyOfInput = target => target.value.trim() === "";
 const isValidFormInput = target => validationOptions[target.name].isValid(target);
 
-export const checkFormValidityToEnableSubmitButton = button => {
-    const invalidItems = document.getElementsByClassName("invalid");
-    button.disabled = invalidItems.length > 0;
-}
+export const checkFormValidityToEnableSubmitButton = (element,invalidItems) => element.disabled = invalidItems.length > 0;
 
-export const checkFormValidityInBlur = (button, target) => {
-    button.disabled = true;
-    removeErrorMessage(button);
+export const checkFormValidityInBlur = (element, target) => {
+    element.disabled = true;
+    removeErrorMessage(element);
 
     if (isEmptyOfInput(target)) {
         addInvalidClass(target);
@@ -64,7 +61,8 @@ export const checkFormValidityInBlur = (button, target) => {
         return;
     }
 
+    const invalidItems = document.getElementsByClassName("invalid");
     removeErrorMessage(target);
     removeInvalidClass(target);
-    checkFormValidityToEnableSubmitButton(button);
+    checkFormValidityToEnableSubmitButton(element,invalidItems);
 };
