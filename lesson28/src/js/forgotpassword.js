@@ -19,11 +19,9 @@ const tryToSubmit = async() => {
         result = rejectObj;
         submitButton.nextElementSibling.textContent = "メールアドレスが見つかりませんでした。";
         submitButton.disabled = true;
-    } finally {
-        if(result.token) {
-            window.location.href = "./register/password.html";
-        }
-    }
+        return;
+    } 
+    window.location.href = "./register/password.html";
 }
 
 const checkToRegistered = () => {
