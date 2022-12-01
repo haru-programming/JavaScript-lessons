@@ -19,20 +19,11 @@ const closeModal = () => {
 
 checkboxLink.addEventListener("click", openModal);
 checkboxLink.addEventListener("keypress", openModal);
-
-modalCloseButton.addEventListener("click", () => {
-    const invalidItems = document.getElementsByClassName("invalid");
-    closeModal();
-    checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
-});
+modalCloseButton.addEventListener("click", closeModal);
 
 //モーダル以外の部分を押すとモーダルが閉じる
 document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("js-modal")) {
-        const invalidItems = document.getElementsByClassName("invalid");
-        closeModal();
-        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
-    }
+    if (e.target.classList.contains("js-modal")) closeModal();
 });
 
 //スクロールが一番下に行ったらチェックボックスをcheckedにする
@@ -44,10 +35,12 @@ const observerOptions = {
 const checkbox = document.getElementById("js-checkbox");
 
 const setCheckedAttributeToCheckbox = ([entry]) => {
+    const invalidItems = document.getElementsByClassName("invalid");
     if (entry.isIntersecting) {
         checkbox.checked = true;
         checkbox.disabled = false;
         checkbox.classList.remove("invalid");
+        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
     }
 };
 
