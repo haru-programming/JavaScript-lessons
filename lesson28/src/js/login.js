@@ -1,4 +1,4 @@
-import { validationOptions } from "./modules/validation-options";
+import { checkFormValidityInBlur } from "./modules/validation";
 import { Chance } from "chance";
 const chance = new Chance();
 
@@ -7,44 +7,13 @@ const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [userIdOfInput,passwordOfInput];
 const submitButton = document.querySelector(".js-submit-button");
 
-const addInvalidClass = target => target.classList.add("invalid");
-const removeInvalidClass = target => target.classList.remove("invalid");
-const showErrorMessage = target => target.nextElementSibling.textContent = validationOptions[target.id].errorMessage;
-const isEmptyOfInput = target => target.value.trim() === "";
-const isValidFormInput = target => validationOptions[target.id].isValid(target);
-
-const checkFormValidityToEnableSubmitButton = () => {
-    const invalidItems = document.getElementsByClassName("invalid");
-    submitButton.disabled = invalidItems.length > 0;
-}
-
 formElements.forEach(element => {
     element.classList.add("invalid");
 
     element.addEventListener("blur", (e) => {
-        checkFormValidityInBlur(e.target);
+        checkFormValidityInBlur(submitButton, e.target);
     });
 });
-
-const checkFormValidityInBlur = (target) => {
-    submitButton.disabled = true;
-
-    if (isEmptyOfInput(target)) {
-        addInvalidClass(target);
-        target.nextElementSibling.textContent = "入力してください";
-        return;
-    }
-
-    if (target.id === "password" && !isValidFormInput(target)) {
-        showErrorMessage(target);
-        addInvalidClass(target);
-        return;
-    }
-
-    target.nextElementSibling.textContent = "";
-    removeInvalidClass(target);
-    checkFormValidityToEnableSubmitButton();
-};
 
 const tryToLogin = async() => {
     let result;

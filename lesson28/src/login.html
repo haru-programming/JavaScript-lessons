@@ -20,7 +20,7 @@
             <div class="form__inner">
                 <div class="form__item">
                     <label for="userid">User ID <span class="form__notion">(Name or E-mail)</span></label>
-                    <input type="text" class="form__item-input js-form-userid" id="userid" name="userid" required>
+                    <input type="text" class="form__item-input js-form-userid" id="userId" name="userId" required>
                     <p class="error"></p>
                 </div>
                 <div class="form__item">
@@ -30,7 +30,8 @@
                 </div>
                 <p class="form__text"><a class="form__check-link" href="./forgotpassword.html">パスワードをお忘れの方はこちら</a></p>
                 <div class="form__button">
-                    <input type="button" id="submitButton" class="js-submit-button" value="Login" disabled>
+                    <input type="button" name="submitButton" class="js-submit-button" value="Login" disabled>
+                    <p class="error"></p>
                 </div>
             </div>
         </form>
