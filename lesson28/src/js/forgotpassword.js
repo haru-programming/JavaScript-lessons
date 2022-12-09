@@ -14,14 +14,15 @@ const tryToSubmit = async() => {
     let result;
     try {
         result = await checkToRegistered();
-        localStorage.setItem("token", result.token);
+        localStorage.setItem("passwordReissueToken", result.token);
     } catch(rejectObj) {
         result = rejectObj;
         submitButton.nextElementSibling.textContent = "メールアドレスが見つかりませんでした。";
         submitButton.disabled = true;
         return;
     } 
-    window.location.href = "./register/password.html";
+    const urlParameter = `?token=${result.token}`;
+    window.location.href = `./register/password.html${urlParameter}`;
 }
 
 const checkToRegistered = () => {
