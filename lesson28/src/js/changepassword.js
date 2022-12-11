@@ -27,13 +27,8 @@ eyeIcons.forEach(icon => {
 
 const togglePasswordDisplay = target => {
     const selectedInput = target.nextElementSibling;
-    if (selectedInput.type === "password"){
-        selectedInput.type = "text";
-        target.classList.add("is-open");
-    } else {
-        selectedInput.type = "password";
-        target.classList.remove("is-open");
-    }
+    selectedInput.type = selectedInput.type === "password" ? "text" : "password";
+    target.classList.toggle("is-open");
 }
 
 submitButton.addEventListener("click", () => {
