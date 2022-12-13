@@ -26,12 +26,6 @@ export const validationOptions = {
         },
         errorMessage: "8文字以上の大小の英数字を交ぜたものにしてください",
     },
-    confirmPassword: {
-        isValid: (target) => {
-            return target.value === document.querySelector(".js-form-password").value;
-        },
-        errorMessage: "上記のpasswordと異なります。もう一度入力してください。",
-    },
     userId: {
         isValid: () => {
             return true;
@@ -46,7 +40,7 @@ const addInvalidClass = target => target.classList.add("invalid");
 const removeInvalidClass = target => target.classList.remove("invalid");
 export const showErrorMessage = target => target.nextElementSibling.textContent = validationOptions[target.name].errorMessage;
 const removeErrorMessage = target => target.nextElementSibling.textContent = "";
-const isEmptyOfInput = target => target.value.trim() === "";
+export const isEmptyOfInput = target => target.value.trim() === "";
 const isValidFormInput = target => validationOptions[target.name].isValid(target);
 
 export const checkFormValidityToEnableSubmitButton = (element,invalidItems) => element.disabled = invalidItems.length > 0;
@@ -59,10 +53,6 @@ export const checkFormValidityInBlur = (element, target) => {
         addInvalidClass(target);
         target.nextElementSibling.textContent = "入力してください";
         return;
-    }
-
-    if (target.name === "password"){
-        validationOptions.confirmPassword.isValid(document.getElementsByName("confirmPassword"));
     }
 
     if (!isValidFormInput(target)) {

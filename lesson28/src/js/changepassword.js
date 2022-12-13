@@ -1,4 +1,4 @@
-import { checkFormValidityInBlur } from "./modules/validation";
+import { isEmptyOfInput } from "./modules/validation";
 
 const urlParameter = Object.fromEntries(new URLSearchParams(window.location.search));
 const currentPageToken = urlParameter.token;
@@ -10,14 +10,26 @@ if(currentPageToken !== registeredToken) window.location.href = "./../notautheri
 const passwordOfInput = document.querySelector(".js-form-password");
 const confirmPasswordOfInput = document.querySelector(".js-form-confirm-password");
 const formElements = [passwordOfInput, confirmPasswordOfInput];
+const errorOfConfirmPassword = confirmPasswordOfInput.nextElementSibling;
 const submitButton = document.querySelector(".js-submit-button");
 const eyeIcons = document.querySelectorAll(".js-eye-icon");
 
-formElements.forEach(element => {
-    element.classList.add("invalid");
+const showErrorMessage = () => errorOfConfirmPassword.textContent = passwordOfInput.value !== confirmPasswordOfInput.value ? "上記のpasswordと異なります。もう一度入力してください。" : "";
+const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = passwordOfInput.value !== confirmPasswordOfInput.value;
 
-    element.addEventListener("blur", (e) => {
-        checkFormValidityInBlur(submitButton, e.target);
+formElements.forEach(element => {
+    element.addEventListener("blur", () => {
+        element.nextElementSibling.textContent = "";
+
+        if (isEmptyOfInput(element)) {
+            element.nextElementSibling.textContent = "入力してください";
+            return;
+        }
+    
+        if ((element.name === "password" && confirmPasswordOfInput.value) || (element.name === "confirmPassword")){
+            showErrorMessage();
+            checkFormValidityToEnableSubmitButton();
+        }
     });
 });
 
@@ -32,9 +44,6 @@ const togglePasswordDisplay = target => {
 }
 
 submitButton.addEventListener("click", () => {
-    checkFormValidityInBlur(submitButton, confirmPasswordOfInput);
+    checkFormValidityToEnableSubmitButton();
     console.log("submitされました。この後はまだ未実装です。");
 })
-
-
-
