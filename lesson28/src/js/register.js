@@ -5,6 +5,7 @@ const checkboxLink = document.getElementById("js-checkbox-link");
 const modalCloseButton = document.getElementById("js-modal-close-button");
 const modalInner = document.getElementById("js-modal-inner");
 const submitButton = document.querySelector(".js-submit-button");
+const invalidItems = document.getElementsByClassName("invalid");
 
 const openModal = () => {
     document.getElementById("js-modal-area").classList.add("is-active");
@@ -35,7 +36,6 @@ const observerOptions = {
 const checkbox = document.getElementById("js-checkbox");
 
 const setCheckedAttributeToCheckbox = ([entry]) => {
-    const invalidItems = document.getElementsByClassName("invalid");
     if (entry.isIntersecting) {
         checkbox.checked = true;
         checkbox.disabled = false;
@@ -57,11 +57,11 @@ formElements.forEach(element => {
     
     element.addEventListener("blur", (e) => {
         checkFormValidityInBlur(submitButton, e.target);
+        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
     });
 });
 
 checkbox.addEventListener("input", () => {
-    const invalidItems = document.getElementsByClassName("invalid");
     submitButton.disabled = !checkbox.checked;
     checkbox.checked? checkbox.classList.remove("invalid") : checkbox.classList.add("invalid");
     checkFormValidityToEnableSubmitButton(submitButton,invalidItems);

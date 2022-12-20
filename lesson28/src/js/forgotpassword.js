@@ -1,27 +1,30 @@
-import { checkFormValidityInBlur } from "./modules/validation";
+import { checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
 import { Chance } from "chance";
 const chance = new Chance();
 
 const emailOfInput = document.querySelector(".js-form-email");
 const submitButton = document.querySelector(".js-submit-button");
+const invalidItems = document.getElementsByClassName("invalid");
 
 emailOfInput.addEventListener("blur", (e) => {
     e.target.classList.add("invalid");
     checkFormValidityInBlur(submitButton, e.target);
+    checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
 });
 
 const tryToSubmit = async() => {
     let result;
     try {
         result = await checkToRegistered();
-        localStorage.setItem("token", result.token);
+        localStorage.setItem("passwordReissueToken", result.token);
     } catch(rejectObj) {
         result = rejectObj;
         submitButton.nextElementSibling.textContent = "メールアドレスが見つかりませんでした。";
         submitButton.disabled = true;
         return;
     } 
-    window.location.href = "./register/password.html";
+    const urlParameter = `?token=${result.token}`;
+    window.location.href = `./register/password.html${urlParameter}`;
 }
 
 const checkToRegistered = () => {

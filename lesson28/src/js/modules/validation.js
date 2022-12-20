@@ -40,7 +40,7 @@ const addInvalidClass = target => target.classList.add("invalid");
 const removeInvalidClass = target => target.classList.remove("invalid");
 export const showErrorMessage = target => target.nextElementSibling.textContent = validationOptions[target.name].errorMessage;
 const removeErrorMessage = target => target.nextElementSibling.textContent = "";
-const isEmptyOfInput = target => target.value.trim() === "";
+export const isEmptyOfInput = target => target.value.trim() === "";
 const isValidFormInput = target => validationOptions[target.name].isValid(target);
 
 export const checkFormValidityToEnableSubmitButton = (element,invalidItems) => element.disabled = invalidItems.length > 0;
@@ -61,8 +61,6 @@ export const checkFormValidityInBlur = (element, target) => {
         return;
     }
 
-    const invalidItems = document.getElementsByClassName("invalid");
     removeErrorMessage(target);
     removeInvalidClass(target);
-    checkFormValidityToEnableSubmitButton(element,invalidItems);
 };

@@ -119,6 +119,10 @@ body.fixed{
     margin-top: 30px;
 }
 
+.title + .form__inner{
+    margin-top: 46px;
+}
+
 .form__title{
     display: flex;justify-content: center;align-items: center;
 }
@@ -155,6 +159,10 @@ body.fixed{
 
 .form__lead + .form__item {
     margin-top: 36px;
+}
+
+.form__item{
+    position: relative;
 }
 
 .form__item input{
@@ -262,6 +270,24 @@ body.fixed{
     margin-top: 40px;
 }
 
+.form__eye:after{
+    display: inline-block;
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    cursor: pointer;
+    width: 26px;
+    height: 26px;
+    background: url('../img/icon-eye-slash.svg') no-repeat center center/contain;
+}
+
+.form__eye.is-open:after{
+    background: url('../img/icon-eye.svg') no-repeat center center/contain;
+}
+
 
 /* -----------------------------------------------------------------
 // modal
@@ -329,6 +355,7 @@ body.fixed{
 }
 
 .error{
+    height: 20px;
     font-size: 14px;
     color: #ee3e52;
 }
