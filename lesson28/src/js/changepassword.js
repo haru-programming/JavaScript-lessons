@@ -23,8 +23,7 @@ formElements.forEach(element => {
     element.addEventListener("blur", () => {
         checkFormValidityInBlur(submitButton, element);
 
-        const invalidItems = document.getElementsByClassName("invalid");
-        if (invalidItems.length === 0 && (passwordOfInput.value && confirmPasswordOfInput.value)) {
+        if (document.getElementsByClassName("invalid").length === 0) {
             showErrorMessageInNotMatchInputsValues();
             checkFormValidityToEnableSubmitButton();
         }
