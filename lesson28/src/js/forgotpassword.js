@@ -1,13 +1,15 @@
-import { checkFormValidityInBlur } from "./modules/validation";
+import { checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
 import { Chance } from "chance";
 const chance = new Chance();
 
 const emailOfInput = document.querySelector(".js-form-email");
 const submitButton = document.querySelector(".js-submit-button");
+const invalidItems = document.getElementsByClassName("invalid");
 
 emailOfInput.addEventListener("blur", (e) => {
     e.target.classList.add("invalid");
     checkFormValidityInBlur(submitButton, e.target);
+    checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
 });
 
 const tryToSubmit = async() => {

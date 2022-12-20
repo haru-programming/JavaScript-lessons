@@ -61,8 +61,6 @@ export const checkFormValidityInBlur = (element, target) => {
         return;
     }
 
-    const invalidItems = document.getElementsByClassName("invalid");
     removeErrorMessage(target);
     removeInvalidClass(target);
-    checkFormValidityToEnableSubmitButton(element,invalidItems);
 };

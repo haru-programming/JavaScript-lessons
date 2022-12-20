@@ -14,12 +14,8 @@ const errorOfConfirmPassword = confirmPasswordOfInput.nextElementSibling;
 const submitButton = document.querySelector(".js-submit-button");
 const eyeIcons = document.querySelectorAll(".js-eye-icon");
 
-const showErrorMessageWhenNotMatchInputsValues = () => errorOfConfirmPassword.textContent = passwordOfInput.value !== confirmPasswordOfInput.value ? "上記のpasswordと異なります。もう一度入力してください。": "";
-const checkFormValidityToEnableSubmitButton = (element) => {
-    if(checkFormValidityInBlur(submitButton, element)){
-        submitButton.disabled = passwordOfInput.value !== confirmPasswordOfInput.value;
-    }
-}
+const showErrorMessageInNotMatchInputsValues = () => errorOfConfirmPassword.textContent = passwordOfInput.value !== confirmPasswordOfInput.value ? "上記のpasswordと異なります。もう一度入力してください。": "";
+const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = passwordOfInput.value !== confirmPasswordOfInput.value;
 
 formElements.forEach(element => {
     element.classList.add("invalid");
@@ -27,9 +23,10 @@ formElements.forEach(element => {
     element.addEventListener("blur", () => {
         checkFormValidityInBlur(submitButton, element);
 
-        if (passwordOfInput.value && confirmPasswordOfInput.value) {
-            showErrorMessageWhenNotMatchInputsValues();
-            checkFormValidityToEnableSubmitButton(element);
+        const invalidItems = document.getElementsByClassName("invalid");
+        if (invalidItems.length === 0 && (passwordOfInput.value && confirmPasswordOfInput.value)) {
+            showErrorMessageInNotMatchInputsValues();
+            checkFormValidityToEnableSubmitButton();
         }
     });
 });
@@ -44,6 +41,4 @@ const togglePasswordDisplay = target => {
     target.classList.toggle("is-open");
 }
 
-submitButton.addEventListener("click", () => {
-    console.log("submitされました。この後はまだ未実装です。");
-})
+submitButton.addEventListener("click", () => console.log("submitされました。この後はまだ未実装です。"))

@@ -1,4 +1,4 @@
-import { checkFormValidityInBlur } from "./modules/validation";
+import { checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
 import { Chance } from "chance";
 const chance = new Chance();
 
@@ -6,12 +6,14 @@ const userIdOfInput = document.querySelector(".js-form-userid");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [userIdOfInput,passwordOfInput];
 const submitButton = document.querySelector(".js-submit-button");
+const invalidItems = document.getElementsByClassName("invalid");
 
 formElements.forEach(element => {
     element.classList.add("invalid");
 
     element.addEventListener("blur", (e) => {
         checkFormValidityInBlur(submitButton, e.target);
+        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
     });
 });
 
