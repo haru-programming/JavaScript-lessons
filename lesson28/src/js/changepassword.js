@@ -42,7 +42,7 @@ const togglePasswordDisplay = target => {
     target.classList.toggle("is-open");
 }
 
-const changeRegisteredDataOfPassword = () => {
+const changePassword = () => {
     const newPassword = passwordOfInput.value;
     const userData = JSON.parse(localStorage.getItem("registeredData"));
     userData.password = newPassword;
@@ -50,7 +50,7 @@ const changeRegisteredDataOfPassword = () => {
 }
 
 submitButton.addEventListener("click", () => {
-    changeRegisteredDataOfPassword();
+    changePassword();
 
     const newToken = chance.apple_token();
     const newUrlParameter = `?token=${newToken}`;
