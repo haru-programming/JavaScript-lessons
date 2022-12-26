@@ -43,9 +43,9 @@ const togglePasswordDisplay = target => {
 }
 
 const changePassword = () => {
-    const newPassword = passwordOfInput.value;
+    const passwordValue = passwordOfInput.value;
     const userData = JSON.parse(localStorage.getItem("registeredData"));
-    userData.password = newPassword;
+    userData.password = passwordValue;
     localStorage.setItem("registeredData", JSON.stringify(userData));
 }
 
