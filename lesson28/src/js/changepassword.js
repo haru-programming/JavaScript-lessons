@@ -52,9 +52,9 @@ const changePassword = () => {
 submitButton.addEventListener("click", () => {
     changePassword();
 
-    const newToken = chance.apple_token();
-    const newUrlParameter = `?token=${newToken}`;
+    const token = chance.apple_token();
+    const newUrlParameter = `?token=${token}`;
 
-    localStorage.setItem("passwordReissueToken", newToken);
+    localStorage.setItem("passwordReissueToken", token);
     window.location.href = `./passworddone.html${newUrlParameter}`;
 });
