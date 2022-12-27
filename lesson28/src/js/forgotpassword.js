@@ -19,7 +19,7 @@ const tryToSubmit = async() => {
         localStorage.setItem("passwordReissueToken", result.token);
     } catch(rejectObj) {
         result = rejectObj;
-        submitButton.nextElementSibling.textContent = "メールアドレスが見つかりませんでした。";
+        submitButton.nextElementSibling.textContent = "一致するアカウントが見つかりませんでした";
         submitButton.disabled = true;
         return;
     } 
