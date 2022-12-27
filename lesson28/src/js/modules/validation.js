@@ -26,6 +26,11 @@ export const validationOptions = {
         },
         errorMessage: "8文字以上の大小の英数字を交ぜたものにしてください",
     },
+    confirmPassword: {
+        isValid: () => {
+            return true;
+        },
+    },
     userId: {
         isValid: () => {
             return true;
