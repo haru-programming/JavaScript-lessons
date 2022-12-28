@@ -1,4 +1,6 @@
 import { checkFormValidityInBlur } from "./modules/validation";
+import { Chance } from "chance";
+const chance = new Chance();
 
 const urlParameter = Object.fromEntries(new URLSearchParams(window.location.search));
 const currentPageToken = urlParameter.token;
@@ -40,4 +42,19 @@ const togglePasswordDisplay = target => {
     target.classList.toggle("is-open");
 }
 
-submitButton.addEventListener("click", () => console.log("submitされました。この後はまだ未実装です。"))
+const changePassword = () => {
+    const passwordValue = passwordOfInput.value;
+    const userData = JSON.parse(localStorage.getItem("registeredData"));
+    userData.password = passwordValue;
+    localStorage.setItem("registeredData", JSON.stringify(userData));
+}
+
+submitButton.addEventListener("click", () => {
+    changePassword();
+
+    const token = chance.apple_token();
+    const newUrlParameter = `?token=${token}`;
+
+    localStorage.setItem("passwordReissueToken", token);
+    window.location.href = `./passworddone.html${newUrlParameter}`;
+});
