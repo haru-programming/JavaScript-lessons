@@ -18,11 +18,20 @@
 
         <header class="header">
             <div class="header__inner">
-                <h1 class="title title--top">haru news</h1>
-                <button class="button" id="js-logout-button" type="button">Logout</button>
+                <h1 class="title title--top"><a href="./" class="header__link">haru news</a></h1>
+                <button class="header__button header__link" id="js-usermenu-button" type="button"><img src="./img/img-user.png" alt="ユーザー管理画面" width="60" height="60" decoding="async"></button>
+            </div>
+            <div class="usermenu" id="js-usermenu" role="dialog">
+                <button class="usermenu__icon" id="js-close-icon" aria-label="Close">&times;</button>
+                <span class="usermenu__img"><img src="./img/img-user.png" alt="ユーザー画像"></span>
+                <p class="usermenu__name" id="js-username"></p>
+                <p class="usermenu__email" id="js-email"></p>
+                <ul class="usermenu__list">
+                    <li class="usermenu__item"><a href="./resetingemail.html" class="usermenu__link">メールアドレス変更</a></li>
+                </ul>
+                <button class="usermenu__button" id="js-logout-button" type="button">Logout</button>
             </div>
         </header>
-
         <div class="slideshow">
             <div class="slideshow__inner">
                 <button id="js-button-previous" class="slideshow__arrow js-button-arrow"><img src="./img/icon-arrow-previous.svg" alt="戻る" width="512" height="512" decoding="async"></button>
