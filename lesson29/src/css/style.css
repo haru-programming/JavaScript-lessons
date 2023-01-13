@@ -814,7 +814,11 @@ body.fixed{
                 
     .setting__body{
         padding: 5vw;
-    }    
+    }
+    
+    .title{
+        font-size: 4vw;
+    }
 
     .title.title--top{
         font-size: 5vw;
@@ -872,16 +876,38 @@ body.fixed{
         width: 28vw;
     }
 
+    .form__title-link{
+        font-size: 4vw;
+        padding: 3vw;
+    }
+
+    .form__title-text{
+        padding: 3vw;
+    }
+
     .form__item{
         font-size: 3.6vw;
     }
 
-    .form__button > input{
-        font-size: 4vw;
-        height: 12vw;
+    .form__check-text{
+        font-size: 3vw;
+        align-items: center;
     }
 
-    .form__notion{
+    .form__button{
+        margin-top: 6vw;
+    }
+
+    .form__button > input{
+        font-size: 3vw;
+        height: 10vw;
+    }
+
+    .form__notion,.form__attention{
         font-size: 2vw;
+    }
+
+    .form__text{
+        font-size: 3vw;
     }
 }

@@ -16,13 +16,8 @@ formElements.forEach(element => {
     element.addEventListener("blur", () => {
         checkFormValidityInBlur(submitButton, element);
 
-        if (emailOfInput.value && confirmEmailOfInput.value) {
-            showErrorMessageInNotMatchInputsValues();
-        }
-
-        if (document.getElementsByClassName("invalid").length === 0) {
-            checkFormValidityToEnableSubmitButton();
-        }
+        if (emailOfInput.value && confirmEmailOfInput.value) showErrorMessageInNotMatchInputsValues();
+        if (document.getElementsByClassName("invalid").length === 0) checkFormValidityToEnableSubmitButton();
     });
 });
 
