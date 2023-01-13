@@ -7,7 +7,7 @@ const formElements = [emailOfInput, confirmEmailOfInput, passwordOfInput];
 const errorOfConfirmEmail = confirmEmailOfInput.nextElementSibling;
 const submitButton = document.querySelector(".js-submit-button");
 
-const showErrorMessageInNotMatchInputsValues = () => errorOfConfirmEmail.textContent = emailOfInput.value !== confirmEmailOfInput.value ? "上記のE-mailアドレスと異なります。もう一度入力してください。": "";
+const showErrorMessageIfNotMatchInputValues  = () => errorOfConfirmEmail.textContent = emailOfInput.value !== confirmEmailOfInput.value ? "上記のE-mailアドレスと異なります。もう一度入力してください。": "";
 const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = emailOfInput.value !== confirmEmailOfInput.value;
 
 formElements.forEach(element => {
@@ -16,7 +16,7 @@ formElements.forEach(element => {
     element.addEventListener("blur", () => {
         checkFormValidityInBlur(submitButton, element);
 
-        if (emailOfInput.value && confirmEmailOfInput.value) showErrorMessageInNotMatchInputsValues();
+        if (emailOfInput.value && confirmEmailOfInput.value) showErrorMessageIfNotMatchInputValues();
         if (document.getElementsByClassName("invalid").length === 0) checkFormValidityToEnableSubmitButton();
     });
 });
