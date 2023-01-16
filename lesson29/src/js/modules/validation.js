@@ -20,6 +20,11 @@ export const validationOptions = {
         },
         errorMessage: "メールアドレスの形式になっていません",
     },
+    confirmEmail: {
+        isValid: () => {
+            return true;
+        },
+    },
     password: {
         isValid: (target) => {
             return validationTerms.password.pattern.test(target.value);
