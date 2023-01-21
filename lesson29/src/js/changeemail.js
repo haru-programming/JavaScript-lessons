@@ -1,10 +1,12 @@
 import { checkFormValidityInBlur } from "./modules/validation";
+import { togglePasswordDisplay } from "./modules/togglepassword";
 
 const emailOfInput = document.querySelector(".js-form-email");
 const confirmEmailOfInput = document.querySelector(".js-form-confirm-email");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [emailOfInput, confirmEmailOfInput, passwordOfInput];
 const errorOfConfirmEmail = confirmEmailOfInput.nextElementSibling;
+const eyeIcons = document.querySelectorAll(".js-eye-icon");
 const submitButton = document.querySelector(".js-submit-button");
 
 const isMatchEmailFields = () => emailOfInput.value === confirmEmailOfInput.value;
@@ -21,4 +23,19 @@ formElements.forEach(element => {
     });
 });
 
-submitButton.addEventListener("click", () => console.log("まだ未実装です"));
+eyeIcons.forEach(icon => {
+    icon.addEventListener("click", (e) => togglePasswordDisplay(e.target))
+})
+
+const changeEmail = () => {
+    const userData = JSON.parse(localStorage.getItem("registeredData"));
+    userData.email = emailOfInput.value;
+    localStorage.setItem("registeredData", JSON.stringify(userData));
+}
+
+submitButton.addEventListener("click", () => {
+    changeEmail();
+
+    const urlParameter = `?token=${localStorage.getItem("token")}`;
+    window.location.href = `./resetmaildone.html${urlParameter}`;
+});
