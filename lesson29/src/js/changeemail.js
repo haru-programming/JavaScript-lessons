@@ -10,7 +10,11 @@ const eyeIcons = document.querySelectorAll(".js-eye-icon");
 const submitButton = document.querySelector(".js-submit-button");
 
 const isMatchEmailFields = () => emailOfInput.value === confirmEmailOfInput.value;
-const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = emailOfInput.value !== confirmEmailOfInput.value;
+const isMatchRegisteredPassword = () => {
+    const registeredData = JSON.parse(localStorage.getItem("registeredData"));
+    return passwordOfInput.value === registeredData.password;
+}
+const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = (emailOfInput.value !== confirmEmailOfInput.value) || !isMatchRegisteredPassword();
 
 formElements.forEach(element => {
     element.classList.add("invalid");
@@ -19,7 +23,10 @@ formElements.forEach(element => {
         checkFormValidityInBlur(submitButton, element);
 
         if (emailOfInput.value && confirmEmailOfInput.value) errorOfConfirmEmail.textContent = isMatchEmailFields() ? "" : "上記のE-mailアドレスと異なります。もう一度入力してください。";
-        if (document.getElementsByClassName("invalid").length === 0) checkFormValidityToEnableSubmitButton();
+        if (document.getElementsByClassName("invalid").length === 0) {
+            passwordOfInput.nextElementSibling.textContent = isMatchRegisteredPassword() ? "" : "一致するアカウントが見つかりません";
+            checkFormValidityToEnableSubmitButton();
+        };
     });
 });
 

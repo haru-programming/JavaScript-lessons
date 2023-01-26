@@ -25,8 +25,8 @@
                 </div>
                 <div class="form__item">
                     <label for="password">Password</label>
-                    <input type="password" class="form__item-input js-form-password" id="password" name="password" required>
-                    <p class="error"></p>
+                    <button class="form__eye js-eye-icon" aria-label="パスワードが表示されます" type="button"></button><input type="password" class="form__item-input js-form-password" id="password" name="password" aria-describedby="confirm-password-constraints" required>
+                    <p class="error" id="confirm-password-constraints"></p>
                 </div>
                 <p class="form__text"><a class="form__check-link" href="./forgotpassword.html">パスワードをお忘れの方はこちら</a></p>
                 <div class="form__button">

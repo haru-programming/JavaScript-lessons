@@ -1,10 +1,12 @@
 import { checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
+import { togglePasswordDisplay } from "./modules/togglepassword";
 import { Chance } from "chance";
 const chance = new Chance();
 
 const userIdOfInput = document.querySelector(".js-form-userid");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [userIdOfInput,passwordOfInput];
+const eyeIcons = document.querySelectorAll(".js-eye-icon");
 const submitButton = document.querySelector(".js-submit-button");
 const invalidItems = document.getElementsByClassName("invalid");
 
@@ -16,6 +18,13 @@ formElements.forEach(element => {
         checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
     });
 });
+
+eyeIcons.forEach(icon => {
+    icon.addEventListener("click", (e) => {
+        e.preventDefault;
+        togglePasswordDisplay(e.target);
+    })
+})
 
 const tryToLogin = async() => {
     let result;
