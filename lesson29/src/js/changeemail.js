@@ -42,7 +42,11 @@ const changeEmail = () => {
 
 submitButton.addEventListener("click", () => {
     changeEmail();
-
-    const urlParameter = `?token=${localStorage.getItem("token")}`;
+    const token = localStorage.getItem("token");
+    if(!token) {
+        window.location.href = "./notautherize.html";
+        return;
+    }
+    const urlParameter = `?token=${token}`;
     window.location.href = `./resetmaildone.html${urlParameter}`;
 });
