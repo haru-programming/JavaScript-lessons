@@ -14,7 +14,7 @@ const isMatchRegisteredPassword = () => {
     const registeredData = JSON.parse(localStorage.getItem("registeredData"));
     return passwordOfInput.value === registeredData.password;
 }
-const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = (emailOfInput.value !== confirmEmailOfInput.value) || !isMatchRegisteredPassword();
+const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = (emailOfInput.value !== confirmEmailOfInput.value);
 
 formElements.forEach(element => {
     element.classList.add("invalid");
@@ -24,7 +24,6 @@ formElements.forEach(element => {
 
         if (emailOfInput.value && confirmEmailOfInput.value) errorOfConfirmEmail.textContent = isMatchEmailFields() ? "" : "上記のE-mailアドレスと異なります。もう一度入力してください。";
         if (document.getElementsByClassName("invalid").length === 0) {
-            passwordOfInput.nextElementSibling.textContent = isMatchRegisteredPassword() ? "" : "一致するアカウントが見つかりません";
             checkFormValidityToEnableSubmitButton();
         };
     });
@@ -41,6 +40,12 @@ const changeEmail = () => {
 }
 
 submitButton.addEventListener("click", () => {
+    if(!isMatchRegisteredPassword()){
+        passwordOfInput.nextElementSibling.textContent = "パスワードが一致しません";
+        submitButton.disabled = true;
+        return;
+    }
+
     changeEmail();
     const token = localStorage.getItem("token");
     if(!token) {
