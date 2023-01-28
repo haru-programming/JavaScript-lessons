@@ -1,4 +1,5 @@
 import { checkFormValidityInBlur } from "./modules/validation";
+import { togglePasswordDisplay } from "./modules/togglepassword";
 import { Chance } from "chance";
 const chance = new Chance();
 
@@ -35,12 +36,6 @@ formElements.forEach(element => {
 eyeIcons.forEach(icon => {
     icon.addEventListener("click", (e) => togglePasswordDisplay(e.target))
 })
-
-const togglePasswordDisplay = target => {
-    const selectedInput = target.nextElementSibling;
-    selectedInput.type = selectedInput.type === "password" ? "text" : "password";
-    target.classList.toggle("is-open");
-}
 
 const changePassword = () => {
     const passwordValue = passwordOfInput.value;

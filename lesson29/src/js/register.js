@@ -1,4 +1,5 @@
 import { showErrorMessage,checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
+import { togglePasswordDisplay } from "./modules/togglepassword";
 
 const bodyElement = document.querySelector("body");
 const checkboxLink = document.getElementById("js-checkbox-link");
@@ -51,6 +52,7 @@ const nameOfInput = document.querySelector(".js-form-name");
 const emailOfInput = document.querySelector(".js-form-email");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [nameOfInput, emailOfInput, passwordOfInput];
+const eyeIcons = document.querySelectorAll(".js-eye-icon");
 
 formElements.forEach(element => {
     element.classList.add("invalid");
@@ -60,6 +62,10 @@ formElements.forEach(element => {
         checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
     });
 });
+
+eyeIcons.forEach(icon => {
+    icon.addEventListener("click", (e) => togglePasswordDisplay(e.target))
+})
 
 checkbox.addEventListener("input", () => {
     submitButton.disabled = !checkbox.checked;

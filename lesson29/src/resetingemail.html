@@ -53,8 +53,8 @@
                         </div>
                         <div class="form__item">
                             <label for="password">登録済みPassword入力<span class="form__notion"> ( 本人確認のため )</span><span class="form__required">必須</span></label>
-                            <input type="password" class="form__item-input js-form-password" id="password" name="password" required>
-                            <p class="error"></p>
+                            <button class="form__eye js-eye-icon" aria-label="パスワードが表示されます" type="button"></button><input type="password" class="form__item-input js-form-password" id="password" name="password" aria-describedby="password-constraints" required>
+                            <p class="error" id="password-constraints"></p>
                         </div>
                         <div class="form__button form__button--narrow">
                             <input type="button" name="submitButton" class="js-submit-button" value="Submit" disabled>
