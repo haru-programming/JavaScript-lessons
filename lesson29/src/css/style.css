@@ -157,11 +157,15 @@ body.fixed{
 
 .usermenu__list{
     width: 90%;
-    height: 80px;
-    padding: 30px 15px;
+    height: 100px;
+    padding: 20px 15px;
     margin: 30px auto 0 auto;
     background-color: #ebeaea;
     border-radius: 10px;
+}
+
+.usermenu__item + .usermenu__item{
+    margin-top: 10px;
 }
 
 .usermenu__button{
