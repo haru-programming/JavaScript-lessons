@@ -2,9 +2,8 @@ const urlParameter = Object.fromEntries(new URLSearchParams(window.location.sear
 const currentPageToken = urlParameter.token;
 const registeredToken = localStorage.getItem("token");
 
-if (!registeredToken){
+if (!registeredToken || !currentPageToken){
     window.location.href = "./../notautherize.html";
-    return;
 }
 
 if (registeredToken && currentPageToken !== registeredToken) {
