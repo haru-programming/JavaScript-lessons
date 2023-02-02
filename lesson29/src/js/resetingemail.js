@@ -10,10 +10,7 @@ const eyeIcons = document.querySelectorAll(".js-eye-icon");
 const submitButton = document.querySelector(".js-submit-button");
 
 const isMatchEmailFields = () => emailOfInput.value === confirmEmailOfInput.value;
-const isMatchRegisteredPassword = () => {
-    const registeredData = JSON.parse(localStorage.getItem("registeredData"));
-    return passwordOfInput.value === registeredData.password;
-}
+const isMatchRegisteredPassword = (userData) => passwordOfInput.value === userData.password;
 const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = (emailOfInput.value !== confirmEmailOfInput.value);
 
 formElements.forEach(element => {
@@ -33,20 +30,21 @@ eyeIcons.forEach(icon => {
     icon.addEventListener("click", (e) => togglePasswordDisplay(e.target))
 })
 
-const changeEmail = () => {
-    const userData = JSON.parse(localStorage.getItem("registeredData"));
+const changeEmail = (userData) => {
     userData.email = emailOfInput.value;
     localStorage.setItem("registeredData", JSON.stringify(userData));
 }
 
 submitButton.addEventListener("click", () => {
-    if(!isMatchRegisteredPassword()){
+    const registeredData = JSON.parse(localStorage.getItem("registeredData"));
+
+    if(!isMatchRegisteredPassword(registeredData)){
         passwordOfInput.nextElementSibling.textContent = "パスワードが一致しません";
         submitButton.disabled = true;
         return;
     }
 
-    changeEmail();
+    changeEmail(registeredData);
     const token = localStorage.getItem("token");
     if(!token) {
         window.location.href = "./notautherize.html";
