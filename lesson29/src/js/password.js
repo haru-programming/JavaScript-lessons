@@ -51,5 +51,5 @@ submitButton.addEventListener("click", () => {
     const newUrlParameter = `?token=${token}`;
 
     localStorage.setItem("passwordReissueToken", token);
-    window.location.href = `./passworddone.html${newUrlParameter}`;
+    window.location.href = `./password-done.html${newUrlParameter}`;
 });
