@@ -6,7 +6,7 @@ if (!registeredToken || !currentPageToken){
     window.location.href = "./../notautherize.html";
 }
 
-if (registeredToken && currentPageToken !== registeredToken) {
+if (currentPageToken !== registeredToken) {
     localStorage.removeItem("token");
     window.location.href = "./../notautherize.html";
 }
