@@ -44,18 +44,18 @@
                         <h2 class="title title--green">▶︎ Change email address</h2>
                         <div class="form__item">
                             <label for="email">新規E-mailアドレス入力<span class="form__required">必須</span></label>
-                            <input type="email" class="form__item-input js-form-email" id="email" name="email" autocomplete="off" required>
-                            <p class="error"></p>
+                            <input type="email" class="form__item-input js-form-email" id="email" name="email" autocomplete="off" aria-describedby="email-constraints" required>
+                            <p class="error" id="email-constraints"></p>
                         </div>
                         <div class="form__item">
                             <label for="confirmEmail">確認のためのE-mailアドレス入力<span class="form__required">必須</span></label>
-                            <input type="email" class="form__item-input js-form-confirm-email" id="confirmEmail" name="confirmEmail" required>
-                            <p class="error"></p>
+                            <input type="email" class="form__item-input js-form-confirm-email" id="confirmEmail" name="confirmEmail" aria-describedby="confirm-email-constraints" required>
+                            <p class="error" id="confirm-email-constraints" data-name="confirm-email-error"></p>
                         </div>
                         <div class="form__item">
                             <label for="password">登録済みPassword入力<span class="form__notion"> ( 本人確認のため )</span><span class="form__required">必須</span></label>
                             <button class="form__eye js-eye-icon" aria-label="パスワードが表示されます" type="button"></button><input type="password" class="form__item-input js-form-password" id="password" name="password" aria-describedby="password-constraints" required>
-                            <p class="error" id="password-constraints"></p>
+                            <p class="error" id="password-constraints" data-name="current-password-error"></p>
                         </div>
                         <div class="form__button form__button--narrow">
                             <input type="button" name="submitButton" class="js-submit-button" value="Submit" disabled>

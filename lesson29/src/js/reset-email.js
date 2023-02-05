@@ -5,7 +5,7 @@ const emailOfInput = document.querySelector(".js-form-email");
 const confirmEmailOfInput = document.querySelector(".js-form-confirm-email");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [emailOfInput, confirmEmailOfInput, passwordOfInput];
-const errorOfConfirmEmail = confirmEmailOfInput.nextElementSibling;
+const errorOfConfirmEmail = document.querySelector('[data-name="confirm-email-error"]');
 const eyeIcons = document.querySelectorAll(".js-eye-icon");
 const submitButton = document.querySelector(".js-submit-button");
 
@@ -51,7 +51,7 @@ submitButton.addEventListener("click", () => {
     }
 
     if(!isMatchRegisteredPassword(registeredData)){
-        passwordOfInput.nextElementSibling.textContent = "パスワードが一致しません";
+        document.querySelector('[data-name="current-password-error"]').textContent = "パスワードが一致しません";
         submitButton.disabled = true;
         return;
     }
