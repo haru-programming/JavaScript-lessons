@@ -36,7 +36,19 @@ const changeEmail = (userData) => {
 }
 
 submitButton.addEventListener("click", () => {
+    const token = localStorage.getItem("token");
     const registeredData = JSON.parse(localStorage.getItem("registeredData"));
+
+    if(!token) {
+        window.location.href = "./notautherize.html";
+        return;
+    }
+
+    if(!registeredData) {
+        localStorage.removeItem("token");
+        window.location.href = "./notautherize.html";
+        return;
+    }
 
     if(!isMatchRegisteredPassword(registeredData)){
         passwordOfInput.nextElementSibling.textContent = "パスワードが一致しません";
@@ -45,11 +57,6 @@ submitButton.addEventListener("click", () => {
     }
 
     changeEmail(registeredData);
-    const token = localStorage.getItem("token");
-    if(!token) {
-        window.location.href = "./notautherize.html";
-        return;
-    }
     const urlParameter = `?token=${token}`;
     window.location.href = `./reset-email-done.html${urlParameter}`;
 });
