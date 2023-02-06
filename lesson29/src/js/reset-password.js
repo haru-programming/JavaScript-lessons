@@ -10,7 +10,7 @@ const eyeIcons = document.querySelectorAll(".js-eye-icon");
 const submitButton = document.querySelector(".js-submit-button");
 
 const isMatchValue = (input, confirmInput) => input.value === confirmInput.value;
-const isMatchRegisteredPassword = (userData) => currentPasswordOfInput.value === userData.password;
+const isMatchPassword = (userData) => currentPasswordOfInput.value === userData.password;
 const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = !isMatchValue(passwordOfInput, confirmPasswordOfInput)
 
 formElements.forEach(element => {
@@ -50,7 +50,7 @@ submitButton.addEventListener("click", () => {
         return;
     }
 
-    if(!isMatchRegisteredPassword(registeredData)){
+    if(!isMatchPassword(registeredData)){
         document.querySelector('[data-name="current-password-error"]').textContent = "パスワードが一致しません";
         submitButton.disabled = true;
         return;
