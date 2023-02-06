@@ -6,7 +6,7 @@ const confirmEmailOfInput = document.querySelector(".js-form-confirm-email");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [emailOfInput, confirmEmailOfInput, passwordOfInput];
 const errorOfConfirmEmail = document.querySelector('[data-name="confirm-email-error"]');
-const eyeIcons = document.querySelectorAll(".js-eye-icon");
+const eyeIcon = document.querySelector(".js-eye-icon");
 const submitButton = document.querySelector(".js-submit-button");
 
 const isMatchValue = (input, confirmInput) => input.value === confirmInput.value;
@@ -26,9 +26,7 @@ formElements.forEach(element => {
     });
 });
 
-eyeIcons.forEach(icon => {
-    icon.addEventListener("click", (e) => togglePasswordDisplay(e.target))
-})
+eyeIcon.addEventListener("click", togglePasswordDisplay);
 
 const changeEmail = (userData) => {
     userData.email = emailOfInput.value;
