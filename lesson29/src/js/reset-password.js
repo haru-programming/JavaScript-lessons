@@ -22,7 +22,7 @@ formElements.forEach(element => {
         if (passwordOfInput.value && confirmPasswordOfInput.value) errorOfConfirmPassword.textContent = isMatchValue(passwordOfInput, confirmPasswordOfInput) ? "" : "上記のPasswordと異なります。もう一度入力してください。";
         if (formElements.some(element => element.classList.contains("invalid"))) return;
         
-        checkFormValidityToEnableSubmitButton();
+        confirmIfCanSubmit();
     });
 });
 
