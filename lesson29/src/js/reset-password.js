@@ -11,7 +11,7 @@ const submitButton = document.querySelector(".js-submit-button");
 
 const isMatchValue = (input, confirmInput) => input.value === confirmInput.value;
 const isMatchPassword = (userData) => currentPasswordOfInput.value === userData.password;
-const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = !isMatchValue(passwordOfInput, confirmPasswordOfInput)
+const confirmIfCanSubmit = () => submitButton.disabled = !isMatchValue(passwordOfInput, confirmPasswordOfInput)
 
 formElements.forEach(element => {
     element.classList.add("invalid");

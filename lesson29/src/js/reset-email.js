@@ -11,7 +11,7 @@ const submitButton = document.querySelector(".js-submit-button");
 
 const isMatchValue = (input, confirmInput) => input.value === confirmInput.value;
 const isMatchPassword = (userData) => passwordOfInput.value === userData.password;
-const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = !isMatchValue(emailOfInput, confirmEmailOfInput);
+const confirmIfCanSubmit = () => submitButton.disabled = !isMatchValue(emailOfInput, confirmEmailOfInput);
 
 formElements.forEach(element => {
     element.classList.add("invalid");
@@ -22,7 +22,7 @@ formElements.forEach(element => {
         if (emailOfInput.value && confirmEmailOfInput.value) errorOfConfirmEmail.textContent = isMatchValue(emailOfInput, confirmEmailOfInput) ? "" : "上記のE-mailアドレスと異なります。もう一度入力してください。";
         if (formElements.some(element => element.classList.contains("invalid"))) return;
         
-        checkFormValidityToEnableSubmitButton();
+        confirmIfCanSubmit();
     });
 });
 
