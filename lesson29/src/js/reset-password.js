@@ -30,7 +30,7 @@ eyeIcons.forEach(icon => {
     icon.addEventListener("click", togglePasswordDisplay)
 })
 
-const changePassword = (userData) => {
+const changeAndSetPassword = (userData) => {
     userData.password = passwordOfInput.value;
     localStorage.setItem("registeredData", JSON.stringify(userData));
 }
@@ -56,7 +56,7 @@ submitButton.addEventListener("click", () => {
         return;
     }
 
-    changePassword(registeredData);
+    changeAndSetPassword(registeredData);
     const urlParameter = `?token=${token}`;
     window.location.href = `./reset-password-done.html${urlParameter}`;
 });

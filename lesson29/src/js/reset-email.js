@@ -28,7 +28,7 @@ formElements.forEach(element => {
 
 eyeIcon.addEventListener("click", togglePasswordDisplay);
 
-const changeEmail = (userData) => {
+const changeAndSetEmail = (userData) => {
     userData.email = emailOfInput.value;
     localStorage.setItem("registeredData", JSON.stringify(userData));
 }
@@ -54,7 +54,7 @@ submitButton.addEventListener("click", () => {
         return;
     }
 
-    changeEmail(registeredData);
+    changeAndSetEmail(registeredData);
     const urlParameter = `?token=${token}`;
     window.location.href = `./reset-email-done.html${urlParameter}`;
 });
