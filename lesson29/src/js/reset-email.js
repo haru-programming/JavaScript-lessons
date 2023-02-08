@@ -20,9 +20,9 @@ formElements.forEach(element => {
         checkFormValidityInBlur(submitButton, element);
 
         if (emailOfInput.value && confirmEmailOfInput.value) errorOfConfirmEmail.textContent = isMatchValue(emailOfInput, confirmEmailOfInput) ? "" : "上記のE-mailアドレスと異なります。もう一度入力してください。";
-        if (document.getElementsByClassName("invalid").length === 0) {
-            checkFormValidityToEnableSubmitButton();
-        };
+        if (formElements.some(element => element.classList.contains("invalid"))) return;
+        
+        checkFormValidityToEnableSubmitButton();
     });
 });
 
