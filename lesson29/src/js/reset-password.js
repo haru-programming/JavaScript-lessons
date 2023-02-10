@@ -9,14 +9,21 @@ const errorOfConfirmPassword = document.querySelector('[data-name="confirm-passw
 const eyeIcons = document.querySelectorAll(".js-eye-icon");
 const submitButton = document.querySelector(".js-submit-button");
 
+const getErrorElement = (element) => element.parentElement.querySelector(".js-error");
+const getInputElement = (element) => element.parentElement.querySelector("input");
 const isMatchValue = (input, confirmInput) => input.value === confirmInput.value;
 const isMatchPassword = (userData) => currentPasswordOfInput.value === userData.password;
+const hasInvalidClass = () => formElements.some(element => element.classList.contains("invalid"));
 const confirmIfCanSubmit = () => submitButton.disabled = !isMatchValue(passwordOfInput, confirmPasswordOfInput)
 
 formElements.forEach(element => {
     element.classList.add("invalid");
 
-    element.addEventListener("blur", () => {
+    element.addEventListener("blur", (e) => {
+        if(e.relatedTarget === element.parentElement.querySelector(".js-eye-icon")) {
+            if(element.value && getErrorElement(element).textContent === "入力してください") getErrorElement(element).textContent = "";
+            return;
+        }
         checkFormValidityInBlur(submitButton, element);
 
         if (passwordOfInput.value && confirmPasswordOfInput.value) errorOfConfirmPassword.textContent = isMatchValue(passwordOfInput, confirmPasswordOfInput) ? "" : "上記のPasswordと異なります。もう一度入力してください。";
@@ -28,6 +35,16 @@ formElements.forEach(element => {
 
 eyeIcons.forEach(icon => {
     icon.addEventListener("click", togglePasswordDisplay)
+})
+
+eyeIcons.forEach(icon => {
+    icon.addEventListener("blur", (e) => {
+        if(e.relatedTarget === getInputElement(icon)) return;
+        checkFormValidityInBlur(submitButton, getInputElement(icon));
+    
+        if(hasInvalidClass()) return;
+        confirmIfCanSubmit();
+    });
 })
 
 const changeAndSetPassword = (userData) => {

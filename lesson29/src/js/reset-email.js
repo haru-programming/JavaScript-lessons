@@ -6,27 +6,42 @@ const confirmEmailOfInput = document.querySelector(".js-form-confirm-email");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [emailOfInput, confirmEmailOfInput, passwordOfInput];
 const errorOfConfirmEmail = document.querySelector('[data-name="confirm-email-error"]');
+const errorOfPassword = document.querySelector('[data-name="current-password-error"]');
 const eyeIcon = document.querySelector(".js-eye-icon");
 const submitButton = document.querySelector(".js-submit-button");
 
 const isMatchValue = (input, confirmInput) => input.value === confirmInput.value;
 const isMatchPassword = (userData) => passwordOfInput.value === userData.password;
+const hasInvalidClass = () => formElements.some(element => element.classList.contains("invalid"));
 const confirmIfCanSubmit = () => submitButton.disabled = !isMatchValue(emailOfInput, confirmEmailOfInput);
 
 formElements.forEach(element => {
     element.classList.add("invalid");
 
-    element.addEventListener("blur", () => {
+    element.addEventListener("blur", (e) => {
+
+        if(e.relatedTarget === eyeIcon) {
+            if(passwordOfInput.value && errorOfPassword.textContent === "入力してください") errorOfPassword.textContent = "";
+            return;
+        }
+
         checkFormValidityInBlur(submitButton, element);
 
-        if (emailOfInput.value && confirmEmailOfInput.value) errorOfConfirmEmail.textContent = isMatchValue(emailOfInput, confirmEmailOfInput) ? "" : "上記のE-mailアドレスと異なります。もう一度入力してください。";
-        if (formElements.some(element => element.classList.contains("invalid"))) return;
+        if(emailOfInput.value && confirmEmailOfInput.value) errorOfConfirmEmail.textContent = isMatchValue(emailOfInput, confirmEmailOfInput) ? "" : "上記のE-mailアドレスと異なります。もう一度入力してください。";
+        if(hasInvalidClass()) return;
         
         confirmIfCanSubmit();
     });
 });
 
 eyeIcon.addEventListener("click", togglePasswordDisplay);
+eyeIcon.addEventListener("blur", (e) => {
+    if(e.relatedTarget === passwordOfInput) return;
+    checkFormValidityInBlur(submitButton, passwordOfInput);
+
+    if(hasInvalidClass()) return;
+    confirmIfCanSubmit();
+});
 
 const changeAndSetEmail = (userData) => {
     userData.email = emailOfInput.value;
