@@ -1,12 +1,12 @@
-export const togglePasswordDisplay = target => {
-    const selectedInput = target.nextElementSibling;
+export const togglePasswordDisplay = (e) => {
+    const selectedInput = e.target.nextElementSibling;
 
     if (selectedInput.type === "password"){
         selectedInput.type = "text";
-        target.setAttribute("aria-label", "パスワードを非表示にします");
+        e.target.setAttribute("aria-label", "パスワードを非表示にします");
     } else {
         selectedInput.type = "password";
-        target.setAttribute("aria-label", "パスワードを表示します");
+        e.target.setAttribute("aria-label", "パスワードを表示します");
     }
-    target.classList.toggle("is-open");
+    e.target.classList.toggle("is-open");
 }

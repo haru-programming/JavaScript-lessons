@@ -20,10 +20,7 @@ formElements.forEach(element => {
 });
 
 eyeIcons.forEach(icon => {
-    icon.addEventListener("click", (e) => {
-        e.preventDefault;
-        togglePasswordDisplay(e.target);
-    })
+    icon.addEventListener("click", togglePasswordDisplay);
 })
 
 const tryToLogin = async() => {

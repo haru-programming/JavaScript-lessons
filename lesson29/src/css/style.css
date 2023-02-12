@@ -113,7 +113,7 @@ body.fixed{
     cursor: pointer;
 }
 
-.usermenu{
+.user-menu{
     display: none;
     position: absolute;
     top: 100px;
@@ -129,11 +129,11 @@ body.fixed{
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2), 0 0 40px rgba(128, 128, 128, 0.1) ;
 }
 
-.usermenu.is-active{
+.user-menu.is-active{
     display: block;
 }
 
-.usermenu__icon{
+.user-menu__icon{
     display: block;
     position: absolute;
     top: 10px;
@@ -143,28 +143,32 @@ body.fixed{
     color: #000;
 }
 
-.usermenu__img{
+.user-menu__img{
     display: block;
     width: 100px;
     margin: 0 auto;
 }
 
-.usermenu__name{
+.user-menu__name{
     font-size: 22px;
     font-weight: bold;
     letter-spacing: 0.05em;
 }
 
-.usermenu__list{
+.user-menu__list{
     width: 90%;
-    height: 80px;
-    padding: 30px 15px;
+    height: 100px;
+    padding: 20px 15px;
     margin: 30px auto 0 auto;
     background-color: #ebeaea;
     border-radius: 10px;
 }
 
-.usermenu__button{
+.user-menu__item + .user-menu__item{
+    margin-top: 10px;
+}
+
+.user-menu__button{
     display: flex;justify-content: center;align-items: center;
     cursor: pointer;
     width: 100%;
@@ -178,7 +182,7 @@ body.fixed{
     transition: opacity 0.3s ease-in-out;
 }
 
-.usermenu__button:focus,.usermenu__button:hover{
+.user-menu__button:focus,.user-menu__button:hover{
     opacity: 0.7;
 }
 
@@ -304,6 +308,7 @@ body.fixed{
 }
 
 .form__item input{
+    position: relative;
     width: 100%;
     height: 25px;
     background: #fff;
@@ -339,7 +344,7 @@ body.fixed{
     margin-top: 30px;
 }
 
-.form__check-link, .usermenu__link{
+.form__check-link, .user-menu__link{
     cursor: pointer;
     border-bottom: 1px solid currentColor;
     text-decoration: none;
@@ -347,7 +352,7 @@ body.fixed{
     transition: opacity 0.3s ease-in-out,border-color 0.3s ease-in-out;
 }
 
-.form__check-link:hover,.usermenu__link:hover{
+.form__check-link:hover,.user-menu__link:hover{
     border-color: transparent;
     opacity: 0.7;
 }
@@ -408,14 +413,18 @@ body.fixed{
     margin-top: 40px;
 }
 
-.form__eye:after{
-    display: inline-block;
-    content: '';
+.form__eye{
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
+    z-index: 1;
     margin: auto;
+}
+
+.form__eye:after{
+    display: inline-block;
+    content: '';
     cursor: pointer;
     width: 26px;
     height: 26px;
@@ -745,7 +754,7 @@ body.fixed{
         width: 12vw;
     }
 
-    .usermenu{
+    .user-menu{
         top: 18vw;
         left: 0;
         right: 0;
@@ -755,32 +764,32 @@ body.fixed{
         margin: auto;
     }
 
-    .usermenu__list{
+    .user-menu__list{
         height: 12vw;
         padding: 2vw 1vw;
         margin-top: 6vw;
     }
 
-    .usermenu__item{
+    .user-menu__item{
         font-size: 2.4vw;
     }
 
-    .usermenu__button{
+    .user-menu__button{
         width: 90%;
         padding: 3vw 3vw;
         margin-top: 6vw;
         font-size: 3.2vw;
     }
 
-    .usermenu__img{
+    .user-menu__img{
         width: 15vw;
     }
 
-    .usermenu__name{
+    .user-menu__name{
         font-size: 3.5vw;
     }
 
-    .usermenu__email{
+    .user-menu__email{
         font-size: 2.4vw;
     }
     

@@ -19,17 +19,17 @@
             <div class="form__inner">
                 <div class="form__item">
                     <label for="name">UserName<span class="form__required">必須</span></label>
-                    <input type="text" class="form__item-input js-form-name" id="name" name="name" required>
+                    <input type="text" class="form__item-input js-form-name" id="name" name="name" tabindex="1" required>
                     <p id="js-name-error" class="error"></p>
                 </div>
                 <div class="form__item">
                     <label for="email">E-mail<span class="form__required">必須</span></label>
-                    <input type="email" class="form__item-input js-form-email" id="email" name="email" required>
+                    <input type="email" class="form__item-input js-form-email" id="email" name="email"  tabindex="2" required>
                     <p id="js-email-error" class="error"></p>
                 </div>
                 <div class="form__item">
                     <label for="password">Password<span class="form__notion"> ( 8文字以上の大小英数字 )</span><span class="form__required">必須</span></label>
-                    <button class="form__eye js-eye-icon" aria-label="パスワードが表示されます" type="button"></button><input type="password" class="form__item-input js-form-password" id="password" name="password" aria-describedby="confirm-password-constraints" required>
+                    <button class="form__eye js-eye-icon" aria-label="パスワードが表示されます" tabindex="4" type="button"></button><input type="password" class="form__item-input js-form-password" id="password" name="password" aria-describedby="confirm-password-constraints" tabindex="3" required>
                     <p id="confirm-password-constraints" class="error"></p>
                 </div>
                 <div class="form__check" id="js-checkbox-aria">

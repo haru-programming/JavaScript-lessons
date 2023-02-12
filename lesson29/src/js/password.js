@@ -34,7 +34,7 @@ formElements.forEach(element => {
 });
 
 eyeIcons.forEach(icon => {
-    icon.addEventListener("click", (e) => togglePasswordDisplay(e.target))
+    icon.addEventListener("click", togglePasswordDisplay)
 })
 
 const changePassword = () => {
@@ -51,5 +51,5 @@ submitButton.addEventListener("click", () => {
     const newUrlParameter = `?token=${token}`;
 
     localStorage.setItem("passwordReissueToken", token);
-    window.location.href = `./passworddone.html${newUrlParameter}`;
+    window.location.href = `./password-done.html${newUrlParameter}`;
 });

@@ -64,7 +64,7 @@ formElements.forEach(element => {
 });
 
 eyeIcons.forEach(icon => {
-    icon.addEventListener("click", (e) => togglePasswordDisplay(e.target))
+    icon.addEventListener("click", togglePasswordDisplay)
 })
 
 checkbox.addEventListener("input", () => {
