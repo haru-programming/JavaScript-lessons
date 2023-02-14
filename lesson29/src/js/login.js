@@ -1,4 +1,4 @@
-import { checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
+import { checkFormValidityInBlur, confirmIfCanSubmit } from "./modules/validation";
 import { togglePasswordDisplay } from "./modules/togglepassword";
 import { Chance } from "chance";
 const chance = new Chance();
@@ -6,7 +6,8 @@ const chance = new Chance();
 const userIdOfInput = document.querySelector(".js-form-userid");
 const passwordOfInput = document.querySelector(".js-form-password");
 const formElements = [userIdOfInput,passwordOfInput];
-const eyeIcons = document.querySelectorAll(".js-eye-icon");
+const eyeIcon = document.querySelector(".js-eye-icon");
+const errorOfPassword = document.querySelector('[data-name="password-error"]');
 const submitButton = document.querySelector(".js-submit-button");
 const invalidItems = document.getElementsByClassName("invalid");
 
@@ -14,14 +15,24 @@ formElements.forEach(element => {
     element.classList.add("invalid");
 
     element.addEventListener("blur", (e) => {
+        if(e.relatedTarget === eyeIcon) {
+            if(passwordOfInput.value && errorOfPassword.textContent === "入力してください") errorOfPassword.textContent = "";
+            return;
+        }
+
         checkFormValidityInBlur(submitButton, e.target);
-        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
+        confirmIfCanSubmit(submitButton,invalidItems);
     });
 });
 
-eyeIcons.forEach(icon => {
-    icon.addEventListener("click", togglePasswordDisplay);
-})
+eyeIcon.addEventListener("click", togglePasswordDisplay);
+eyeIcon.addEventListener("blur", (e) => {
+    if(e.relatedTarget === passwordOfInput) return;
+    checkFormValidityInBlur(submitButton, passwordOfInput);
+
+    if(invalidItems > 0) return;
+    confirmIfCanSubmit(submitButton,invalidItems);
+});
 
 const tryToLogin = async() => {
     let result;
