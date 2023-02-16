@@ -1,4 +1,4 @@
-import { showErrorMessage,checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
+import { showErrorMessage,checkFormValidityInBlur, confirmIfCanSubmit } from "./modules/validation";
 import { togglePasswordDisplay } from "./modules/togglepassword";
 
 const bodyElement = document.querySelector("body");
@@ -41,7 +41,7 @@ const setCheckedAttributeToCheckbox = ([entry]) => {
         checkbox.checked = true;
         checkbox.disabled = false;
         checkbox.classList.remove("invalid");
-        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
+        confirmIfCanSubmit(submitButton,invalidItems);
     }
 };
 
@@ -59,7 +59,7 @@ formElements.forEach(element => {
     
     element.addEventListener("blur", (e) => {
         checkFormValidityInBlur(submitButton, e.target);
-        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
+        confirmIfCanSubmit(submitButton,invalidItems);
     });
 });
 
@@ -70,7 +70,7 @@ eyeIcons.forEach(icon => {
 checkbox.addEventListener("input", () => {
     submitButton.disabled = !checkbox.checked;
     checkbox.checked? checkbox.classList.remove("invalid") : checkbox.classList.add("invalid");
-    checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
+    confirmIfCanSubmit(submitButton,invalidItems);
 })
 
 submitButton.addEventListener("click", (e) => {

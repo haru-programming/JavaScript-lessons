@@ -18,7 +18,7 @@ const submitButton = document.querySelector(".js-submit-button");
 const eyeIcons = document.querySelectorAll(".js-eye-icon");
 
 const isMatchPasswordFields = () => passwordOfInput.value === confirmPasswordOfInput.value;
-const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = passwordOfInput.value !== confirmPasswordOfInput.value;
+const confirmIfCanSubmit = () => submitButton.disabled = passwordOfInput.value !== confirmPasswordOfInput.value;
 
 formElements.forEach(element => {
     element.classList.add("invalid");
@@ -28,7 +28,7 @@ formElements.forEach(element => {
 
         if (document.getElementsByClassName("invalid").length === 0) {
             errorOfConfirmPassword.textContent = isMatchPasswordFields() ? "" : "上記のpasswordと異なります。もう一度入力してください。";
-            checkFormValidityToEnableSubmitButton();
+            confirmIfCanSubmit();
         }
     });
 });

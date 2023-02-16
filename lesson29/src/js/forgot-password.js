@@ -1,4 +1,4 @@
-import { checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
+import { checkFormValidityInBlur, confirmIfCanSubmit } from "./modules/validation";
 import { Chance } from "chance";
 const chance = new Chance();
 
@@ -9,7 +9,7 @@ const invalidItems = document.getElementsByClassName("invalid");
 emailOfInput.addEventListener("blur", (e) => {
     e.target.classList.add("invalid");
     checkFormValidityInBlur(submitButton, e.target);
-    checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
+    confirmIfCanSubmit(submitButton,invalidItems);
 });
 
 const tryToSubmit = async() => {
