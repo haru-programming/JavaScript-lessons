@@ -51,21 +51,33 @@ observer.observe(observerTarget);
 const nameOfInput = document.querySelector(".js-form-name");
 const emailOfInput = document.querySelector(".js-form-email");
 const passwordOfInput = document.querySelector(".js-form-password");
+const errorOfPassword = document.querySelector('[data-name="password-error"]');
 const formElements = [nameOfInput, emailOfInput, passwordOfInput];
-const eyeIcons = document.querySelectorAll(".js-eye-icon");
+const eyeIcon = document.querySelector(".js-eye-icon");
 
 formElements.forEach(element => {
     element.classList.add("invalid");
     
     element.addEventListener("blur", (e) => {
+        if(e.relatedTarget === eyeIcon) {
+            if(passwordOfInput.value && errorOfPassword.textContent === "入力してください") errorOfPassword.textContent = "";
+            return;
+        }
+
         checkFormValidityInBlur(submitButton, e.target);
         confirmIfCanSubmit(submitButton,invalidItems);
     });
 });
 
-eyeIcons.forEach(icon => {
-    icon.addEventListener("click", togglePasswordDisplay)
-})
+eyeIcon.addEventListener("click", togglePasswordDisplay)
+eyeIcon.addEventListener("blur", (e) => {
+    if(e.relatedTarget === passwordOfInput) return;
+    checkFormValidityInBlur(submitButton, passwordOfInput);
+
+    if(invalidItems > 0) return;
+    confirmIfCanSubmit(submitButton,invalidItems);
+});
+
 
 checkbox.addEventListener("input", () => {
     submitButton.disabled = !checkbox.checked;
