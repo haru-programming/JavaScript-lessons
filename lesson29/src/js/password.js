@@ -21,7 +21,7 @@ const getErrorElement = (element) => element.parentElement.querySelector(".js-er
 const getInputElement = (element) => element.parentElement.querySelector("input");
 const isMatchPasswordFields = () => passwordOfInput.value === confirmPasswordOfInput.value;
 const hasInvalidClass = () => formElements.some(element => element.classList.contains("invalid"));
-const confirmIfCanSubmit = () => submitButton.disabled = passwordOfInput.value !== confirmPasswordOfInput.value;
+const confirmIfCanSubmit = (input, confirmInput) => submitButton.disabled = input.value !== confirmInput.value;
 
 formElements.forEach(element => {
     element.classList.add("invalid");
@@ -36,7 +36,7 @@ formElements.forEach(element => {
 
         if (hasInvalidClass()) return;
         errorOfConfirmPassword.textContent = isMatchPasswordFields() ? "" : "上記のpasswordと異なります。もう一度入力してください。";
-        confirmIfCanSubmit();
+        confirmIfCanSubmit(passwordOfInput,confirmPasswordOfInput);
     });
 });
 
