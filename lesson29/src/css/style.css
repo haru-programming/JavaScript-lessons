@@ -891,15 +891,15 @@ body.fixed{
     }
 
     .form__title-text{
-        padding: 3vw;
+        padding: 2.4vw;
     }
 
     .form__item{
-        font-size: 3.6vw;
+        font-size: 2.4vw;
     }
 
     .form__check-text{
-        font-size: 3vw;
+        font-size: 2.4vw;
         align-items: center;
     }
 
@@ -908,15 +908,24 @@ body.fixed{
     }
 
     .form__button > input{
-        font-size: 3vw;
+        font-size: 2.8vw;
         height: 10vw;
     }
 
     .form__notion,.form__attention{
-        font-size: 2vw;
+        font-size: 1.9vw;
     }
 
     .form__text{
-        font-size: 3vw;
+        font-size: 2.4vw;
+    }
+
+    .form__eye:after{
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .error{
+        font-size: 2.3vw
     }
 }
