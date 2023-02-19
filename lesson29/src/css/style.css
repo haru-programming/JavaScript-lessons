@@ -800,7 +800,7 @@ body.fixed{
         
     .setting__menu{
         display: flex;
-        padding: 4vw 2vw 4vw 5.5vw;
+        padding: 3.4vw 1.8vw 3.4vw 5.2vw;
     }
     
     .setting__menu-list{
@@ -809,7 +809,7 @@ body.fixed{
     
     .setting__menu-item{
         padding: 0 3vw;
-        font-size: 3.6vw;
+        font-size: 3.3vw;
     }
 
     .setting__img >img{
@@ -891,32 +891,42 @@ body.fixed{
     }
 
     .form__title-text{
-        padding: 3vw;
+        padding: 2.4vw;
     }
 
     .form__item{
-        font-size: 3.6vw;
+        font-size: 2.4vw;
     }
 
     .form__check-text{
-        font-size: 3vw;
+        font-size: 2.4vw;
         align-items: center;
     }
 
     .form__button{
-        margin-top: 6vw;
+        margin-top: 5vw;
     }
 
     .form__button > input{
-        font-size: 3vw;
+        font-size: 2.8vw;
         height: 10vw;
     }
 
     .form__notion,.form__attention{
-        font-size: 2vw;
+        font-size: 1.9vw;
     }
 
     .form__text{
-        font-size: 3vw;
+        margin-top: 4vw;
+        font-size: 2.4vw;
+    }
+
+    .form__eye:after{
+        width: 4vw;
+        height: 4vw;
+    }
+
+    .error{
+        font-size: 2.3vw
     }
 }

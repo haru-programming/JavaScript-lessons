@@ -17,24 +17,40 @@ const errorOfConfirmPassword = confirmPasswordOfInput.nextElementSibling;
 const submitButton = document.querySelector(".js-submit-button");
 const eyeIcons = document.querySelectorAll(".js-eye-icon");
 
+const getErrorElement = (element) => element.parentElement.querySelector(".js-error");
+const getInputElement = (element) => element.parentElement.querySelector("input");
 const isMatchPasswordFields = () => passwordOfInput.value === confirmPasswordOfInput.value;
-const checkFormValidityToEnableSubmitButton = () => submitButton.disabled = passwordOfInput.value !== confirmPasswordOfInput.value;
+const hasInvalidClass = () => formElements.some(element => element.classList.contains("invalid"));
+const confirmIfCanSubmit = (input, confirmInput) => submitButton.disabled = input.value !== confirmInput.value;
 
 formElements.forEach(element => {
     element.classList.add("invalid");
 
-    element.addEventListener("blur", () => {
+    element.addEventListener("blur", (e) => {
+        if(e.relatedTarget === element.parentElement.querySelector(".js-eye-icon")) {
+            if(element.value && getErrorElement(element).textContent === "入力してください") getErrorElement(element).textContent = "";
+            return;
+        }
+
         checkFormValidityInBlur(submitButton, element);
 
-        if (document.getElementsByClassName("invalid").length === 0) {
-            errorOfConfirmPassword.textContent = isMatchPasswordFields() ? "" : "上記のpasswordと異なります。もう一度入力してください。";
-            checkFormValidityToEnableSubmitButton();
-        }
+        if (hasInvalidClass()) return;
+        errorOfConfirmPassword.textContent = isMatchPasswordFields() ? "" : "上記のpasswordと異なります。もう一度入力してください。";
+        confirmIfCanSubmit(passwordOfInput,confirmPasswordOfInput);
     });
 });
 
 eyeIcons.forEach(icon => {
     icon.addEventListener("click", togglePasswordDisplay)
+})
+eyeIcons.forEach(icon => {
+    icon.addEventListener("blur", (e) => {
+        if(e.relatedTarget === getInputElement(icon)) return;
+        checkFormValidityInBlur(submitButton, getInputElement(icon));
+    
+        if(hasInvalidClass()) return;
+        confirmIfCanSubmit();
+    });
 })
 
 const changePassword = () => {

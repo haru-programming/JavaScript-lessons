@@ -53,7 +53,7 @@ const removeErrorMessage = target => target.nextElementSibling.textContent = "";
 export const isEmptyOfInput = target => target.value.trim() === "";
 const isValidFormInput = target => validationOptions[target.name].isValid(target);
 
-export const checkFormValidityToEnableSubmitButton = (element,invalidItems) => element.disabled = invalidItems.length > 0;
+export const confirmIfCanSubmit = (element,invalidItems) => element.disabled = invalidItems.length > 0;
 
 export const checkFormValidityInBlur = (element, target) => {
     element.disabled = true;

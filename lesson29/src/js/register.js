@@ -1,4 +1,4 @@
-import { showErrorMessage,checkFormValidityInBlur, checkFormValidityToEnableSubmitButton } from "./modules/validation";
+import { showErrorMessage,checkFormValidityInBlur, confirmIfCanSubmit } from "./modules/validation";
 import { togglePasswordDisplay } from "./modules/togglepassword";
 
 const bodyElement = document.querySelector("body");
@@ -41,7 +41,7 @@ const setCheckedAttributeToCheckbox = ([entry]) => {
         checkbox.checked = true;
         checkbox.disabled = false;
         checkbox.classList.remove("invalid");
-        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
+        confirmIfCanSubmit(submitButton,invalidItems);
     }
 };
 
@@ -51,26 +51,38 @@ observer.observe(observerTarget);
 const nameOfInput = document.querySelector(".js-form-name");
 const emailOfInput = document.querySelector(".js-form-email");
 const passwordOfInput = document.querySelector(".js-form-password");
+const errorOfPassword = document.querySelector('[data-name="password-error"]');
 const formElements = [nameOfInput, emailOfInput, passwordOfInput];
-const eyeIcons = document.querySelectorAll(".js-eye-icon");
+const eyeIcon = document.querySelector(".js-eye-icon");
 
 formElements.forEach(element => {
     element.classList.add("invalid");
     
     element.addEventListener("blur", (e) => {
+        if(e.relatedTarget === eyeIcon) {
+            if(passwordOfInput.value && errorOfPassword.textContent === "入力してください") errorOfPassword.textContent = "";
+            return;
+        }
+
         checkFormValidityInBlur(submitButton, e.target);
-        checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
+        confirmIfCanSubmit(submitButton,invalidItems);
     });
 });
 
-eyeIcons.forEach(icon => {
-    icon.addEventListener("click", togglePasswordDisplay)
-})
+eyeIcon.addEventListener("click", togglePasswordDisplay)
+eyeIcon.addEventListener("blur", (e) => {
+    if(e.relatedTarget === passwordOfInput) return;
+    checkFormValidityInBlur(submitButton, passwordOfInput);
+
+    if(invalidItems > 0) return;
+    confirmIfCanSubmit(submitButton,invalidItems);
+});
+
 
 checkbox.addEventListener("input", () => {
     submitButton.disabled = !checkbox.checked;
     checkbox.checked? checkbox.classList.remove("invalid") : checkbox.classList.add("invalid");
-    checkFormValidityToEnableSubmitButton(submitButton,invalidItems);
+    confirmIfCanSubmit(submitButton,invalidItems);
 })
 
 submitButton.addEventListener("click", (e) => {
