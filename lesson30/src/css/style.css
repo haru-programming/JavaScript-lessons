@@ -119,7 +119,8 @@ body.is-drawer-active:after{
 .header__inner{
     display: flex;justify-content: space-between;align-items: center;
     max-width: 1000px;
-    margin-left: auto;margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .header__link{
@@ -195,7 +196,6 @@ body.is-drawer-active:after{
     height: 2px;
     background-color: #fff;
 
-    /* transition: inherit; */
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
@@ -208,7 +208,6 @@ body.is-drawer-active:after{
     height: 100%;
     background-color: inherit;
     transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    /* transition: inherit; */
 }
 
 .header__hamburger-bar:before{
