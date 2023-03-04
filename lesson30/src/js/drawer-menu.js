@@ -10,16 +10,16 @@ const toggleInertAttribute = (targets, boolean) => {
     })
 }
 
-hamburgerButton.addEventListener("click", () => {
+hamburgerButton.addEventListener("click", (e) => {
     body.classList.toggle("is-drawer-active");
     drawerMenu.classList.toggle("is-open");
 
-    if (isOpen(hamburgerButton)){
-        hamburgerButton.setAttribute("aria-expanded", false);
+    if (isOpen(e.target)){
+        e.target.setAttribute("aria-expanded", false);
         drawerMenu.setAttribute("aria-hidden", true);
         toggleInertAttribute(focusControlTargets,false);
     } else {
-        hamburgerButton.setAttribute("aria-expanded", true);
+        e.target.setAttribute("aria-expanded", true);
         drawerMenu.setAttribute("aria-hidden", false);
         toggleInertAttribute(focusControlTargets,true);
     }
