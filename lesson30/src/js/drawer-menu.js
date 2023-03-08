@@ -9,18 +9,32 @@ const toggleInertAttribute = (targets, boolean) => {
         target.inert = boolean;
     })
 }
+const openMenu = (button, menu) => {
+    body.classList.add("is-drawer-active");
+    menu.classList.add("is-open");
+    menu.setAttribute("aria-hidden", false);
+    button.setAttribute("aria-expanded", true);
+    toggleInertAttribute(focusControlTargets,true);
+}
+
+const closeMenu = (button, menu) => {
+    body.classList.remove("is-drawer-active");
+    menu.classList.remove("is-open");
+    menu.setAttribute("aria-hidden", true);
+    button.setAttribute("aria-expanded", false);
+    toggleInertAttribute(focusControlTargets,false);
+}
 
 hamburgerButton.addEventListener("click", (e) => {
-    body.classList.toggle("is-drawer-active");
-    drawerMenu.classList.toggle("is-open");
-
-    if (isOpen(e.target)){
-        e.target.setAttribute("aria-expanded", false);
-        drawerMenu.setAttribute("aria-hidden", true);
-        toggleInertAttribute(focusControlTargets,false);
+    if(isOpen(e.target)){
+        closeMenu(e.target, drawerMenu);
     } else {
-        e.target.setAttribute("aria-expanded", true);
-        drawerMenu.setAttribute("aria-hidden", false);
-        toggleInertAttribute(focusControlTargets,true);
+        openMenu(e.target, drawerMenu);
     }
 })
+
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("is-drawer-active")) {
+        closeMenu(hamburgerButton, drawerMenu);
+    }
+});
