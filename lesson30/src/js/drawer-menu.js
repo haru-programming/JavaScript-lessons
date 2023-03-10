@@ -38,3 +38,7 @@ document.addEventListener("click", (e) => {
         closeMenu(hamburgerButton, drawerMenu);
     }
 });
+
+document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape") closeMenu(hamburgerButton, drawerMenu);
+})
