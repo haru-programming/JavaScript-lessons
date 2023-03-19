@@ -42,3 +42,27 @@ document.addEventListener("click", (e) => {
 document.addEventListener("keydown", (e) => {
     if(e.key === "Escape") closeMenu(hamburgerButton, drawerMenu);
 })
+
+
+const changeMenuDirect = (direct, menu) => {
+    switch(direct){
+        case "right":
+            menu.classList.add("is-right");
+            break;
+        case "left":
+            menu.classList.add("is-left");
+            break;
+        default:
+            menu.classList.add("is-left");
+            break;
+    }
+}
+
+const menuOption = { direct : "right" }; //left or right
+
+const setMenuOption = () => {
+    const {direct} = menuOption;
+    changeMenuDirect(direct, drawerMenu);
+}
+
+setMenuOption();
