@@ -8,5 +8,9 @@
   },
   "devDependencies": {
     "vite": "^2.4.4"
+  },
+  "dependencies": {
+    "chance": "^1.1.11",
+    "date-fns": "^2.29.3"
   }
 }
