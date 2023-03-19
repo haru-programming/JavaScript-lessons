@@ -58,7 +58,7 @@ const changeMenuDirect = (direct, menu) => {
     }
 }
 
-const menuOption = { direct : "right" }; //left or right
+const menuOption = { direct : "left" }; //left or right
 
 const setMenuOption = () => {
     const {direct} = menuOption;
