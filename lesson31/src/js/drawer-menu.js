@@ -59,7 +59,7 @@ const changeMenuDirect = (direct, menu) => {
 const menuOption = { direct: "left" }; //left or right
 
 const setMenuOption = () => {
-    const { direct = "left" } = menuOption;
+    const { direct } = menuOption;
     changeMenuDirect(direct, drawerMenu);
 }
 setMenuOption();
