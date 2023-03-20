@@ -56,10 +56,10 @@ const changeMenuDirect = (direct, menu) => {
             break;
     }
 }
-const menuOption = { direct : "left" }; //left or right
+const menuOption = { direct: "left" }; //left or right
 
 const setMenuOption = () => {
-    const {direct} = menuOption;
+    const { direct = "left" } = menuOption;
     changeMenuDirect(direct, drawerMenu);
 }
 setMenuOption();
