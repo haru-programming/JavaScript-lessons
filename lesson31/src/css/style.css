@@ -157,12 +157,12 @@ body.is-drawer-active:after{
     overflow-y: scroll;
 }
 
-.header__nav.is-left{
+.header__nav.left{
     left : 0;
     transform: translateX(-100%);
 }
 
-.header__nav.is-right{
+.header__nav.right{
     right : 0;
     transform: translateX(100%);
 }

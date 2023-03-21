@@ -46,13 +46,11 @@ document.addEventListener("keydown", (e) => {
 const changeMenuDirect = (direct, menu) => {
     switch(direct){
         case "right":
-            menu.classList.add("is-right");
+            menu.classList.add("right");
             break;
         case "left":
-            menu.classList.add("is-left");
-            break;
         default:
-            menu.classList.add("is-left");
+            menu.classList.add("left");
             break;
     }
 }
