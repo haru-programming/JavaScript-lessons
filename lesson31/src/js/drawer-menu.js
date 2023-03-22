@@ -65,7 +65,7 @@ const changeSpeed = (menu, speed) => {
 
 const option = { 
     direct: "left", //left or right
-    speed: 400, // number(ミリ秒)
+    speed: 400 // number(ミリ秒)
 };
 
 const initMenu = (menu, option = {}) => {
