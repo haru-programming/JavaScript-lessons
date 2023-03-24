@@ -57,6 +57,9 @@ const setDirect = (menu, direct) => {
 
 const convertMillisecondsToSeconds = speed => `${speed / 1000}s`;
 const formatSeconds = (speed = 400) => {
+    if(typeof speed !== "number"){
+        throw new Error(`speed expect number type. but got ${typeof speed}`)
+    }
     return convertMillisecondsToSeconds(speed);
 }
 
@@ -74,4 +77,4 @@ const initMenu = (menu, option = {}) => {
     setSpeed(menu, option?.speed);
 }
 
-    initMenu(drawerMenu, option);
+initMenu(drawerMenu, option);
