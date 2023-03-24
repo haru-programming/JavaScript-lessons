@@ -74,4 +74,4 @@ const initMenu = (menu, option = {}) => {
     setSpeed(menu, option?.speed);
 }
 
-initMenu(drawerMenu, option);
+    initMenu(drawerMenu, option);
