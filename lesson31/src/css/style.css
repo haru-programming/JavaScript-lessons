@@ -151,8 +151,6 @@ body.is-drawer-active:after{
     color: #000;
     background: #fff;
     text-align: center;
-    will-change: transform;
-    transition: left ease-in-out, right ease-in-out;
     width: 40%;
     height: 100%;
     overflow-y: scroll;
@@ -161,11 +159,15 @@ body.is-drawer-active:after{
 .header__nav.left{
     left : -100%;
     opacity: 1;
+    will-change: left;
+    transition: left ease-in-out;
 }
 
 .header__nav.right{
     right : -100%;
     opacity: 1;
+    will-change: right;
+    transition: right ease-in-out;
 }
 
 .header__nav.left.is-open{
