@@ -146,29 +146,35 @@ body.is-drawer-active:after{
 .header__nav{
     position: fixed;
     z-index : 1200;
+    opacity: 0;
     top : 0;
     color: #000;
     background: #fff;
     text-align: center;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
     width: 40%;
     height: 100%;
     overflow-y: scroll;
 }
 
 .header__nav.left{
-    left : 0;
-    transform: translateX(-100%);
+    left : -100%;
+    opacity: 1;
+    will-change: left;
+    transition: left ease-in-out;
 }
 
 .header__nav.right{
-    right : 0;
-    transform: translateX(100%);
+    right : -100%;
+    opacity: 1;
+    will-change: right;
+    transition: right ease-in-out;
 }
 
-.header__nav.is-open{
-    transform: translateX(0);
+.header__nav.left.is-open{
+    left: 0;
+}
+.header__nav.right.is-open{
+    right: 0;
 }
 
 .header__nav-inner{

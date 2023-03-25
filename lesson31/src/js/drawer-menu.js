@@ -43,22 +43,38 @@ document.addEventListener("keydown", (e) => {
     if(e.key === "Escape") closeMenu(hamburgerButton, drawerMenu);
 })
 
-const changeDirect = (ref, direct) => {
+const setDirect = (menu, direct) => {
     switch(direct){
         case "right":
-            ref.classList.add("right");
+            menu.classList.add("right");
             break;
         case "left":
         default:
-            ref.classList.add("left");
+            menu.classList.add("left");
             break;
     }
 }
 
-const option = { direct: "left" }; //left or right
+const convertMillisecondsToSeconds = speed => `${speed / 1000}s`;
+const formatSeconds = (speed = 400) => {
+    if(typeof speed !== "number"){
+        throw new Error(`speed expect number type. but got ${typeof speed}`)
+    }
+    return convertMillisecondsToSeconds(speed);
+}
 
-const initMenu = (ref, option = {}) => {
-    changeDirect(ref, option?.direct);
+const setSpeed = (menu, speed) => {
+    menu.style.transitionDuration = formatSeconds(speed);
+}
+
+const option = {
+    direct: "left", //left or right
+    speed: 400 // number(ミリ秒)
+};
+
+const initMenu = (menu, option = {}) => {
+    setDirect(menu, option?.direct);
+    setSpeed(menu, option?.speed);
 }
 
 initMenu(drawerMenu, option);
