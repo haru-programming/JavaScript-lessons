@@ -419,6 +419,42 @@ body.is-drawer-active:after{
 }
 
 /* -----------------------------------------------------------------
+// news
+// ---------------------------------------------------------------*/
+.news{
+    padding: 0 40px;
+    margin-top: 80px
+}
+
+.news__inner{
+    width: 100%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.news__head{
+    padding: 50px 30px 20px;
+    background-color: #cccccc60;
+}
+
+.news__head .title{
+    margin: 0;
+} 
+
+.news__select{
+    display: flex;flex-direction: column;
+    width: fit-content;
+    margin: 30px 0 0 auto;
+}
+
+.news__body{
+    background-color: #fff;
+    padding: 40px;
+}
+
+
+/* -----------------------------------------------------------------
 // form
 // ---------------------------------------------------------------*/
 
@@ -1014,6 +1050,35 @@ body.is-drawer-active:after{
 
     .title.title--green{
         font-size: 5.2vw;
+    }
+
+    .news{
+        padding: 0 5vw;
+        margin-top: 10vw;
+    }
+    
+    .news__inner{
+        width: 100%;
+        max-width: auto;
+    }
+    
+    .news__head{
+        padding: 9vw 4vw 6vw 4vw;
+        border-radius: 2vw 2vw 0 0;
+    }
+    
+    .news__select{
+        margin: 3vw 0 0 auto;
+    }
+
+    .news__select label{
+        font-size: 2.6vw;
+    }
+    
+    .news__body{
+        background-color: #fff;
+        padding: 4vw;
+        border-radius: 0 0 2vw 2vw;
     }
 
     .tab {
