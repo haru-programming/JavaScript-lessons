@@ -60,6 +60,12 @@ body.is-drawer-active:after{
     text-align: center;
 }
 
+.inner{
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .title{
     text-align: center;
     font-size: 24px;
@@ -106,6 +112,25 @@ body.is-drawer-active:after{
     padding: 40px 30px;
     max-width: 370px;
 }
+
+.link{
+    display: block;
+    color: #333;
+    text-decoration-color: currentColor;
+    text-underline-offset: 6px;
+    transition: opacity 0.3s ease-in-out, text-decoration-color 0.3s ease-in-out;
+}
+
+.link:hover{
+    opacity: 0.6;
+    text-decoration-color: transparent;
+}
+
+.link--top{
+    margin-top: 40px;
+    text-align: right;
+}
+
 
 /* -----------------------------------------------------------------
 // header
@@ -436,6 +461,7 @@ body.is-drawer-active:after{
 .news__head{
     padding: 50px 30px 20px;
     background-color: #cccccc60;
+    border-radius: 8px 8px 0 0;
 }
 
 .news__head .title{
@@ -819,16 +845,12 @@ body.is-drawer-active:after{
 // tab
 // ---------------------------------------------------------------*/
 
-.tab-contents{
-    margin-top: 120px;
-}
-
 .tab {
     width: 579px;
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 2px;
-    margin: 60px auto 0 auto;
+    margin: 20px auto 0 auto;
 }
 
 .tab__error{
@@ -1052,6 +1074,14 @@ body.is-drawer-active:after{
         font-size: 5.2vw;
     }
 
+    .link{
+        font-size: 2.8vw;
+    }
+
+    .link--top{
+        margin-top: 7vw;
+    }
+
     .news{
         padding: 0 5vw;
         margin-top: 10vw;
@@ -1083,7 +1113,7 @@ body.is-drawer-active:after{
 
     .tab {
         max-width: 88vw;
-        margin-top: 10vw;
+        margin-top: 5vw;
     }
     
     .tab__nav-button {
