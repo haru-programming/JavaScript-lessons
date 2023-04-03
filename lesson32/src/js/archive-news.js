@@ -46,16 +46,32 @@ const fetchData = async(api) => {
     }
 };
 
-const fetchListData = async() => {
+const init = async() => {
     const data = await fetchData(url);
 
     if (!data) return;
     if (!data.length) {
         displayInfo(newsContent, "no data");
     } else {
-        // TODO ニュース記事の一覧を作成する（一旦fetchできているかの確認のためconsole表示しました。）
-        console.log(data);
+        renderOptionElements(data);
     }
 };
 
-fetchListData();
+const createOptionElements = data => {
+    const fragment = document.createDocumentFragment();
+    data.forEach(({category}) => {
+        const optionElement = document.createElement("option");
+        optionElement.value = category;
+        optionElement.textContent = category;
+        fragment.appendChild(optionElement);
+    })
+    return fragment;
+};
+
+const renderOptionElements = data => {
+    const selectElement = document.getElementById("js-select-category");
+    selectElement.appendChild(createOptionElements(data));
+};
+
+
+init();
