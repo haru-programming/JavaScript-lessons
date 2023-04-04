@@ -53,7 +53,7 @@ const init = async() => {
     if (!data.length) {
         displayInfo(newsContent, "no data");
     } else {
-        renderOptionElements(data);
+        renderCategories(data);
     }
 };
 
@@ -68,7 +68,7 @@ const createOptionElements = data => {
     return fragment;
 };
 
-const renderOptionElements = data => {
+const renderCategories = data => {
     const selectElement = document.getElementById("js-select-category");
     selectElement.appendChild(createOptionElements(data));
 };
