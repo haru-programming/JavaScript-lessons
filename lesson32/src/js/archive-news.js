@@ -1,6 +1,8 @@
+import { createElementWithClassName } from "./modules/create-element";
+
 const newsContent = document.getElementById("js-news-body");
 
-const url = "https://mocki.io/v1/6cb2582d-1e91-4777-a963-729425ae5962";
+const url = "https://mocki.io/v1/ed12946a-89d7-4c90-98bb-8eadcf76e165";
 // const url = "https://mocki.io/v1/8cc57c74-d671-48ac-b59f-d3dfb73ec8c1"; //No data
 // const url = "https://httpstat.us/503"; // 503 error
 // const url = "https://mocki.io/v1/fafafafa"; // Failed to fetch
@@ -54,6 +56,7 @@ const init = async() => {
         displayInfo(newsContent, "no data");
     } else {
         renderCategories(data);
+        renderNewsList(data);
     }
 };
 
@@ -73,5 +76,41 @@ const renderCategories = data => {
     selectElement.appendChild(createOptionElements(data));
 };
 
+const createNewsCards = data => {
+    const fragment = document.createDocumentFragment();
+    data.articles.forEach(article => {
+        const newsItem = createElementWithClassName("li", "news__item");
+        const thumbnailWrapper = createElementWithClassName("div", "news__item-thumbnail-wrap");
+        const thumbnail = createElementWithClassName("img", "news__item-thumbnail");
+        const infoArea = createElementWithClassName("div", "news__item-info");
+        const categoryLabel = createElementWithClassName("p", "news__item-category");
+        const date = createElementWithClassName("p", "news__item-date");
+        const title = createElementWithClassName("h3", "news__item-title"); 
+        const titleLink = createElementWithClassName("a", "news__item-link");
+        
+        thumbnail.src = article.img;
+        thumbnail.alt = "";
+        categoryLabel.textContent = data.category;
+        date.textContent = article.date;
+        titleLink.textContent = article.title;
+        titleLink.href = "#";
+        titleLink.classList.add("link");
+
+        thumbnailWrapper.appendChild(thumbnail);
+        infoArea.appendChild(categoryLabel).after(date);
+        title.appendChild(titleLink);
+        fragment.appendChild(newsItem).appendChild(title).after(infoArea, thumbnailWrapper);
+    })
+    return fragment;
+};
+
+const renderNewsList = data => {
+    const newsList = createElementWithClassName("ul", "news__list");
+    const fragment = document.createDocumentFragment();
+    data.forEach(item => {
+        fragment.appendChild(createNewsCards(item));
+    })
+    newsContent.appendChild(newsList).appendChild(fragment);
+};
 
 init();
