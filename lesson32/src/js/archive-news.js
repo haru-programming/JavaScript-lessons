@@ -56,7 +56,7 @@ const init = async() => {
         displayInfo(newsContent, "no data");
     } else {
         renderCategories(data);
-        renderNewsList(data);
+        renderArticleList(data);
     }
 };
 
@@ -76,7 +76,7 @@ const renderCategories = data => {
     selectElement.appendChild(createOptionElements(data));
 };
 
-const createNewsCards = data => {
+const createArticleCards = data => {
     const fragment = document.createDocumentFragment();
     data.articles.forEach(article => {
         const newsItem = createElementWithClassName("li", "news__item");
@@ -104,11 +104,11 @@ const createNewsCards = data => {
     return fragment;
 };
 
-const renderNewsList = data => {
+const renderArticleList = data => {
     const newsList = createElementWithClassName("ul", "news__list");
     const fragment = document.createDocumentFragment();
     data.forEach(item => {
-        fragment.appendChild(createNewsCards(item));
+        fragment.appendChild(createArticleCards(item));
     })
     newsContent.appendChild(newsList).appendChild(fragment);
 };
