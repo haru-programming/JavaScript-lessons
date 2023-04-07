@@ -103,10 +103,9 @@ const createThumbnail = article => {
     const thumbnailWrapper = createElementWithClassName("div", "news__item-thumbnail-wrap");
     const thumbnail = createElementWithClassName("img", "news__item-thumbnail");
     const noImgSrc = "./img/no-img.jpg";
-    thumbnail.alt = "";
 
+    thumbnail.alt = "";
     thumbnail.src = article.img ? article.img : noImgSrc;
-    thumbnail.addEventListener("error", () => thumbnail.src = noImgSrc);
 
     thumbnailWrapper.appendChild(thumbnail);
     return thumbnailWrapper;
