@@ -105,7 +105,7 @@ const createThumbnail = article => {
     const noImgSrc = "./img/no-img.jpg";
 
     thumbnail.alt = "";
-    thumbnail.src = article.img ? article.img : noImgSrc;
+    thumbnail.src = article.img || noImgSrc;
 
     thumbnailWrapper.appendChild(thumbnail);
     return thumbnailWrapper;
