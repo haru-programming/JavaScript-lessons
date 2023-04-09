@@ -1,8 +1,9 @@
 import { createElementWithClassName } from "./modules/create-element";
 
+const selectElement = document.getElementById("js-select-category");
 const newsContent = document.getElementById("js-news-body");
 
-const url = "https://mocki.io/v1/fa320b21-de25-4521-bf1d-817ee178b80e";
+const url = "https://mocki.io/v1/216dc45c-ab5b-4b2f-94c7-7ca46e395a40";
 // const url = "https://mocki.io/v1/8cc57c74-d671-48ac-b59f-d3dfb73ec8c1"; //No data
 // const url = "https://httpstat.us/503"; // 503 error
 // const url = "https://mocki.io/v1/fafafafa"; // Failed to fetch
@@ -57,6 +58,7 @@ const init = async() => {
     } else {
         renderCategories(data);
         renderArticleList(data);
+        addEventForCategoryList(data);
     }
 };
 
@@ -71,10 +73,7 @@ const createOptionElements = data => {
     return fragment;
 };
 
-const renderCategories = data => {
-    const selectElement = document.getElementById("js-select-category");
-    selectElement.appendChild(createOptionElements(data));
-};
+const renderCategories = data => selectElement.appendChild(createOptionElements(data));
 
 const createArticleCards = data => {
     const fragment = document.createDocumentFragment();
@@ -111,13 +110,31 @@ const createThumbnail = article => {
     return thumbnailWrapper;
 };
 
-const renderArticleList = data => {
+const renderArticleList = (data, category = "all") => {
     const newsList = createElementWithClassName("ul", "news__list");
+    
+    if(category !== "all") {
+        data = filterArticlesData(data, category); 
+    }
+
     const fragment = document.createDocumentFragment();
     data.forEach(item => {
         fragment.appendChild(createArticleCards(item));
     })
-    newsContent.appendChild(newsList).appendChild(fragment);
+    newsContent.replaceChildren(newsList);
+    newsList.appendChild(fragment);
+};
+
+const filterArticlesData = (data, category) => {
+    const filteredData = data.filter(item => item.category === category);
+    return filteredData;
+};
+
+const addEventForCategoryList = data => {
+    selectElement.addEventListener("change", (e) => {
+        const selectedCategory = e.target.value;
+        renderArticleList(data, selectedCategory);
+    })
 };
 
 init();
