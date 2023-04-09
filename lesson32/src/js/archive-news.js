@@ -110,13 +110,9 @@ const createThumbnail = article => {
     return thumbnailWrapper;
 };
 
-const renderArticleList = (data, category = "all") => {
+const renderArticleList = data => {
     const newsList = createElementWithClassName("ul", "news__list");
     
-    if(category !== "all") {
-        data = filterArticlesData(data, category); 
-    }
-
     const fragment = document.createDocumentFragment();
     data.forEach(item => {
         fragment.appendChild(createArticleCards(item));
@@ -125,15 +121,16 @@ const renderArticleList = (data, category = "all") => {
     newsList.appendChild(fragment);
 };
 
-const filterArticlesData = (data, category) => {
-    const filteredData = data.filter(item => item.category === category);
-    return filteredData;
-};
-
 const addEventForCategoryList = data => {
     selectElement.addEventListener("change", (e) => {
         const selectedCategory = e.target.value;
-        renderArticleList(data, selectedCategory);
+        
+        if (selectedCategory === "all"){
+            renderArticleList(data);
+        } else {
+            const filteredData = data.filter(item => item.category === selectedCategory);
+            renderArticleList(filteredData);
+        }
     })
 };
 
