@@ -66,6 +66,15 @@ body.is-drawer-active:after{
     margin-right: auto;
 }
 
+.inner__link{
+    text-align: right;
+    margin-top: 36px;
+}
+
+.inner .title.title--sub{
+    margin-bottom: 0;
+}
+
 .title{
     text-align: center;
     font-size: 24px;
@@ -124,11 +133,6 @@ body.is-drawer-active:after{
 .link:hover{
     opacity: 0.6;
     text-decoration-color: transparent;
-}
-
-.link--top{
-    margin-top: 40px;
-    text-align: right;
 }
 
 
@@ -1195,6 +1199,15 @@ body.is-drawer-active:after{
 
     .link--top{
         margin-top: 7vw;
+    }
+
+    .inner{
+        width: 580px;
+        max-width: 88vw;
+    }
+    
+    .inner__link{
+        margin-top: 8vw;
     }
 
     .news{
