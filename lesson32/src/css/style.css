@@ -71,7 +71,7 @@ body.is-drawer-active:after{
     margin-top: 36px;
 }
 
-.inner .title.title--sub{
+.inner .title.sub{
     margin-bottom: 0;
 }
 
@@ -103,7 +103,7 @@ body.is-drawer-active:after{
     transform: translateX(-10px);
 }
 
-.title.title--sub{
+.title.sub{
     margin: 100px 0 -20px 0;
 }
 
@@ -166,7 +166,6 @@ body.is-drawer-active:after{
     text-decoration-color: currentColor;
 
 }
-
 
 .header__button{
     cursor: pointer;
@@ -1185,7 +1184,7 @@ body.is-drawer-active:after{
         margin: auto 1vw auto 0;
     }
 
-    .title.title--sub{
+    .title.sub{
         font-size: 4.5vw;
     }
 
