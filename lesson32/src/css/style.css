@@ -80,11 +80,11 @@ body.is-drawer-active:after{
     font-size: 24px;
 }
 
-.title.title--top{
+.title.top{
     text-align: left;
 }
 
-.title.title--top:before{
+.title.top:before{
     display: inline-flex;
     content: "";
     width: 22px;
@@ -97,7 +97,7 @@ body.is-drawer-active:after{
     background: url(/img/icon-book.svg) top left/contain;
 }
 
-.title.title--center{
+.title.center{
     font-size: 26px;
     margin-left: auto;margin-right: auto;
     transform: translateX(-10px);
@@ -1174,11 +1174,11 @@ body.is-drawer-active:after{
         font-size: 4vw;
     }
 
-    .title.title--top{
+    .title.top{
         font-size: 5vw;
     }
 
-    .title.title--top:before{
+    .title.top:before{
         width: 4vw;
         height: 4vw;
         margin: auto 1vw auto 0;
