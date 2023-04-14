@@ -66,16 +66,25 @@ body.is-drawer-active:after{
     margin-right: auto;
 }
 
+.inner__link{
+    text-align: right;
+    margin-top: 36px;
+}
+
+.inner .title.sub{
+    margin-bottom: 0;
+}
+
 .title{
     text-align: center;
     font-size: 24px;
 }
 
-.title.title--top{
+.title.top{
     text-align: left;
 }
 
-.title.title--top:before{
+.title.top:before{
     display: inline-flex;
     content: "";
     width: 22px;
@@ -88,13 +97,13 @@ body.is-drawer-active:after{
     background: url(/img/icon-book.svg) top left/contain;
 }
 
-.title.title--center{
+.title.center{
     font-size: 26px;
     margin-left: auto;margin-right: auto;
     transform: translateX(-10px);
 }
 
-.title.title--sub{
+.title.sub{
     margin: 100px 0 -20px 0;
 }
 
@@ -124,11 +133,6 @@ body.is-drawer-active:after{
 .link:hover{
     opacity: 0.6;
     text-decoration-color: transparent;
-}
-
-.link--top{
-    margin-top: 40px;
-    text-align: right;
 }
 
 
@@ -162,7 +166,6 @@ body.is-drawer-active:after{
     text-decoration-color: currentColor;
 
 }
-
 
 .header__button{
     cursor: pointer;
@@ -1171,17 +1174,17 @@ body.is-drawer-active:after{
         font-size: 4vw;
     }
 
-    .title.title--top{
+    .title.top{
         font-size: 5vw;
     }
 
-    .title.title--top:before{
+    .title.top:before{
         width: 4vw;
         height: 4vw;
         margin: auto 1vw auto 0;
     }
 
-    .title.title--sub{
+    .title.sub{
         font-size: 4.5vw;
     }
 
@@ -1195,6 +1198,15 @@ body.is-drawer-active:after{
 
     .link--top{
         margin-top: 7vw;
+    }
+
+    .inner{
+        width: 580px;
+        max-width: 88vw;
+    }
+    
+    .inner__link{
+        margin-top: 8vw;
     }
 
     .news{

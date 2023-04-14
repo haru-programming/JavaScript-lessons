@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="./css/reset.css" type="text/css">
         <link rel="stylesheet" href="./css/style.css" type="text/css">
+        <script>if (!localStorage.getItem("token")) window.location.href = "./login.html";</script>
         <script src="./js/contents/main.js" defer></script>
         <script type="module" src="./js/archive-news.js"></script>
         <title>ニュース一覧</title>
@@ -13,7 +14,7 @@
     <body>
         <header class="header">
             <div class="header__inner">
-                <h1 class="title title--top"><a href="./" class="header__link">haru news</a></h1>
+                <h1 class="title top"><a href="./" class="header__link">haru news</a></h1>
                 <button class="header__button" id="js-user-menu-button" type="button"><img src="./img/img-user.png" alt="ユーザー管理画面" width="60" height="60" decoding="async"></button>
             </div>
             <div class="user-menu" id="js-user-menu" role="dialog">
@@ -31,7 +32,7 @@
         <section class="news">
             <div class="news__inner">
                 <div class="news__head">
-                    <h2 class="title title--sub">ニュース記事一覧</h2>
+                    <h2 class="title sub">ニュース記事一覧</h2>
                     <div class="news__select">
                         <label for="select-category">カテゴリー検索</label>
                         <div class="news__pulldown-wrapper">
