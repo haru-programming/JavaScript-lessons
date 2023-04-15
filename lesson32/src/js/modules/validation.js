@@ -41,9 +41,6 @@ export const validationOptions = {
             return true;
         },
     },
-    submitButton: {
-        errorMessage: "既に登録済みのメールアドレスです",
-    }
 };
 
 const addInvalidClass = target => target.classList.add("invalid");
@@ -57,7 +54,6 @@ export const confirmIfCanSubmit = (element,invalidItems) => element.disabled = i
 
 export const checkFormValidityInBlur = (element, target) => {
     element.disabled = true;
-    removeErrorMessage(element);
 
     if (isEmptyOfInput(target)) {
         addInvalidClass(target);
