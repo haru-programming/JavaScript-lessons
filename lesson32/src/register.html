@@ -57,7 +57,7 @@
                 </div>
                 <div class="form__item">
                     <label for="email">E-mail<span class="form__required">必須</span></label>
-                    <input type="email" class="form__item-input js-form-email" id="email" name="email"  tabindex="2" required>
+                    <input type="email" class="form__item-input js-form-email" id="email" name="email" tabindex="2" required>
                     <p id="js-email-error" class="error"></p>
                 </div>
                 <div class="form__item">
@@ -67,19 +67,19 @@
                 </div>
                 <div class="form__check" id="js-checkbox-aria">
                     <input type="checkbox" name="answer" title="answer" value="利用規約に同意しました" id="js-checkbox" class="invalid" disabled>
-                    <span class="form__check-text"><button type="button" class="link form__terms" id="js-checkbox-link">利用規約</button>に同意しました</span>
+                    <span class="form__check-text"><button type="button" class="link form__terms" id="js-checkbox-link" data-testid="terms-link">利用規約</button>に同意しました</span>
                     <p class="form__attention">( 規約を読むとチェックが入ります )</p>
                 </div>
-                <div class="form__button">
+                <div class="form__button" data-testid="button-area">
                     <input type="button" name="submitButton" class="js-submit-button" value="Create My Account" disabled>
                 </div>
-                <p class="error" id="js-error-area"></p>
+                <p class="error" id="js-error-area" data-testid="error-area"></p>
             </div>
         </form>
         <div class="modal js-modal" id="js-modal-area" role="dialog">
             <div class="modal__inner" id="js-modal-inner">
                 <button class="modal__close-button" id="js-modal-close-button" aria-label="Close"><img src="./img/icon-close.svg" alt="モーダルを閉じる" width="512" height="512" decoding="async"></button>
-                <div class="modal__contents" id="js-modal-contents">
+                <div class="modal__contents" id="js-modal-contents" data-testid="modal-contents">
                     <h2 class="modal__title">利用規約</h2>
                     <p class="modal__text">この利用規約（以下，「本規約」といいます。）は，＿＿＿＿＿（以下，「当社」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。</p>
                     <h3 class="modal__subtitle">第1条（適用）</h3>
