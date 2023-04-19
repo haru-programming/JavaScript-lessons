@@ -9,7 +9,7 @@ test('If your email address was already registered in the member registration, y
     await page.getByLabel('Password ( 8文字以上の大小英数字 )必須').fill('Fafafa0000');
     await page.getByTestId('terms-link').click();
     await page.getByTestId('modal-contents').click();
-    await page.mouse.wheel(0, 10000); // modalを一番下までスクロールする
+    await page.getByTestId('last-sentence').scrollIntoViewIfNeeded();
     await page.getByRole('button', { name: 'Close' }).click();
     await page.getByRole('button', { name: 'Create My Account' }).click();
     await page.getByRole('link', { name: 'ログインページへ移動する' }).click();
@@ -21,7 +21,7 @@ test('If your email address was already registered in the member registration, y
     await page.getByLabel('Password ( 8文字以上の大小英数字 )必須').fill('Fafafa0000');
     await page.getByTestId('terms-link').click();
     await page.getByTestId('modal-contents').click();
-    await page.mouse.wheel(0, 10000);
+    await page.getByTestId('last-sentence').scrollIntoViewIfNeeded();
     await page.getByRole('button', { name: 'Close' }).click();
     await page.getByRole('button', { name: 'Create My Account' }).click();
 
