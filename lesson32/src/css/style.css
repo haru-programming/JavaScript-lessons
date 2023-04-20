@@ -127,12 +127,11 @@ body.is-drawer-active:after{
     color: #333;
     text-decoration-color: currentColor;
     text-underline-offset: 3px;
-    transition: opacity 0.3s ease-in-out, text-decoration-color 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .link:hover{
     opacity: 0.6;
-    text-decoration-color: transparent;
 }
 
 
@@ -626,12 +625,11 @@ body.is-drawer-active:after{
     color: #ccc;
     text-decoration-color: #ccc;
     text-underline-offset: 7px;
-    transition: opacity 0.3s ease-in-out,text-decoration-color 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .form__title-link:hover{
     opacity: 0.6;
-    text-decoration-color: transparent;
 }
 
 .form__title-link.is-active{
@@ -686,28 +684,31 @@ body.is-drawer-active:after{
 }
 
 .form__check{
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 30px;
-}
-
-.form__check-link, .user-menu__link{
-    cursor: pointer;
-    border-bottom: 1px solid currentColor;
-    text-decoration: none;
-    color: #5e5e5e;
-    transition: opacity 0.3s ease-in-out,border-color 0.3s ease-in-out;
-}
-
-.form__check-link:hover,.user-menu__link:hover{
-    border-color: transparent;
-    opacity: 0.7;
 }
 
 .form__check input[type=checkbox][disabled]{
     cursor: not-allowed;
 }
 
+.form__check-text{
+    display: flex;
+    margin-left: 8px;
+}
+
+.form__terms{
+    cursor: pointer;
+    padding: 0;
+    font-size: 16px;
+    text-decoration: underline;
+    margin-right: 5px;
+}
+
 .form__attention{
     display: block;
+    width: 100%;
     font-size: 13px;
     padding-left: 15px;
 }
@@ -1316,6 +1317,10 @@ body.is-drawer-active:after{
 
     .form__title-text{
         padding: 2.4vw;
+    }
+
+    .form__terms{
+        font-size: 2.4vw;
     }
 
     .form__item{

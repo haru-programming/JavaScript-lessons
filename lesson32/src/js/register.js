@@ -54,11 +54,14 @@ const passwordOfInput = document.querySelector(".js-form-password");
 const errorOfPassword = document.querySelector('[data-name="password-error"]');
 const formElements = [nameOfInput, emailOfInput, passwordOfInput];
 const eyeIcon = document.querySelector(".js-eye-icon");
+const buttonErrorArea = document.getElementById("js-error-area");
 
 formElements.forEach(element => {
     element.classList.add("invalid");
     
     element.addEventListener("blur", (e) => {
+        buttonErrorArea.textContent = "";
+
         if(e.relatedTarget === eyeIcon) {
             if(passwordOfInput.value && errorOfPassword.textContent === "入力してください") errorOfPassword.textContent = "";
             return;
@@ -97,7 +100,7 @@ submitButton.addEventListener("click", (e) => {
 
     if (registeredData && inputsData.email === registeredData.email) {
         submitButton.disabled = true;
-        showErrorMessage(e.target);
+        buttonErrorArea.textContent = "既に登録済みのメールアドレスです";
         return;
     }
 
