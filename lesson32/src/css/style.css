@@ -751,6 +751,12 @@ body.is-drawer-active:after{
     opacity: 0.8;
 }
 
+.form__button input:focus:not([disabled]){	
+    cursor: pointer;
+    opacity: 0.8;
+    border: 2px solid #555fff;
+}
+
 .form__button + .form__text{
     margin-top: 50px;
 }

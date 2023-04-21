@@ -16,7 +16,7 @@
         <header class="header" id="js-header">
             <div class="header__inner">
                 <h1 class="title top center" id="js-title"><a href="./" class="header__link">haru news</a></h1>
-                <nav class="header__nav" id="global-nav" data-name="drawer-menu" aria-hidden="true">
+                <nav class="header__nav" id="global-nav" data-name="drawer-menu" aria-hidden="true" inert>
                     <div class="header__nav-inner">
                         <ul class="header__nav-list">
                             <li class="header__nav-item"><a href="./register.html" class="header__link" tabindex="2">Sign up</a></li>
@@ -52,7 +52,7 @@
             </div>
             <div class="form__inner">
                 <div class="form__item">
-                    <label for="userid">User ID <span class="form__notion">(Name or E-mail)</span></label>
+                    <label for="userId">User ID <span class="form__notion">(Name or E-mail)</span></label>
                     <input type="text" class="form__item-input js-form-userid" id="userId" name="userId" tabindex="1" required>
                     <p class="error"></p>
                 </div>
@@ -61,9 +61,9 @@
                     <button class="form__eye js-eye-icon" aria-label="パスワードが表示されます" type="button" tabindex="3"></button><input type="password" class="form__item-input js-form-password" id="password" name="password" aria-describedby="confirm-password-constraints" tabindex="2" required>
                     <p class="error" id="confirm-password-constraints" data-name="password-error"></p>
                 </div>
-                <p class="form__text"><a class="link" href="./forgotpassword.html">パスワードをお忘れの方はこちら</a></p>
+                <p class="form__text"><a class="link" href="./forgotpassword.html" tabindex="4" data-testid="forgot-password-link">パスワードをお忘れの方はこちら</a></p>
                 <div class="form__button">
-                    <input type="button" name="submitButton" class="js-submit-button" value="Login" disabled>
+                    <input type="button" name="submitButton" class="js-submit-button" value="Login" tabindex="5" disabled>
                 </div>
             </div>
         </form>
