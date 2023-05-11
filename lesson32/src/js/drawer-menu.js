@@ -3,8 +3,8 @@ import { toggleInertAttribute } from "./modules/toggle-inert";
 const body = document.querySelector("body");
 const hamburgerButton = document.getElementById("js-hamburger-button");
 const drawerMenu = document.querySelector('[data-name="drawer-menu"]');
-const focusControlTargets = [document.getElementById("js-form"), document.getElementById("js-title")];
-
+const form = document.getElementById("js-form");
+const title = document.getElementById("js-title");
 const isOpen = (button) => button.getAttribute("aria-expanded") === "true";
 
 const openMenu = (button, menu) => {
@@ -13,7 +13,7 @@ const openMenu = (button, menu) => {
     menu.setAttribute("aria-hidden", false);
     button.setAttribute("aria-expanded", true);
     toggleInertAttribute([drawerMenu],false);
-    toggleInertAttribute(focusControlTargets,true);
+    toggleInertAttribute([form, title],true);
 }
 
 const closeMenu = (button, menu) => {
@@ -22,7 +22,7 @@ const closeMenu = (button, menu) => {
     menu.setAttribute("aria-hidden", true);
     button.setAttribute("aria-expanded", false);
     toggleInertAttribute([drawerMenu],true);
-    toggleInertAttribute(focusControlTargets,false);
+    toggleInertAttribute([form, title],false);
 }
 
 hamburgerButton.addEventListener("click", (e) => {
