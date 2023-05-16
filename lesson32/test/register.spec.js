@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('If your email address was already registered in the member registration, you will get an error', async ({page,}) => {
+test('If your email address was already registered in the member registration, you will get an error', async ({ page }) => {
     await page.goto('http://localhost:3000/register.html');
 
     const name = 'takeda';
