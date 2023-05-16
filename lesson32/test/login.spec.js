@@ -3,7 +3,6 @@ import { test, expect } from '@playwright/test';
 test('Correct keyboard transitions in the login form', async ({ page }) => {
     await page.goto('http://localhost:3000/login.html');
 
-    // const userIdArea = page.locator('#userId');
     const userIdArea = page.getByLabel('User ID (Name or E-mail)');
     const passwordArea = page.getByLabel('Password');
     const forgotPasswordLink = page.getByTestId('forgot-password-link');
