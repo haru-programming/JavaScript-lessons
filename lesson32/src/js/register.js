@@ -50,6 +50,7 @@ const setCheckedAttributeToCheckbox = ([entry]) => {
         checkbox.disabled = false;
         checkbox.classList.remove("invalid");
         confirmIfCanSubmit(submitButton,invalidItems);
+        modalCloseButton.focus();
     }
 };
 
