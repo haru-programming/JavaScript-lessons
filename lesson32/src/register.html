@@ -14,7 +14,7 @@
         <header class="header" id="js-header">
             <div class="header__inner">
                 <h1 class="title top center" id="js-title"><a href="./" class="header__link">haru news</a></h1>
-                <nav class="header__nav" id="global-nav" data-name="drawer-menu" aria-hidden="true">
+                <nav class="header__nav" id="global-nav" data-name="drawer-menu" aria-hidden="true" inert>
                     <div class="header__nav-inner">
                         <ul class="header__nav-list">
                             <li class="header__nav-item"><a href="./register.html" class="header__link" tabindex="2">Sign up</a></li>
@@ -67,11 +67,11 @@
                 </div>
                 <div class="form__check" id="js-checkbox-aria">
                     <input type="checkbox" name="answer" title="answer" value="利用規約に同意しました" id="js-checkbox" class="invalid" disabled>
-                    <span class="form__check-text"><button type="button" class="link form__terms" id="js-checkbox-link" data-testid="terms-link">利用規約</button>に同意しました</span>
+                    <span class="form__check-text"><button type="button" class="link form__terms" id="js-checkbox-link" data-testid="terms-link" tabindex="5">利用規約</button>に同意しました</span>
                     <p class="form__attention">( 規約を読むとチェックが入ります )</p>
                 </div>
                 <div class="form__button" data-testid="button-area">
-                    <input type="button" name="submitButton" class="js-submit-button" value="Create My Account" disabled>
+                    <input type="button" name="submitButton" class="js-submit-button" value="Create My Account" tabindex="6" disabled>
                 </div>
                 <p class="error" id="js-error-area" data-testid="error-area"></p>
             </div>
@@ -79,7 +79,7 @@
         <div class="modal js-modal" id="js-modal-area" role="dialog">
             <div class="modal__inner" id="js-modal-inner">
                 <button class="modal__close-button" id="js-modal-close-button" aria-label="Close"><img src="./img/icon-close.svg" alt="モーダルを閉じる" width="512" height="512" decoding="async"></button>
-                <div class="modal__contents" id="js-modal-contents" data-testid="modal-contents">
+                <div class="modal__contents" id="js-modal-contents" data-testid="modal-contents" tabindex="0">
                     <h2 class="modal__title">利用規約</h2>
                     <p class="modal__text">この利用規約（以下，「本規約」といいます。）は，＿＿＿＿＿（以下，「当社」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。登録ユーザーの皆さま（以下，「ユーザー」といいます。）には，本規約に従って，本サービスをご利用いただきます。</p>
                     <h3 class="modal__subtitle">第1条（適用）</h3>
