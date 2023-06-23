@@ -1,7 +1,17 @@
 import { defineConfig } from 'vite';
-const { resolve } = require('path');
+import { resolve } from 'path';
+import { glob } from 'glob';
 
 const root = 'src';
+const htmlFiles = glob.sync('src/**/*.html');
+
+const transformedObject = htmlFiles.reduce((acc, item) => {
+  const directory = item.split('/')[1];
+  const fileName = item.split('/').pop().replace('.html', '');
+  const key = `${directory}_${fileName}`;
+  acc[key] = resolve(__dirname, `${item}`);
+  return acc;
+}, {});
 
 export default defineConfig({
   root: root,
@@ -24,18 +34,7 @@ export default defineConfig({
         entryFileNames: `assets/js/[name].js`,
       },
       input: {
-        main: resolve(__dirname, root, 'index.html'),
-        index: resolve(__dirname, root, 'lesson32/index.html'),
-        archive: resolve(__dirname, root, 'lesson32/archive-news.html'),
-        forgotPassword: resolve(__dirname, root, 'lesson32/forgotpassword.html'),
-        login: resolve(__dirname, root, 'lesson32/login.html'),
-        notAuth: resolve(__dirname, root, 'lesson32/notautherize.html'),
-        registerDone: resolve(__dirname, root, 'lesson32/register-done.html'),
-        register: resolve(__dirname, root, 'lesson32/register.html'),
-        resetEmailDone: resolve(__dirname, root, 'lesson32/reset-email-done.html'),
-        resetEmail: resolve(__dirname, root, 'lesson32/reset-email.html'),
-        resetPasswordDone: resolve(__dirname, root, 'lesson32/reset-password-done.html'),
-        resetPassword: resolve(__dirname, root, 'lesson32/reset-password.html'),
+        ...transformedObject
       },
     },
   },
