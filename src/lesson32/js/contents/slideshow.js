@@ -36,7 +36,7 @@ const fetchData = async(api) => {
 
 const fetchImgData = async() => {
     return new Promise((resolve) => {
-        setTimeout(() => resolve(fetchData("https://mocki.io/v1/75afe2d7-1463-4516-9388-09f73e71e3c4")), 3000);
+        setTimeout(() => resolve(fetchData("https://mocki.io/v1/82e4e264-5a2d-4ebd-9814-7e63e47fb80b")), 3000);
         // setTimeout(() => resolve(fetchData("https://mocki.io/v1/f12ae2d1-310d-4120-8749-47773d65e236")), 3000);//空配列
         // setTimeout(() => resolve(fetchData("https://httpstat.us/503")), 3000);//503 error
     })

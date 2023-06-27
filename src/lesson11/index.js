@@ -3,7 +3,7 @@ const ul = document.getElementById("js-lists");
 
 function addLoading() {
     const img = document.createElement("img");
-    img.src = "loading-circle.gif";
+    img.src = "/assets/img/loading-circle02.gif";
     img.id = "js-loading"
     div.appendChild(img);
 };
@@ -15,7 +15,7 @@ function removeLoading() {
 
 async function fetchData() {
     try {
-        const responseApi = await fetch("https://myjson.dit.upm.es/api/bins/7ctn");
+        const responseApi = await fetch("https://mocki.io/v1/4794a474-cbac-43f2-aa37-15a9777b8185");
         const json = await responseApi.json();
         return json.data;
     } catch (e) {

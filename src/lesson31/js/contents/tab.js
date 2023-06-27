@@ -20,7 +20,7 @@ const fetchData = async(endpoint) => {
 
 const fetchArrayData = async() => {
     try {
-        const json = await fetchData("https://mocki.io/v1/c437e37c-8c23-4255-abf1-fe6892bbeea9");
+        const json = await fetchData("https://mocki.io/v1/43b10f2b-3404-49d0-865c-168aa49778fd");
         // const json = await fetchData("https://mocki.io/v1/f12ae2d1-310d-4120-8749-47773d65e236");//空配列
         // const json = await fetchData("https://httpstat.us/503");//503 error
         

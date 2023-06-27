@@ -62,7 +62,7 @@ body.fixed{
     bottom:0;
     margin: auto 12px auto 0;
     transform: translate3d( 0, 2px, 0);
-    background: url(/img/icon-book.svg) top left/contain;
+    background: url(/assets/img/icon-book.svg) top left/contain;
 }
 
 .title.title--sub{
@@ -428,11 +428,11 @@ body.fixed{
     cursor: pointer;
     width: 26px;
     height: 26px;
-    background: url('/img/icon-eye-slash.svg') no-repeat center center/contain;
+    background: url('/assets/img/icon-eye-slash.svg') no-repeat center center/contain;
 }
 
 .form__eye.is-open:after{
-    background: url('/img/icon-eye.svg') no-repeat center center/contain;
+    background: url('/assets/img/icon-eye.svg') no-repeat center center/contain;
 }
 
 /* -----------------------------------------------------------------
