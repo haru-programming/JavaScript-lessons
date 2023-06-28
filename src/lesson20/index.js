@@ -10,7 +10,7 @@ const addLoading = () => {
     const img = document.createElement("img");
     const imgWrapper = createElementWithClassName("div", "loading");
 
-    img.src = "loading-circle.gif";
+    img.src = "/assets/img/loading-circle02.gif";
     imgWrapper.id = "js-loading";
     parent.appendChild(imgWrapper).appendChild(img);
 };

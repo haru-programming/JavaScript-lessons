@@ -6,7 +6,7 @@ const jsonData = [
         "id": "81f55329-9212-41b6-a71b-c7c02bcdee54",
         "category": "news",
         "display": true,
-        "img": "/img/img-news.png",
+        "img": "/assets/img/img-news.png",
         "articles": [
             {
                 "id": "89e779dd-a096-4ef4-b810-9a8f0a80ef18",
@@ -60,7 +60,7 @@ const jsonData = [
         "id": "91f55329-9212-41b6-a71b-c7c02bcdee54",
         "category": "economy",
         "display": false,
-        "img": "/img/img-economy.png",
+        "img": "/assets/img/img-economy.png",
         "articles": [
             {
                 "id": "99e779dd-a096-4ef4-b810-9a8f0a80ef18",
@@ -109,7 +109,7 @@ const jsonData = [
         "id": "61f55329-9212-41b6-a71b-c7c02bcdee54",
         "category": "entertainment",
         "display": false,
-        "img": "/img/img-entertainment.png",
+        "img": "/assets/img/img-entertainment.png",
         "articles": [
             {
                 "id": "69e779dd-a096-4ef4-b810-9a8f0a80ef18",
@@ -153,7 +153,7 @@ const jsonData = [
         "id": "21f55329-9212-41b6-a71b-c7c02bcdee54",
         "category": "domestic",
         "display": false,
-        "img": "/img/img-domestic.png",
+        "img": "/assets/img/img-domestic.png",
         "articles": [
             {
                 "id": "29e779dd-a096-4ef4-b810-9a8f0a80ef18",

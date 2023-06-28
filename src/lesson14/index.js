@@ -5,7 +5,7 @@ const ul = document.getElementById("js-lists");
 
 function addLoading() {
     const img = document.createElement("img");
-    img.src = "loading-circle.gif";
+    img.src = "/assets/img/loading-circle.gif";
     img.id = "js-loading";
     div.appendChild(img);
 }
@@ -17,7 +17,7 @@ function removeLoading() {
 
 async function fetchData() {
     try {
-        const json = await (await fetch("https://myjson.dit.upm.es/api/bins/7ctn")).json();
+        const json = await (await fetch("https://mocki.io/v1/4794a474-cbac-43f2-aa37-15a9777b8185")).json();
         return json.data;
     } catch (e) {
         throw new Error(e);

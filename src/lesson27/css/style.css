@@ -58,7 +58,7 @@ body.fixed{
     bottom:0;
     margin: auto 12px auto 0;
     transform: translate3d( 0, 2px, 0);
-    background: url(./assets/img/icon-book.svg) top left/contain;
+    background: url(/assets/img/icon-book.svg) top left/contain;
 }
 
 .title.title--sub{

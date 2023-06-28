@@ -17,7 +17,7 @@ const addLoading = () => {
     const img = document.createElement("img");
     const imgWrapper = createElementWithClassName("div", "loading");
 
-    img.src = "loading-circle.gif";
+    img.src = "/assets/img/loading-circle02.gif";
     imgWrapper.id = "js-loading";
     parent.appendChild(imgWrapper).appendChild(img);
 };
@@ -140,9 +140,9 @@ const createSortButtons = () => {
     ul.id = "js-sort-buttons";
 
     const buttonConfig = [
-        { src: "./assets/img/icon-both.svg", alt: "idを昇順に並び替える", dataSet: "default"},
-        { src: "./assets/img/icon-asc.svg", alt: "idを降順に並び替える", dataSet: "asc"},
-        { src: "./assets/img/icon-desc.svg", alt: "idを順不同に並び替える", dataSet: "desc"}
+        { src: "/assets/img/icon-both.svg", alt: "idを昇順に並び替える", dataSet: "default"},
+        { src: "/assets/img/icon-asc.svg", alt: "idを降順に並び替える", dataSet: "asc"},
+        { src: "/assets/img/icon-desc.svg", alt: "idを順不同に並び替える", dataSet: "desc"}
     ]
 
     const fragment = document.createDocumentFragment();

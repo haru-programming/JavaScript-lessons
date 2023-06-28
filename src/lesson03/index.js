@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         anchor.textContent = attribute.text;
         anchor.href = attribute.to;
-        img.src = "img/bookmark.png";
+        img.src = "/assets/img/bookmark.png";
         img.alt = "ブックマーク";
         
         li.appendChild(anchor).insertAdjacentElement('afterbegin',img);

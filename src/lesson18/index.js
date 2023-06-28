@@ -6,7 +6,7 @@ const nextButton = document.getElementById("js-button-next");
 function addLoading() {
     const img = document.createElement("img");
     const imgWrapper = document.createElement("div");
-    img.src = "loading-circle.gif";
+    img.src = "/assets/img/loading-circle.gif";
     img.id = "js-loading";
     imgWrapper.classList.add("loading");
     ul.appendChild(imgWrapper).appendChild(img);
@@ -28,7 +28,7 @@ async function fetchData(api) {
 
 async function fetchImgData() {
     return new Promise((resolve) => {
-        setTimeout(() => resolve(fetchData("https://mocki.io/v1/2db56900-1359-4d61-bd4c-d477c01b0122")), 3000);
+        setTimeout(() => resolve(fetchData("https://mocki.io/v1/82e4e264-5a2d-4ebd-9814-7e63e47fb80b")), 3000);
     });
 }
 

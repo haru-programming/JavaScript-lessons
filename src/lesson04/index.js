@@ -1,6 +1,6 @@
     const attributes = [
-        {to: "bookmark.html", img: "1.png", alt:"画像1", text: "ブックマーク"},
-        {to: "message.html", img: "2.png", alt:"画像2", text: "メッセージ"}
+        {to: "bookmark.html", img: "/assets/img/1.png", alt:"画像1", text: "ブックマーク"},
+        {to: "message.html", img: "/assets/img/2.png", alt:"画像2", text: "メッセージ"}
     ]
 
     const ul = document.getElementById('js-lists');

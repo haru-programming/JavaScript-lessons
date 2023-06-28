@@ -7,7 +7,7 @@ const img = document.createElement('img');
 
 anchor.textContent = "これです";
 anchor.href = "1.html";
-img.src = "bookmark.png";
+img.src = "/assets/img/bookmark.png";
 img.alt = "ブックマーク";
 
 ul.appendChild(li).appendChild(anchor).insertAdjacentElement('afterbegin',img);
