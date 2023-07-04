@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "test-view": "npx playwright codegen http://localhost:3000/register.html",
+    "test-view": "npx playwright codegen http://localhost:3000/lesson33/login.html",
     "test": "npx playwright test",
     "test-report": "npx playwright show-report"
   },
