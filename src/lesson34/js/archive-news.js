@@ -1,9 +1,9 @@
 import { createElementWithClassName } from "./modules/create-element";
 
-const selectElement = document.getElementById("js-select-category");
+const selectElement = document.querySelector(".js-select-category");
 const newsContent = document.getElementById("js-news-body");
 
-const url = "https://mocki.io/v1/3da6f634-e090-4734-8c1a-ecb5c581fdca";
+const url = "https://mocki.io/v1/17c612ef-837b-44aa-b7fb-9de423d11f13";
 // const url = "https://mocki.io/v1/8cc57c74-d671-48ac-b59f-d3dfb73ec8c1"; //No data
 // const url = "https://httpstat.us/503"; // 503 error
 // const url = "https://mocki.io/v1/fafafafa"; // Failed to fetch
@@ -80,7 +80,7 @@ const createArticleCards = data => {
     data.articles.forEach(article => {
         const newsItem = createElementWithClassName("li", "news__item");
         const infoArea = createElementWithClassName("div", "news__item-info");
-        const categoryLabel = createElementWithClassName("p", "news__item-category");
+        const categoryLabel = createElementWithClassName("p", "category");
         const date = createElementWithClassName("p", "news__item-date");
         const title = createElementWithClassName("h3", "news__item-title"); 
         const titleLink = createElementWithClassName("a", "news__item-link");
@@ -88,7 +88,7 @@ const createArticleCards = data => {
         categoryLabel.textContent = data.category;
         date.textContent = article.date;
         titleLink.textContent = article.title;
-        titleLink.href = "#";
+        titleLink.href = article.href;
         titleLink.classList.add("link");
 
         infoArea.appendChild(categoryLabel).after(date);
@@ -99,14 +99,19 @@ const createArticleCards = data => {
 };
 
 const createThumbnail = article => {
-    const thumbnailWrapper = createElementWithClassName("div", "news__item-thumbnail-wrap");
-    const thumbnail = createElementWithClassName("img", "news__item-thumbnail");
+    const thumbnailWrapper = createElementWithClassName("picture", "news__item-thumbnail-wrap");
+    const thumbnailWebp = createElementWithClassName("source", "news__item-thumbnail");
+    const thumbnailJpg = createElementWithClassName("img", "news__item-thumbnail");
     const noImgSrc = "/assets/img/no-img.jpg";
 
-    thumbnail.alt = "";
-    thumbnail.src = article.img || noImgSrc;
+    thumbnailJpg.alt = "";
+    thumbnailJpg.src = article.img || noImgSrc;
+    thumbnailWrapper.appendChild(thumbnailJpg);
 
-    thumbnailWrapper.appendChild(thumbnail);
+    if(article.webp){
+      thumbnailWebp.srcset = article.webp;
+      thumbnailWrapper.insertAdjacentElement("afterbegin", thumbnailWebp);
+    }
     return thumbnailWrapper;
 };
 
