@@ -84,11 +84,12 @@ const createArticleCards = data => {
         const date = createElementWithClassName("p", "news__item-date");
         const title = createElementWithClassName("h3", "news__item-title"); 
         const titleLink = createElementWithClassName("a", "news__item-link");
-        
+        const hrefWithId = `./article.html?id=${article.id}`;
+
         categoryLabel.textContent = data.category;
         date.textContent = article.date;
         titleLink.textContent = article.title;
-        titleLink.href = article.href;
+        titleLink.href = hrefWithId;
         titleLink.classList.add("link");
 
         infoArea.appendChild(categoryLabel).after(date);
