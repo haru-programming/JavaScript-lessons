@@ -81,6 +81,8 @@ const findCategoryById = (data, targetId) => {
     }
 }
 
+const setTitle = data => document.querySelector('title').textContent = `${data.title}`;
+
 const createCategoryLabel = data => {
     const categoryLabel = createElementWithClassName('p', 'category');
     const articleId = urlParameter.id;
@@ -141,7 +143,8 @@ const renderCategory = data => document.querySelector('.js-article-info').insert
 const renderArticle = data => {
     const targetData = getArticleData(data);
     const articleElement = document.getElementById('js-article');
-    
+
+    setTitle(targetData);
     articleElement.appendChild(createArticleHead(targetData)).after(createArticleInfo(targetData));
     articleElement.appendChild(createArticleContents(targetData)).after(createThumbnail(targetData));
     renderCategory(data);
