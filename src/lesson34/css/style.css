@@ -1097,9 +1097,17 @@ body.is-drawer-active:after{
 }
 
 .article__btn{
-  width: 48px;
+  width: 65px;
   margin-top: 5px;
   cursor: pointer;
+}
+
+.article__btn img{
+  pointer-events: none;
+}
+
+.article__btn:disabled{
+  cursor: default;
 }
 
 .article__info{

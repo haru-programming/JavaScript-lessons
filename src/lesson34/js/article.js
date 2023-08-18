@@ -55,6 +55,7 @@ const init = async() => {
         displayInfo(articleWrapper, "no data");
     } else {
         renderArticle(data);
+        addEventListenerForFavoriteButton(data);
     }
 };
 
@@ -98,6 +99,7 @@ const createArticleHead = data => {
 
     title.textContent = data.title;
     favoriteButton.type = "button";
+    favoriteButton.id = "js-favorite-button";
     favoriteImg.src = '/assets/img/icon-star.png';
     favoriteImg.alt = 'お気に入りに追加';
     favoriteButton.appendChild(favoriteImg);
@@ -140,6 +142,28 @@ const createThumbnail = data => {
 
 const renderCategory = data => document.querySelector('.js-article-info').insertAdjacentElement('beforeend', createCategoryLabel(data));
 
+const changeButtonDisabled = target => {
+    const starImage = target.firstElementChild;
+    target.disabled = true;
+    starImage.src = '/assets/img/icon-star-done.png';
+}
+
+const saveArticleData = data => {
+    const targetData = getArticleData(data);
+    const favoriteArticleData = {
+        [targetData.id]: {
+            'date': targetData.date,
+            'title': targetData.title,
+            'img': targetData.img,
+            'webp': targetData.webp
+        }
+    }
+    const registeredFavoriteData = JSON.parse(localStorage.getItem("registeredFavoriteData"));
+    const newFavoriteData = registeredFavoriteData ? {...registeredFavoriteData, ...favoriteArticleData} : favoriteArticleData;
+    
+    localStorage.setItem("registeredFavoriteData", JSON.stringify(newFavoriteData));
+}
+
 const renderArticle = data => {
     const targetData = getArticleData(data);
     const articleElement = document.getElementById('js-article');
@@ -148,6 +172,17 @@ const renderArticle = data => {
     articleElement.appendChild(createArticleHead(targetData)).after(createArticleInfo(targetData));
     articleElement.appendChild(createArticleContents(targetData)).after(createThumbnail(targetData));
     renderCategory(data);
+}
+
+const addEventListenerForFavoriteButton = data => {
+    const favoriteButton = document.getElementById('js-favorite-button');
+
+    favoriteButton.addEventListener('click', (e) => {
+        if(e.target.disabled) return;
+
+        changeButtonDisabled(e.target);
+        saveArticleData(data);
+    })
 }
 
 init();
