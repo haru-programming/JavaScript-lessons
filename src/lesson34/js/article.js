@@ -163,6 +163,8 @@ const createFavoriteData = data => {
         registeredFavoriteData = JSON.parse(localStorage.getItem('registeredFavoriteData'));
     } catch (error) {
         console.log(`jsonパースでエラーが発生しました: ${error}`);
+        displayInfo(articleWrapper,'エラーが発生しました');
+        return;
     }
 
     const newFavoriteData = registeredFavoriteData !== null ? [...registeredFavoriteData, favoriteData] : [favoriteData];
