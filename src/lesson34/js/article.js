@@ -148,20 +148,32 @@ const changeButtonDisabled = target => {
     starImage.src = '/assets/img/icon-star-done.png';
 }
 
+
+const createFavoriteData = data => {
+    const favoriteData = {
+        'id': data.id,
+        'date': data.date,
+        'title': data.title,
+        'img': data.img,
+        'webp': data.webp
+    }
+    
+    let registeredFavoriteData;
+    try {
+        registeredFavoriteData = JSON.parse(localStorage.getItem('registeredFavoriteData'));
+    } catch (error) {
+        console.log(`jsonパースでエラーが発生しました: ${error}`);
+        displayInfo(articleWrapper,'エラーが発生しました');
+        return;
+    }
+
+    const newFavoriteData = registeredFavoriteData !== null ? [...registeredFavoriteData, favoriteData] : [favoriteData];
+    return newFavoriteData;
+}
+
 const saveArticleData = data => {
     const targetData = getArticleData(data);
-    const favoriteArticleData = {
-        [targetData.id]: {
-            'date': targetData.date,
-            'title': targetData.title,
-            'img': targetData.img,
-            'webp': targetData.webp
-        }
-    }
-    const registeredFavoriteData = JSON.parse(localStorage.getItem("registeredFavoriteData"));
-    const newFavoriteData = registeredFavoriteData ? {...registeredFavoriteData, ...favoriteArticleData} : favoriteArticleData;
-    
-    localStorage.setItem("registeredFavoriteData", JSON.stringify(newFavoriteData));
+    localStorage.setItem("registeredFavoriteData", JSON.stringify(createFavoriteData(targetData)));
 }
 
 const renderArticle = data => {
