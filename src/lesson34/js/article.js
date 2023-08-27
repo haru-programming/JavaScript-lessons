@@ -148,6 +148,18 @@ const changeButtonDisabled = target => {
     starImage.src = '/assets/img/icon-star-done.png';
 }
 
+const getRegisteredFavoriteData = () => {
+    let registeredFavoriteData;
+    try {
+        registeredFavoriteData = JSON.parse(localStorage.getItem('registeredFavoriteData'));
+    } catch (error) {
+        console.log(`jsonパースでエラーが発生しました: ${error}`);
+        displayInfo(articleWrapper,'エラーが発生しました');
+        return;
+    }
+
+    return registeredFavoriteData;
+}
 
 const createFavoriteData = data => {
     const favoriteData = {
@@ -158,15 +170,7 @@ const createFavoriteData = data => {
         'webp': data.webp
     }
     
-    let registeredFavoriteData;
-    try {
-        registeredFavoriteData = JSON.parse(localStorage.getItem('registeredFavoriteData'));
-    } catch (error) {
-        console.log(`jsonパースでエラーが発生しました: ${error}`);
-        displayInfo(articleWrapper,'エラーが発生しました');
-        return;
-    }
-
+    const registeredFavoriteData = getRegisteredFavoriteData();
     const newFavoriteData = registeredFavoriteData !== null ? [...registeredFavoriteData, favoriteData] : [favoriteData];
     return newFavoriteData;
 }
@@ -174,6 +178,11 @@ const createFavoriteData = data => {
 const saveArticleData = data => {
     const targetData = getArticleData(data);
     localStorage.setItem("registeredFavoriteData", JSON.stringify(createFavoriteData(targetData)));
+}
+
+const isRegisteredData = () => {
+    const registeredFavoriteData = getRegisteredFavoriteData();
+    return registeredFavoriteData !== null && registeredFavoriteData.some(item => item.id === urlParameter.id);
 }
 
 const renderArticle = data => {
@@ -184,6 +193,11 @@ const renderArticle = data => {
     articleElement.appendChild(createArticleHead(targetData)).after(createArticleInfo(targetData));
     articleElement.appendChild(createArticleContents(targetData)).after(createThumbnail(targetData));
     renderCategory(data);
+
+    if(isRegisteredData()){
+        const favoriteButton = document.getElementById('js-favorite-button');
+        changeButtonDisabled(favoriteButton);
+    }
 }
 
 const addEventListenerForFavoriteButton = data => {
