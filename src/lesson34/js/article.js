@@ -149,7 +149,7 @@ const changeButtonDisabled = target => {
 }
 
 const getRegisteredFavoriteData = () => {
-    let registeredFavoriteData;
+    let registeredFavoriteData = null;
     try {
         registeredFavoriteData = JSON.parse(localStorage.getItem('registeredFavoriteData'));
     } catch (error) {
@@ -169,7 +169,7 @@ const createFavoriteData = data => {
     }
     
     const registeredFavoriteData = getRegisteredFavoriteData();
-    const newFavoriteData = registeredFavoriteData != null ? [...registeredFavoriteData, favoriteData] : [favoriteData];
+    const newFavoriteData = registeredFavoriteData !== null ? [...registeredFavoriteData, favoriteData] : [favoriteData];
     return newFavoriteData;
 }
 
@@ -180,7 +180,7 @@ const saveArticleData = data => {
 
 const isRegisteredData = () => {
     const registeredFavoriteData = getRegisteredFavoriteData();
-    return registeredFavoriteData != null && registeredFavoriteData.some(item => item.id === urlParameter.id);
+    return registeredFavoriteData !== null && registeredFavoriteData.some(item => item.id === urlParameter.id);
 }
 
 const renderArticle = data => {
