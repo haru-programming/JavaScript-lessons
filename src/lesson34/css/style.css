@@ -1338,7 +1338,7 @@ body.is-drawer-active:after{
     }
     
     .news__list{
-        gap: 9vw 5vw;
+        gap: 9vw 4.7vw;
     }
     
     .news__item{
