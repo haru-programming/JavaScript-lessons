@@ -7,9 +7,9 @@
         <link rel="stylesheet" href="./css/reset.css" type="text/css">
         <link rel="stylesheet" href="./css/style.css" type="text/css">
         <script>if (!localStorage.getItem("token")) window.location.href = "./login.html";</script>
-        <script type="module" src="./js/contents/main.js" defer></script>
-        <script type="module" src="./js/archive-news.js"></script>
-        <title>ニュース一覧</title>
+        <script type="module" src="./js/contents/main.js"></script>
+        <script type="module" src="./js/mypage.js"></script>
+        <title>マイページ</title>
     </head>
     <body>
         <header class="header">
@@ -30,20 +30,13 @@
                 <button class="user-menu__button" id="js-logout-button" type="button">Logout</button>
             </div>
         </header>
-        <section class="news">
-            <div class="news__inner">
-                <div class="news__head">
-                    <h2 class="title sub">ニュース記事一覧</h2>
-                    <div class="news__select">
-                        <label for="select-category">カテゴリー検索</label>
-                        <div class="news__pulldown-wrapper">
-                            <select class="news__pulldown js-select-category" id="select-category">
-                                <option value="all">すべて</option>
-                            </select>
-                        </div>
-                    </div>
+        <section class="mypage">
+            <div class="mypage__inner">
+                <div class="mypage__head">
+                    <h2 class="title sub">マイページ</h2>
+                    <div class="mypage__anchor"><a href="./archive-news.html" class="link">ニュース記事一覧</a> | <a href="./reset-email.html" class="link">メールアドレス変更</a></div>
                 </div>
-                <div class="news__body" id="js-news-body"></div>
+                <div class="mypage__body news" id="js-mypage"></div>
             </div>
         </section>
     </body>

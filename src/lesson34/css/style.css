@@ -598,6 +598,25 @@ body.is-drawer-active:after{
     
 }
 
+/* -----------------------------------------------------------------
+// mypage
+// ---------------------------------------------------------------*/
+
+.mypage__inner{
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+.mypage__anchor{
+  display: flex;gap: 15px;
+  width: fit-content;
+  margin: 40px 40px 0 auto;
+}
+
+.mypage__body{
+  margin-top: 80px;
+}
+
 
 /* -----------------------------------------------------------------
 // form
@@ -1188,8 +1207,7 @@ body.is-drawer-active:after{
     }
 
     .user-menu__list{
-        height: 12vw;
-        padding: 2vw 1vw;
+        padding: 3vw 1vw;
         margin-top: 6vw;
     }
 
@@ -1232,7 +1250,7 @@ body.is-drawer-active:after{
     
     .setting__menu-item{
         padding: 0 3vw;
-        font-size: 3.3vw;
+        font-size: 2.8vw;
     }
 
     .setting__img >img{
@@ -1312,7 +1330,7 @@ body.is-drawer-active:after{
 
     .news__pulldown {
         padding: 1vw 8vw 1vw 2vw;
-    }    
+    }
     
     .news__body{
         padding: 10vw 4vw;
@@ -1320,7 +1338,7 @@ body.is-drawer-active:after{
     }
     
     .news__list{
-        gap: 9vw 4.6vw;
+        gap: 9vw 5vw;
     }
     
     .news__item{
@@ -1347,6 +1365,20 @@ body.is-drawer-active:after{
     .news__item-title{
         margin-top: 1.8vw;
         font-size: 2.2vw;
+    }
+
+    .mypage__inner{
+      width: 100%;
+    }
+
+    .mypage__anchor{
+      gap: 3vw;
+      margin: 7vw auto 0 auto;
+      transform: translateX(1.2vw);
+    }
+
+    .mypage__body{
+      margin-top: 12vw;
     }
     
     .tab {
