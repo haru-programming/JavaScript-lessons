@@ -21,19 +21,22 @@ const getFavoriteData = () => {
 
 const init = () => {
   const favoriteData = getFavoriteData();
-  if (favoriteData === null ) return;
-
+  if (favoriteData.length === 0) {
+    displayInfo(articleWrapper,'お気に入り記事がありません。');
+    return;
+  }
   renderArticleList(favoriteData);
+  addEventListenerForRemoveFavoriteButton();
 };
 
 const createArticleCards = data => {
   const fragment = document.createDocumentFragment();
 
-  const newsItem = createElementWithClassName("li", "news__item");
+  const newsItem = createElementWithClassName("li", "news__item js-article");
   const infoArea = createElementWithClassName("div", "news__item-info");
   const date = createElementWithClassName("p", "news__item-date");
   const title = createElementWithClassName("h3", "news__item-title"); 
-  const titleLink = createElementWithClassName("a", "news__item-link");
+  const titleLink = createElementWithClassName("a", "news__item-link js-article-link");
   const hrefWithId = `./article.html?id=${data.id}`;
 
   date.textContent = data.date;
@@ -43,7 +46,7 @@ const createArticleCards = data => {
 
   infoArea.appendChild(date);
   title.appendChild(titleLink);
-  fragment.appendChild(newsItem).appendChild(title).after(infoArea, createThumbnail(data));
+  fragment.appendChild(newsItem).appendChild(title).after(infoArea, createThumbnail(data), createRemoveFavoriteButton());
   return fragment;
 };
 
@@ -64,14 +67,50 @@ const createThumbnail = article => {
   return thumbnailWrapper;
 };
 
+const createRemoveFavoriteButton = () => {
+  const removeFavoriteButton = createElementWithClassName("button", "news__button js-remove-favorite-button");
+  removeFavoriteButton.type = "button";
+  removeFavoriteButton.textContent = "お気に入りから削除";
+  return removeFavoriteButton;
+}
+
 const renderArticleList = data => {
-  const articleList = createElementWithClassName("ul", "news__list");
+  const articleList = createElementWithClassName("ul", "news__list js-article-list");
   
   const fragment = document.createDocumentFragment();
   data.forEach(item => {
       fragment.appendChild(createArticleCards(item));
   })
   articleWrapper.appendChild(articleList).appendChild(fragment);
+};
+
+const getArticleId = target => {
+  const targetArticle = target.closest(".js-article");
+  const targetArticleLink = targetArticle.querySelector(".js-article-link").href;
+  const regex = /id=([^&]+)/;
+  const articleID = targetArticleLink.match(regex)[1];
+  return articleID;
+}
+
+const deleteArticleData = target => {
+  let registeredFavoriteData = getFavoriteData();
+  const targetIndex = registeredFavoriteData.findIndex(item => item.id === getArticleId(target));
+
+  registeredFavoriteData.splice(targetIndex, 1);
+  localStorage.setItem("registeredFavoriteData", JSON.stringify(registeredFavoriteData));
+  target.closest(".js-article").remove();
+}
+
+const addEventListenerForRemoveFavoriteButton = () => {
+  const articleList = document.querySelector(".js-article-list");
+
+  articleList.addEventListener("click", (e) => {
+    deleteArticleData(e.target);
+
+    if (getFavoriteData().length === 0) {
+      displayInfo(articleWrapper,'お気に入り記事がありません。');
+    }
+  });
 };
 
 init();
