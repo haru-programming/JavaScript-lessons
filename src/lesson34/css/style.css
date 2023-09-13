@@ -541,7 +541,7 @@ body.is-drawer-active:after{
 }
 
 .news__item:hover{
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .news__item:hover .news__item-thumbnail{
@@ -595,8 +595,30 @@ body.is-drawer-active:after{
     left: 0;
     width: 100%;
     height: 100%;
-    
 }
+
+.news__button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    order: 4;
+    position: relative;
+    z-index: 20;
+    cursor: pointer;
+    width: 100%;
+    padding: 2px 20px;
+    margin: 15px 0 0 auto;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+    border: 1px solid currentColor;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.news__button:hover{
+    color: #fff;
+    background-color: #5e5e5e;
+}
+
 
 /* -----------------------------------------------------------------
 // mypage
@@ -1336,6 +1358,10 @@ body.is-drawer-active:after{
         padding: 10vw 4vw;
         border-radius: 0 0 2vw 2vw;
     }
+
+    .news__button{
+        font-size: 2.2vw;
+    }
     
     .news__list{
         gap: 9vw 4.7vw;
@@ -1379,6 +1405,7 @@ body.is-drawer-active:after{
 
     .mypage__body{
       margin-top: 12vw;
+      font-size: 2.8vw;
     }
     
     .tab {
