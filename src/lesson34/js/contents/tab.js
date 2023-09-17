@@ -2,10 +2,6 @@ import { format, differenceInCalendarDays } from "date-fns";
 import { createElementWithClassName } from "../modules/create-element";
 
 const url = "https://mocki.io/v1/759610d7-71f5-414a-982e-ac00ffd64206";
-// const url = "https://mocki.io/v1/8cc57c74-d671-48ac-b59f-d3dfb73ec8c1"; //No data
-// const url = "https://httpstat.us/503"; // 503 error
-// const url = "https://mocki.io/v1/fafafafa"; // Failed to fetch
-
 const tabNav = document.getElementById("js-tabNav");
 
 
@@ -116,32 +112,28 @@ const createTabContainer = () => {
     div.appendChild(tabNav.parentNode.replaceChild(div, tabNav));
 }
 
-const appendArticlesTitleFragment = (values) => {
+const createArticlesTitleFragment = values => {
     const fragment = document.createDocumentFragment();
-    const articleTitles = values.map(value => value.title);
-    const articleComments = values.map(value => value.comments);
-    const articleDate = values.map(value => value.date);
 
-      //記事タイトルの数だけliを追加
-    for (let i = 0; i < articleTitles.length; i++) {
+    values.forEach(value => {
         const li = createElementWithClassName("li", "tab__contents-item");
         const a = createElementWithClassName("a", "tab__contents-link link");
-        const numberOfComments = articleComments[i].length;
+        const numberOfComments = value.comments.length;
 
-        a.href = "#";
-        a.textContent = articleTitles[i];
+        a.href = `./article.html?id=${value.id}`;
+        a.textContent = value.title;
 
         fragment.appendChild(li).appendChild(a);
 
         //コメントがあれば件数とアイコンを表示
         if (numberOfComments > 0) {
-            const commentInfo = createCommentInfo(articleComments[i]);
+            const commentInfo = createCommentInfo(value.comments);
             li.appendChild(commentInfo);
         }
 
         //3日以内の投稿であればnewアイコンを表示
-        isNewArrival(articleDate[i]) && li.insertAdjacentElement("beforeend", createNewIcon());
-    }
+        isNewArrival(value.date) && li.insertAdjacentElement("beforeend", createNewIcon());
+    })
     return fragment;
 };
 
@@ -181,7 +173,7 @@ const createArticleContents = (data) => {
         //JSONデータでdisplayがtrueのカテゴリの場合はis-activeを付与
         data[i].display && tabContents.classList.add("is-active");
 
-        const articleTitlesFragment = appendArticlesTitleFragment(values[i]);
+        const articleTitlesFragment = createArticlesTitleFragment(values[i]);
         const contentsImgFragment = createImgFragments(data[i]);
 
         tabContainer.appendChild(tabContents).appendChild(tabContentsInner).appendChild(ul).appendChild(articleTitlesFragment);
