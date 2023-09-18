@@ -1,48 +1,60 @@
 import { format, differenceInCalendarDays } from "date-fns";
+import { createElementWithClassName } from "../modules/create-element";
+
+const url = "https://mocki.io/v1/759610d7-71f5-414a-982e-ac00ffd64206";
 const tabNav = document.getElementById("js-tabNav");
 
-const createElementWithClassName = (type, className) => {
-    const element = document.createElement(type);
-    element.className = className;
-    return element;
+
+const addLoading = (target) => {
+    const img =createElementWithClassName('img', 'loading js-loading');
+    img.src = "/assets/img/loading-circle.gif";
+    target.appendChild(img);
+}
+
+const removeLoading = () => document.querySelector(".js-loading").remove();
+
+const displayInfo = (target, error) => {
+    const p = document.createElement("p");
+    p.textContent = error;
+    target.appendChild(p);
 };
 
-const fetchData = async(endpoint) => {
-    const response = await fetch(endpoint);
-    if (!response.ok) {
-        const errorMessage = `${response.status}:${response.statusText}`;
-        tabNav.appendChild(createErrorMessage(errorMessage));
-        console.error(errorMessage);
-        return;
-    }
-    return await response.json();
+const displayErrorStatus = (target, response) => {
+    const p = document.createElement("p");
+    p.textContent = `${response.status}:${response.statusText}`;
+    target.appendChild(p);
 };
 
-const fetchArrayData = async() => {
+const fetchData = async(api) => {
+    addLoading(tabNav);
     try {
-        const json = await fetchData("https://mocki.io/v1/43b10f2b-3404-49d0-865c-168aa49778fd");
-        // const json = await fetchData("https://mocki.io/v1/f12ae2d1-310d-4120-8749-47773d65e236");//空配列
-        // const json = await fetchData("https://httpstat.us/503");//503 error
-        
-        if (!json) return;
+        const response = await fetch(api);
 
-        const data = json.data;
-        if (data.length === 0) {
-            tabNav.textContent = "まだデータがありません";
-            console.log("まだデータがありません");
+        if (response.ok) {
+            return await response.json();
+        } else {
+            console.error(`${response.status}:${response.statusText}`);
+            displayErrorStatus(tabNav, response);
         }
-        return data;
-
-    } catch(e) {
-        console.error(e);
-        tabNav.appendChild(createErrorMessage(e));
+        
+    } catch (error) {
+        displayInfo(tabNav, error);
+    } finally {
+        removeLoading();
     }
 };
 
-const createErrorMessage = (text) => {
-    const errorText = createElementWithClassName("p", "tab__error");
-    errorText.textContent = text;
-    return errorText;
+const init = async() => {
+    const data = await fetchData(url);
+
+    if (!data) return;
+    if (!data.length) {
+        displayInfo(tabNav, "no data");
+    } else {
+        createTabNav(data);
+        createTabContainer();
+        createArticleContents(data);
+    }
 };
 
 const isNewArrival = (date) => {
@@ -100,32 +112,28 @@ const createTabContainer = () => {
     div.appendChild(tabNav.parentNode.replaceChild(div, tabNav));
 }
 
-const appendArticlesTitleFragment = (values) => {
+const createArticlesTitleFragment = values => {
     const fragment = document.createDocumentFragment();
-    const articleTitles = values.map(value => value.title);
-    const articleComments = values.map(value => value.comments);
-    const articleDate = values.map(value => value.date);
 
-      //記事タイトルの数だけliを追加
-    for (let i = 0; i < articleTitles.length; i++) {
+    values.forEach(value => {
         const li = createElementWithClassName("li", "tab__contents-item");
-        const a = createElementWithClassName("a", "tab__contents-link");
-        const numberOfComments = articleComments[i].length;
+        const a = createElementWithClassName("a", "tab__contents-link link");
+        const numberOfComments = value.comments.length;
 
-        a.href = "#";
-        a.textContent = articleTitles[i];
+        a.href = `./article.html?id=${value.id}`;
+        a.textContent = value.title;
 
         fragment.appendChild(li).appendChild(a);
 
         //コメントがあれば件数とアイコンを表示
         if (numberOfComments > 0) {
-            const commentInfo = createCommentInfo(articleComments[i]);
+            const commentInfo = createCommentInfo(value.comments);
             li.appendChild(commentInfo);
         }
 
         //3日以内の投稿であればnewアイコンを表示
-        isNewArrival(articleDate[i]) && li.insertAdjacentElement("beforeend", createNewIcon());
-    }
+        isNewArrival(value.date) && li.insertAdjacentElement("beforeend", createNewIcon());
+    })
     return fragment;
 };
 
@@ -165,7 +173,7 @@ const createArticleContents = (data) => {
         //JSONデータでdisplayがtrueのカテゴリの場合はis-activeを付与
         data[i].display && tabContents.classList.add("is-active");
 
-        const articleTitlesFragment = appendArticlesTitleFragment(values[i]);
+        const articleTitlesFragment = createArticlesTitleFragment(values[i]);
         const contentsImgFragment = createImgFragments(data[i]);
 
         tabContainer.appendChild(tabContents).appendChild(tabContentsInner).appendChild(ul).appendChild(articleTitlesFragment);
@@ -184,14 +192,4 @@ const createImgFragments = (data) => {
     return fragment;
 };
 
-const addTabContents = async() => {
-    const data = await fetchArrayData();
-
-    if(data){
-        createTabNav(data);
-        createArticleContents(data);
-    }
-};
-
-createTabContainer();
-addTabContents();
+init();
