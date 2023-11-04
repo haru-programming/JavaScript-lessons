@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Hoeger",
+        "email": "Zella_Homenick38@example.net",
+        "password": "HQnmjPKBWkqzjeB",
+        "userId": "ae2efaa8fd0255cfafda76a7",
+        "id": "1"
+    },
+    {
+        "name": "Franecki",
+        "email": "Sadie77@example.org",
+        "password": "iO7gPh_qxzhpZpc",
+        "userId": "b1b97461ecd9480cebfbfee8",
+        "id": "2"
+    },
+    {
+        "name": "Collier",
+        "email": "Augustine18@example.net",
+        "password": "r1NNPFNlyJgTbd9",
+        "userId": "f0cb743cb6b5aa565fd707e5",
+        "id": "3"
+    },
+    {
+        "name": "Adams",
+        "email": "Granville83@example.org",
+        "password": "3W7j0bv11xf4odx",
+        "userId": "be29fa5ed5ca3ef7f2633b09",
+        "id": "4"
+    },
+    {
+        "name": "Rempel",
+        "email": "Kelsi_Feest@example.com",
+        "password": "zglN5n_jqdns2vj",
+        "userId": "ad98cd484df6fedc9961b637",
+        "id": "5"
+    }
+]
