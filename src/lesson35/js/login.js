@@ -1,7 +1,5 @@
 import { checkFormValidityInBlur, confirmIfCanSubmit } from "./modules/validation";
 import { togglePasswordDisplay } from "./modules/togglepassword";
-import { Chance } from "chance";
-const chance = new Chance();
 
 const userIdOfInput = document.querySelector(".js-form-userid");
 const passwordOfInput = document.querySelector(".js-form-password");
@@ -74,11 +72,11 @@ const fetchRegisteredData = async () => {
     }
 };
 
-const checkToRegistered = async (userIdInput, passwordInput) => {
+const checkToRegistered = async () => {
     const registeredUsers = await fetchRegisteredData();
-    const user = registeredUsers.find(user => user.name === userIdInput || user.email === userIdInput);
+    const user = registeredUsers.find(user => user.name === userIdOfInput || user.email === userIdOfInput);
 
-    if (user && user.password === passwordInput) {
+    if (user && user.password === passwordOfInput) {
         return { token: user.userId, ok: true, code: 200 };
     } else {
         throw { ok: false, code: 401 };
@@ -86,11 +84,8 @@ const checkToRegistered = async (userIdInput, passwordInput) => {
 }
 
 const tryToLogin = async () => {
-    const userIdInput = document.getElementById('userId').value;
-    const passwordInput = document.getElementById('password').value;
-
     try {
-        const result = await checkToRegistered(userIdInput, passwordInput);
+        const result = await checkToRegistered();
         localStorage.setItem("token", result.token);
         window.location.href = "./logged-in.html";
     } catch (rejectObj) {
