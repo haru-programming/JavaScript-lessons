@@ -74,9 +74,10 @@ const fetchRegisteredData = async () => {
 
 const checkToRegistered = async () => {
     const registeredUsers = await fetchRegisteredData();
-    const user = registeredUsers.find(user => user.name === userIdOfInput || user.email === userIdOfInput);
+    console.log(userIdOfInput, passwordOfInput);
+    const user = registeredUsers.find(user => user.name === userIdOfInput.value || user.email === userIdOfInput.value);
 
-    if (user && user.password === passwordOfInput) {
+    if (user && user.password === passwordOfInput.value) {
         return { token: user.userId, ok: true, code: 200 };
     } else {
         throw { ok: false, code: 401 };
@@ -84,6 +85,7 @@ const checkToRegistered = async () => {
 }
 
 const tryToLogin = async () => {
+
     try {
         const result = await checkToRegistered();
         localStorage.setItem("token", result.token);
