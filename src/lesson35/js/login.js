@@ -13,8 +13,8 @@ formElements.forEach(element => {
     element.classList.add("invalid");
 
     element.addEventListener("blur", (e) => {
-        if (e.relatedTarget === eyeIcon) {
-            if (passwordOfInput.value && errorOfPassword.textContent === "入力してください") errorOfPassword.textContent = "";
+        if (e.relatedTarget === eyeIcon && passwordOfInput.value && errorOfPassword.textContent === "入力してください") {
+            errorOfPassword.textContent = "";
             return;
         }
 
