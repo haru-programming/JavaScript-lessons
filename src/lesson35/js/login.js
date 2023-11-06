@@ -74,7 +74,6 @@ const fetchRegisteredData = async () => {
 
 const checkToRegistered = async () => {
     const registeredUsers = await fetchRegisteredData();
-    console.log(userIdOfInput, passwordOfInput);
     const user = registeredUsers.find(user => user.name === userIdOfInput.value || user.email === userIdOfInput.value);
 
     if (user && user.password === passwordOfInput.value) {
