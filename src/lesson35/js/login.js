@@ -79,21 +79,22 @@ const checkToRegistered = async () => {
     if (user && user.password === passwordOfInput.value) {
         return { token: user.userId, ok: true, code: 200 };
     } else {
-        throw { ok: false, code: 401 };
+        throw new Error({ ok: false, code: 401 });
     }
 }
 
-const tryToLogin = async () => {
-
+const login = async () => {
+    let result;
     try {
-        const result = await checkToRegistered();
-        localStorage.setItem("token", result.token);
-        window.location.href = "./logged-in.html";
-    } catch (rejectObj) {
-        console.error('Login failed:', rejectObj);
+        result = await checkToRegistered();
+    } catch (error) {
+        console.error('Login failed:', error);
         window.location.href = "./notautherize.html";
+        return;
     }
+    localStorage.setItem("token", result.token);
+    window.location.href = "./logged-in.html";
 }
 
 
-submitButton.addEventListener("click", tryToLogin);
+submitButton.addEventListener("click", login);
