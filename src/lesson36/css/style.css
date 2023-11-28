@@ -1191,16 +1191,24 @@ body.is-drawer-active:after{
   max-width: 100%;
 }
 
-.article__text{
-  order: 4;
-  margin-top: 40px;
-}
-
 .article__link{
   order: 5;
   margin-top: 60px;
 }
 
+.article__list{
+  order: 4;
+  margin-top: 40px;
+}
+
+.article__item + .article__item {
+    margin-top: 40px;
+  }
+
+.article__author {
+  font-size: 20px;
+  font-weight: bold;
+}
 
 
 /* -----------------------------------------------------------------
@@ -1557,4 +1565,15 @@ body.is-drawer-active:after{
       font-size: max(5vw,20px);
     }
 
+    .article__item + .article__item {
+      margin-top: 6vw;
+    }
+
+    .article__author {
+      font-size: 4vw;
+    }
+    
+    .article__quote {
+      font-size: 3vw;
+    }
 }

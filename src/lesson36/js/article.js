@@ -1,9 +1,7 @@
 import { createElementWithClassName } from "./modules/create-element";
 
-const url = "https://mocki.io/v1/759610d7-71f5-414a-982e-ac00ffd64206";
-// const url = "https://mocki.io/v1/8cc57c74-d671-48ac-b59f-d3dfb73ec8c1"; //No data
-// const url = "https://httpstat.us/503"; // 503 error
-// const url = "https://mocki.io/v1/fafafafa"; // Failed to fetch
+const articlesUrl = "https://mocki.io/v1/759610d7-71f5-414a-982e-ac00ffd64206";
+const contentsUrl = 'https://api.javascripttutorial.net/v1/quotes/?page=1&limit=10';
 
 const articleWrapper = document.getElementById("js-article");
 
@@ -47,8 +45,8 @@ const fetchData = async(api) => {
     }
 };
 
-const init = async() => {
-    const data = await fetchData(url);
+const initArticle = async() => {
+    const data = await fetchData(articlesUrl);
 
     if (!data) return;
     if (!data.length) {
@@ -56,6 +54,18 @@ const init = async() => {
     } else {
         renderArticle(data);
         addEventListenerForFavoriteButton(data);
+    }
+};
+
+const initContents = async() => {
+    const contentsData = await fetchData(contentsUrl);
+    const data = contentsData.data;
+
+    if (!data) return;
+    if (!data.length) {
+        displayInfo(articleWrapper, "no data");
+    } else {
+        renderContents(data);
     }
 };
 
@@ -115,12 +125,6 @@ const createArticleInfo = data => {
     date.textContent = `${data.date}`;
     articleInfo.appendChild(date);
     return articleInfo;
-}
-
-const createArticleContents = data => {
-    const articleContents = createElementWithClassName('p', 'article__text');
-    articleContents.textContent = `${data.content}`;
-    return articleContents;
 }
 
 const createThumbnail = data => {
@@ -189,7 +193,7 @@ const renderArticle = data => {
 
     setTitle(targetData);
     articleElement.appendChild(createArticleHead(targetData)).after(createArticleInfo(targetData));
-    articleElement.appendChild(createArticleContents(targetData)).after(createThumbnail(targetData));
+    articleElement.appendChild(createThumbnail(targetData));
     renderCategory(data);
 
     if(isRegisteredData()){
@@ -209,4 +213,23 @@ const addEventListenerForFavoriteButton = data => {
     })
 }
 
-init();
+const createContents = data => {
+  const fragment = document.createDocumentFragment();
+  const articleList = createElementWithClassName('ul', 'article__list');
+
+  data.forEach(article => {
+      const articleItem = createElementWithClassName('li', 'article__item');
+      const authorArea = createElementWithClassName('p', 'article__author');
+      const quoteArea = createElementWithClassName('p', 'article__quote');
+      authorArea.textContent = article.author;
+      quoteArea.textContent = article.quote;
+      fragment.appendChild(articleItem).appendChild(authorArea).after(quoteArea);
+  })
+  articleList.appendChild(fragment);
+  return articleList;
+}
+
+const renderContents = data => articleWrapper.appendChild(createContents(data));
+
+initArticle();
+initContents();
