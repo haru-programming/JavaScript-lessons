@@ -242,13 +242,13 @@ const isRegisteredData = () => {
 const renderArticle = data => {
     const targetData = getArticleData(data);
     const articleElement = document.getElementById('js-article');
-    const firstChild = articleElement.firstElementChild;
+    const contentList = document.querySelector('.js-article-list');
     setTitle(targetData);
 
     const fragment = document.createDocumentFragment();
 
     fragment.appendChild(createArticleHead(targetData)).after(createThumbnail(targetData), createArticleInfo(targetData));
-    articleElement.insertBefore(fragment, firstChild);
+    articleElement.insertBefore(fragment, contentList);
     renderCategory(data);
 
     if(isRegisteredData()){
