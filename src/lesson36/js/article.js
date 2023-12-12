@@ -112,7 +112,7 @@ const observer = new IntersectionObserver((entries) => {
         addLoading(articleWrapper);
         observer.unobserve(entry.target);
 
-            setTimeout(async () => {
+            setTimeout(() => {
               apiOptions.currentPage++;
                 if(apiOptions.currentPage <= apiOptions.limit) updateContents();
                 removeLoading(articleWrapper);
