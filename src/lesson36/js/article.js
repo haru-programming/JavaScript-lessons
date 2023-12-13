@@ -1,12 +1,30 @@
+import { add } from "date-fns";
 import { createElementWithClassName } from "./modules/create-element";
 
 const articlesUrl = "https://mocki.io/v1/759610d7-71f5-414a-982e-ac00ffd64206";
-const contentsUrl = 'https://api.javascripttutorial.net/v1/quotes/?page=1&limit=10';
+const contentsUrl = 'https://api.javascripttutorial.net/v1/quotes/';
+
+const apiOptions = {
+  currentPage : 0,
+  limit : 10,
+};
+
+const observerOptions = { 
+  threshold: 1.0,
+  rootMargin: "0px",
+};
+
+const createApiUrl = (url, page, limit) => {
+  const params = new URLSearchParams();
+  params.append('page', page);
+  params.append('limit', limit);
+  return `${url}?${params}`;
+};
 
 const articleWrapper = document.getElementById("js-article");
 
 const addLoading = (target) => {
-    const img =createElementWithClassName('img', 'loading');
+    const img =createElementWithClassName('img', 'loading bottom');
     img.src = "/assets/img/loading-circle.gif";
     img.id = "js-loading";
     target.appendChild(img);
@@ -58,7 +76,24 @@ const initArticle = async() => {
 };
 
 const initContents = async() => {
-    const contentsData = await fetchData(contentsUrl);
+    let url = createApiUrl(contentsUrl, apiOptions.currentPage, apiOptions.limit);
+    const contentsData = await fetchData(url);
+    const data = contentsData.data;
+
+    if (!data) return;
+    if (!data.length) {
+        displayInfo(articleWrapper, "no data");
+    } else {
+        const articleList = createElementWithClassName('ul', 'article__list js-article-list');
+        articleWrapper.appendChild(articleList);
+        renderContents(data);
+        observer.observe(document.querySelector('.js-article-list').lastElementChild);
+    }
+};
+
+const updateContents = async() => {
+    let url = createApiUrl(contentsUrl, apiOptions.currentPage, apiOptions.limit);
+    const contentsData = await fetchData(url);
     const data = contentsData.data;
 
     if (!data) return;
@@ -66,8 +101,25 @@ const initContents = async() => {
         displayInfo(articleWrapper, "no data");
     } else {
         renderContents(data);
+        observer.observe(document.querySelector('.js-article-list').lastElementChild);
     }
-};
+}
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+        addLoading(articleWrapper);
+        observer.unobserve(entry.target);
+
+            setTimeout(() => {
+                apiOptions.currentPage++;
+                if(apiOptions.currentPage <= apiOptions.limit) updateContents();
+                removeLoading(articleWrapper);
+            }, 500);
+        }
+    });
+}, observerOptions);
 
 const urlParameter = Object.fromEntries(new URLSearchParams(window.location.search));
 
@@ -190,10 +242,13 @@ const isRegisteredData = () => {
 const renderArticle = data => {
     const targetData = getArticleData(data);
     const articleElement = document.getElementById('js-article');
-
+    const contentList = document.querySelector('.js-article-list');
     setTitle(targetData);
-    articleElement.appendChild(createArticleHead(targetData)).after(createArticleInfo(targetData));
-    articleElement.appendChild(createThumbnail(targetData));
+
+    const fragment = document.createDocumentFragment();
+
+    fragment.appendChild(createArticleHead(targetData)).after(createThumbnail(targetData), createArticleInfo(targetData));
+    articleElement.insertBefore(fragment, contentList);
     renderCategory(data);
 
     if(isRegisteredData()){
@@ -213,23 +268,24 @@ const addEventListenerForFavoriteButton = data => {
     })
 }
 
-const createContents = data => {
-  const fragment = document.createDocumentFragment();
-  const articleList = createElementWithClassName('ul', 'article__list');
 
-  data.forEach(article => {
+const createContents = (data) => {
+  const fragment = document.createDocumentFragment();
+
+  if(data){
+    data.forEach(article => {
       const articleItem = createElementWithClassName('li', 'article__item');
       const authorArea = createElementWithClassName('p', 'article__author');
       const quoteArea = createElementWithClassName('p', 'article__quote');
       authorArea.textContent = article.author;
       quoteArea.textContent = article.quote;
       fragment.appendChild(articleItem).appendChild(authorArea).after(quoteArea);
-  })
-  articleList.appendChild(fragment);
-  return articleList;
+    })
+    return fragment;
+  }
 }
 
-const renderContents = data => articleWrapper.appendChild(createContents(data));
+const renderContents = (data) => document.querySelector('.js-article-list').appendChild(createContents(data));
 
 initArticle();
 initContents();
