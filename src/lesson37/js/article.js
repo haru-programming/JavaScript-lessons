@@ -1,4 +1,3 @@
-import { add } from "date-fns";
 import { createElementWithClassName } from "./modules/create-element";
 
 const articlesUrl = "https://mocki.io/v1/759610d7-71f5-414a-982e-ac00ffd64206";

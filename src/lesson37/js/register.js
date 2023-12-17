@@ -1,4 +1,4 @@
-import { showErrorMessage,checkFormValidityInBlur, confirmIfCanSubmit } from "./modules/validation";
+import { checkFormValidityInBlur, confirmIfCanSubmit } from "./modules/validation";
 import { toggleInertAttribute } from "./modules/toggle-inert";
 import { togglePasswordDisplay } from "./modules/togglepassword";
 
