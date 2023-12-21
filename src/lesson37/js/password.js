@@ -49,7 +49,7 @@ eyeIcons.forEach(icon => {
         checkFormValidityInBlur(submitButton, getInputElement(icon));
     
         if(hasInvalidClass()) return;
-        confirmIfCanSubmit();
+        confirmIfCanSubmit(passwordOfInput,confirmPasswordOfInput);
     });
 })
 
