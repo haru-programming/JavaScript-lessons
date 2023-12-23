@@ -102,15 +102,18 @@ const deleteArticleData = target => {
 }
 
 const addEventListenerForRemoveFavoriteButton = () => {
-  const articleList = document.querySelector(".js-article-list");
+  const removeFavoriteButtons = document.querySelectorAll(".js-remove-favorite-button");
 
-  articleList.addEventListener("click", (e) => {
-    deleteArticleData(e.target);
-
-    if (getFavoriteData().length === 0) {
-      displayInfo(articleWrapper,'お気に入り記事がありません。');
-    }
-  });
+  removeFavoriteButtons.forEach(button => {
+    button.addEventListener("click", (e) => {
+      const targetArticle = e.target.closest('.js-article');
+      deleteArticleData(targetArticle);
+  
+      if (getFavoriteData().length === 0) {
+        displayInfo(articleWrapper,'お気に入り記事がありません。');
+      }
+    });
+  })
 };
 
 init();
