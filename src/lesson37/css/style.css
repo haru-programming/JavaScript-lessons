@@ -1199,7 +1199,7 @@ body.is-drawer-active:after {
 }
 
 .article__btn:disabled {
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .article__info {
