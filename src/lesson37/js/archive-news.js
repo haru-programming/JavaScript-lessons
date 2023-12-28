@@ -10,7 +10,7 @@ const url = "https://mocki.io/v1/17c612ef-837b-44aa-b7fb-9de423d11f13";
 
 
 const addLoading = (target) => {
-    const img = document.createElement("img");
+    const img = createElementWithClassName('img', 'loading');
     img.src = "/assets/img/loading-circle.gif";
     img.id = "js-loading";
     target.appendChild(img);

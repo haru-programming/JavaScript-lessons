@@ -561,6 +561,7 @@ body.is-drawer-active:after {
 }
 
 .news__body {
+  position: relative;
   background-color: #fff;
   padding: 80px 2vw;
   border-radius: 0 0 8px 8px;
@@ -1198,7 +1199,7 @@ body.is-drawer-active:after {
 }
 
 .article__btn:disabled {
-  cursor: default;
+  cursor: not-allowed;
 }
 
 .article__info {
@@ -1238,7 +1239,13 @@ body.is-drawer-active:after {
 }
 
 .backlink {
-  margin: 80px 4vw;
+  position: fixed;
+  left: 40px;
+  bottom: 20px;
+  z-index: 1000;
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
 }
 
 /* -----------------------------------------------------------------
@@ -1604,5 +1611,10 @@ body.is-drawer-active:after {
 
   .article__quote {
     font-size: 3vw;
+  }
+
+  .backlink {
+    left: 2vw;
+    bottom: 2vw;
   }
 }
