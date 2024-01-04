@@ -4,7 +4,6 @@
 - もりけん塾で[マークアップエンジニアの方がフロントエンドエンジニアになる為の課題](https://github.com/kenmori/handsonFrontend/blob/master/work/markup/1.md)に取り組んだ記録です。<br>
 - 現役フロントエンドエンジニアのもりけんさん([@terrace_tec](https://twitter.com/terrace_tech))をはじめ、塾生の皆さんからレビューをいただきながら課題を進めました。
 <br>
-<br>
 
 ## 制作物とログイン方法
 - 冒頭のSITE MAPのコンテンツを作成しました。
@@ -23,6 +22,7 @@
 "id": "4"
 },
 ```
+<br>
 
 ## 各課題の内容とまとめ
 |  課題の仕様  | 内容 | アウトプットブログ |
